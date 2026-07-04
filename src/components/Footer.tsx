@@ -1,5 +1,4 @@
 import { Facebook, Instagram, Youtube, MessageCircle, Phone, Mail, MapPin } from "lucide-react";
-import collage from "@/assets/collage.jpg";
 
 const NAV_ITEMS = [
   "Home", "About", "Services", "Portfolio", "Packages", "Testimonials", "Contact",
@@ -41,7 +40,7 @@ export function Footer() {
           <div className="mt-6 flex gap-3">
             {[
               { Icon: Facebook, href: "#", label: "Facebook" },
-              { Icon: Instagram, href: "#", label: "Instagram" },
+              { Icon: Instagram, href: "https://www.instagram.com/vinitpatelphotography", label: "Instagram" },
               { Icon: Youtube, href: "#", label: "YouTube" },
               { Icon: MessageCircle, href: "https://wa.me/919998665014", label: "WhatsApp" },
             ].map(({ Icon, href, label }) => (
@@ -110,16 +109,24 @@ export function Footer() {
           </ul>
         </div>
 
-        {/* Collage image */}
-        <div className="relative flex items-start justify-center md:justify-end">
-          <div className="relative">
-            <img
-              src={collage}
-              alt="A collage of our photography moments"
-              loading="lazy"
-              className="w-full max-w-[240px] rotate-[2.5deg] opacity-75 hover:opacity-100 hover:rotate-0 transition-all duration-700"
-            />
-            <div className="absolute inset-0 ring-1 ring-[color:var(--color-gold)]/20 rotate-[2.5deg] hover:rotate-0 transition-transform duration-700" />
+        {/* Map column */}
+        <div className="relative flex flex-col items-stretch md:items-end justify-start w-full">
+          <div className="w-full max-w-[280px]">
+            <h3 className="text-[11px] tracking-[0.3em] text-[color:var(--color-gold)]">OUR STUDIO</h3>
+            <div className="mt-4 h-px w-10 bg-[color:var(--color-gold)]/50 mb-6" />
+            <div className="relative overflow-hidden rounded-xl border border-[color:var(--color-gold)]/20 shadow-lg bg-black/40 p-1">
+              <iframe
+                title="Vinit Patel Photography Studio Location Map"
+                src="https://maps.google.com/maps?q=28%2C%20Muktanand%20Soc%2C%20Karelibaug%2C%20Vadodara%2C%20Gujarat%20390018&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="160"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="rounded-lg grayscale invert opacity-60 hover:opacity-90 hover:grayscale-0 transition-all duration-700"
+              />
+            </div>
           </div>
         </div>
       </div>
