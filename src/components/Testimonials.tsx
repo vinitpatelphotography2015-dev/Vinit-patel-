@@ -54,8 +54,12 @@ export function Testimonials() {
     <section
       ref={targetRef}
       id="testimonials"
-      className="relative bg-moving-light h-[250vh]"
+      className="relative h-[250vh]"
+      style={{ background: "linear-gradient(180deg, #f8f7f3 0%, #f2efe8 50%, #f8f7f3 100%)" }}
     >
+      {/* Top decorative line */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-gold)]/25 to-transparent" />
+
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
         {/* Header */}
         <div className="text-center shrink-0 mb-12">
@@ -64,7 +68,7 @@ export function Testimonials() {
           </motion.p>
           <motion.h2
             {...fadeUp}
-            className="mt-4 font-serif text-[36px] md:text-[48px] font-light text-white"
+            className="mt-4 font-serif text-[36px] md:text-[48px] font-light text-[color:var(--color-ink)]"
           >
             What Our Clients Say
           </motion.h2>
@@ -84,15 +88,18 @@ export function Testimonials() {
             {TESTIMONIALS.map((t, idx) => (
               <div
                 key={idx}
-                className="w-[85vw] sm:w-[450px] md:w-[500px] shrink-0 bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-8 md:p-12 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.3)] flex flex-col justify-between hover:border-[color:var(--color-gold)]/40 transition-colors duration-500"
+                className="w-[85vw] sm:w-[450px] md:w-[500px] shrink-0 bg-white/80 backdrop-blur-md border border-[color:var(--color-gold)]/15 rounded-2xl p-8 md:p-12 flex flex-col justify-between hover:border-[color:var(--color-gold)]/40 transition-all duration-500 hover:shadow-[0_15px_40px_-15px_rgba(200,155,60,0.15)]"
+                style={{
+                  boxShadow: "0 4px 24px -8px rgba(60,40,10,0.08), 0 1px 3px rgba(0,0,0,0.04)",
+                }}
               >
                 <div>
                   <Quote
-                    className="text-[color:var(--color-gold)] opacity-70"
+                    className="text-[color:var(--color-gold)] opacity-60"
                     size={32}
                     strokeWidth={1.2}
                   />
-                  <p className="mt-6 font-serif text-[16px] md:text-[19px] font-light leading-[1.8] text-white/80 italic">
+                  <p className="mt-6 font-serif text-[16px] md:text-[19px] font-light leading-[1.8] text-[color:var(--color-ink)]/70 italic">
                     "{t.text}"
                   </p>
                 </div>
@@ -107,10 +114,10 @@ export function Testimonials() {
                     />
                   </div>
                   <div>
-                    <p className="text-[12px] font-semibold tracking-[0.1em] text-white">
+                    <p className="text-[12px] font-semibold tracking-[0.1em] text-[color:var(--color-ink)]">
                       {t.names}
                     </p>
-                    <p className="mt-0.5 text-[10px] tracking-[0.2em] text-white/50">
+                    <p className="mt-0.5 text-[10px] tracking-[0.2em] text-[color:var(--color-ink)]/40">
                       {t.event}
                     </p>
                   </div>

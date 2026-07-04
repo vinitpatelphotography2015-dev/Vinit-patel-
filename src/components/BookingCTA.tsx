@@ -9,20 +9,21 @@ export function BookingCTA({ onBookClick }: BookingCTAProps) {
   return (
     <section
       id="booking-cta"
-      className="relative bg-moving-dark overflow-hidden py-32 md:py-44"
+      className="relative overflow-hidden py-32 md:py-44"
+      style={{ background: "linear-gradient(180deg, #f8f7f3 0%, #f5f2ea 30%, #f0ede5 60%, #f8f7f3 100%)" }}
     >
       {/* Subtle radial glow */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 60%, rgba(200,155,60,0.06) 0%, transparent 65%)",
+            "radial-gradient(ellipse at 50% 60%, rgba(200,155,60,0.08) 0%, transparent 65%)",
         }}
       />
 
       {/* Decorative lines */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-gold)]/30 to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-gold)]/30 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-gold)]/25 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-gold)]/25 to-transparent" />
 
       <div className="relative mx-auto max-w-[900px] px-6 text-center">
         <motion.p
@@ -47,9 +48,9 @@ export function BookingCTA({ onBookClick }: BookingCTAProps) {
             <div key={i} className="overflow-hidden py-1">
               <motion.h2
                 variants={staggerItem}
-                className={`font-serif font-light leading-[1.0] text-white ${
+                className={`font-serif font-light leading-[1.0] ${
                   i === 0
-                    ? "text-[52px] md:text-[80px] lg:text-[96px]"
+                    ? "text-[52px] md:text-[80px] lg:text-[96px] text-[color:var(--color-ink)]"
                     : "text-[42px] md:text-[64px] lg:text-[76px] text-[color:var(--color-gold)] mt-2"
                 }`}
                 style={i === 1 ? { fontFamily: "Great Vibes, cursive", fontStyle: "normal" } : {}}
@@ -65,7 +66,7 @@ export function BookingCTA({ onBookClick }: BookingCTAProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.5, ease: LUXURY_EASE }}
-          className="mt-8 text-[13px] leading-[2] text-white/50 max-w-md mx-auto"
+          className="mt-8 text-[13px] leading-[2] text-[color:var(--color-ink)]/45 max-w-md mx-auto"
         >
           Your wedding is a once-in-a-lifetime story. Let us be there to capture
           every chapter — beautifully, timelessly, and with heart.
@@ -82,7 +83,7 @@ export function BookingCTA({ onBookClick }: BookingCTAProps) {
           <button
             onClick={onBookClick}
             data-cursor="book"
-            className="book-cta inline-flex items-center bg-[color:var(--color-gold)] px-10 py-4 text-[11px] tracking-[0.3em] text-[color:var(--color-ink)] font-semibold hover:bg-[color:var(--color-gold-soft)] hover:shadow-[0_0_30px_rgba(200,155,60,0.4)] transition-all duration-400"
+            className="book-cta inline-flex items-center bg-[color:var(--color-gold)] px-10 py-4 text-[11px] tracking-[0.3em] text-[color:var(--color-ink)] font-semibold hover:bg-[color:var(--color-gold-soft)] hover:shadow-[0_0_30px_rgba(200,155,60,0.35)] transition-all duration-400"
           >
             BOOK YOUR WEDDING
           </button>
@@ -91,7 +92,7 @@ export function BookingCTA({ onBookClick }: BookingCTAProps) {
             href="https://wa.me/919998665014?text=Hi%20Vinit%20Patel%20Photography%20Studio!%20I'd%20like%20to%20discuss%20capturing%20my%20wedding."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-white/20 px-8 py-4 text-[11px] tracking-[0.3em] text-white/70 hover:border-[#25D366] hover:text-[#25D366] transition-colors duration-300"
+            className="inline-flex items-center gap-2 border border-[color:var(--color-ink)]/15 px-8 py-4 text-[11px] tracking-[0.3em] text-[color:var(--color-ink)]/50 hover:border-[#25D366] hover:text-[#25D366] transition-colors duration-300"
           >
             CHAT ON WHATSAPP
           </a>

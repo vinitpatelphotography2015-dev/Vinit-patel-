@@ -54,10 +54,10 @@ const POLAROID_SLOTS = [
 ];
 
 const CONFETTI = [
-  { left: "48%", top: "1%",  rot: 10,  c: "#EAE2C8" },
+  { left: "48%", top: "1%",  rot: 10,  c: "#d4b062" },
   { left: "2%",  top: "62%", rot: -20, c: "#C89B3C" },
   { left: "14%", top: "94%", rot: 25,  c: "#C89B3C" },
-  { left: "82%", top: "60%", rot: -8,  c: "#EAE2C8" },
+  { left: "82%", top: "60%", rot: -8,  c: "#d4b062" },
   { left: "92%", top: "88%", rot: 14,  c: "#C89B3C" },
 ];
 
@@ -150,7 +150,7 @@ function DesktopPolaroidCard({ img, i, p, onOpen, globalX, globalY }: DesktopPol
         className="bg-white p-3 pb-9 transition-shadow duration-300 group-hover:shadow-[0_20px_40px_-15px_rgba(60,40,10,0.4)]"
         style={{
           boxShadow:
-            "0 1px 2px rgba(0,0,0,0.08), 0 12px 28px -8px rgba(60,40,10,0.3), 0 30px 60px -20px rgba(60,40,10,0.2)",
+            "0 1px 2px rgba(0,0,0,0.08), 0 12px 28px -8px rgba(60,40,10,0.18), 0 30px 60px -20px rgba(60,40,10,0.12)",
           transform: "translateZ(10px)",
         }}
       >
@@ -192,16 +192,20 @@ export function Portfolio() {
     <section
       id="portfolio"
       onMouseMove={handleGlobalMouseMove}
-      className="relative py-24 md:py-32 overflow-hidden bg-moving-light"
+      className="relative py-24 md:py-32 overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #f8f7f3 0%, #f0ede5 50%, #f8f7f3 100%)" }}
     >
       {/* Subtle linen texture */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.2] mix-blend-multiply"
+        className="pointer-events-none absolute inset-0 opacity-[0.25] mix-blend-multiply"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(45deg, rgba(120,90,40,0.06) 0 1px, transparent 1px 3px), repeating-linear-gradient(-45deg, rgba(120,90,40,0.05) 0 1px, transparent 1px 3px)",
+            "repeating-linear-gradient(45deg, rgba(120,90,40,0.05) 0 1px, transparent 1px 3px), repeating-linear-gradient(-45deg, rgba(120,90,40,0.04) 0 1px, transparent 1px 3px)",
         }}
       />
+
+      {/* Top decorative line */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-gold)]/25 to-transparent" />
 
       <div className="relative mx-auto max-w-[1300px] px-6 md:px-12">
         {/* Header */}
@@ -211,7 +215,7 @@ export function Portfolio() {
           </motion.p>
           <motion.h2
             {...fadeUp}
-            className="mt-4 font-serif text-[36px] md:text-[48px] font-light text-white"
+            className="mt-4 font-serif text-[36px] md:text-[48px] font-light text-[color:var(--color-ink)]"
           >
             A Glimpse of Our Work
           </motion.h2>
@@ -234,7 +238,7 @@ export function Portfolio() {
               className={`relative pb-2 text-[11px] tracking-[0.3em] transition-colors duration-300 ${
                 activeCategory === cat
                   ? "text-[color:var(--color-gold)]"
-                  : "text-white/60 hover:text-[color:var(--color-gold)]"
+                  : "text-[color:var(--color-ink)]/50 hover:text-[color:var(--color-gold)]"
               }`}
             >
               {cat.toUpperCase()}
@@ -288,7 +292,7 @@ export function Portfolio() {
                     className="bg-white p-2 pb-6"
                     style={{
                       boxShadow:
-                        "0 4px 15px -3px rgba(60,40,10,0.15), 0 2px 6px -1px rgba(60,40,10,0.1)",
+                        "0 4px 15px -3px rgba(60,40,10,0.12), 0 2px 6px -1px rgba(60,40,10,0.08)",
                     }}
                   >
                     <div className="aspect-square w-full overflow-hidden bg-[#e9e4d5]">
@@ -360,7 +364,7 @@ export function Portfolio() {
         <motion.div {...fadeUp} className="mt-16 text-center">
           <a
             href="#contact"
-            className="inline-flex items-center border border-[color:var(--color-gold)] bg-white/10 px-10 py-4 text-[11px] tracking-[0.3em] text-white hover:bg-[color:var(--color-gold)] hover:text-white transition-all duration-400"
+            className="inline-flex items-center border border-[color:var(--color-gold)] bg-[color:var(--color-gold)] px-10 py-4 text-[11px] tracking-[0.3em] text-[color:var(--color-ink)] font-semibold hover:bg-[color:var(--color-gold-soft)] hover:shadow-[0_0_30px_rgba(200,155,60,0.3)] transition-all duration-400"
           >
             ENQUIRE FOR FULL PORTFOLIO
           </a>
