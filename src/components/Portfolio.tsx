@@ -78,7 +78,7 @@ export function Portfolio() {
       id="portfolio"
       className="relative py-24 md:py-32 overflow-hidden"
       style={{
-        background: "radial-gradient(ellipse at center, #F8F4E9 0%, #EFE8D6 60%, #E4D9BE 100%)",
+        background: "radial-gradient(ellipse at center, var(--color-cream) 0%, #f2f1eb 60%, #e6e4d9 100%)",
       }}
     >
       {/* Subtle linen texture */}

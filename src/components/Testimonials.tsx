@@ -2,29 +2,37 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { fadeUp, LUXURY_EASE } from "@/animations/hero";
+import p2 from "@/assets/p2.jpg";
+import p3 from "@/assets/p3.jpg";
+import p4 from "@/assets/p4.jpg";
+import p5 from "@/assets/p5.jpg";
 
 const TESTIMONIALS = [
   {
     names: "Pratik & Hetal",
     initials: "P&H",
+    avatar: p3,
     event: "Wedding · Vadodara",
     text: "Vinit bhai and his team are simply amazing. They made our wedding so special with their creativity and professionalism. Every photo is a masterpiece we will treasure forever.",
   },
   {
     names: "Riddhi & Tejas",
     initials: "R&T",
+    avatar: p2,
     event: "Wedding & Sangeet · Surat",
     text: "The pictures are beyond beautiful. Every emotion was captured so perfectly — from our sangeet laughs to our wedding vows. We could not have asked for anyone better.",
   },
   {
     names: "Jinal & Hardik",
     initials: "J&H",
+    avatar: p4,
     event: "Baby Shower · Anand",
     text: "A truly wonderful experience. Our baby shower memories are now timeless photographs. Vinit's warmth and attention to detail made us feel completely at ease.",
   },
   {
     names: "Priya & Nikhil",
     initials: "P&N",
+    avatar: p5,
     event: "Engagement · Ahmedabad",
     text: "From the moment we met the team we knew we were in the right hands. Our engagement shoot was pure magic — the locations, the light, the editing — all perfect.",
   },
@@ -117,14 +125,13 @@ export function Testimonials() {
                   "{TESTIMONIALS[current].text}"
                 </p>
                 <div className="mt-8 flex items-center gap-4">
-                  {/* Monogram avatar */}
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[color:var(--color-gold)]/60 bg-[color:var(--color-gold)]/10">
-                    <span
-                      className="text-[13px] text-[color:var(--color-gold)]"
-                      style={{ fontFamily: "Great Vibes, cursive" }}
-                    >
-                      {TESTIMONIALS[current].initials}
-                    </span>
+                  {/* Client avatar image */}
+                  <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full border border-[color:var(--color-gold)]/40 bg-[color:var(--color-gold)]/5">
+                    <img
+                      src={TESTIMONIALS[current].avatar}
+                      alt={TESTIMONIALS[current].names}
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                   <div>
                     <p className="text-[13px] font-medium tracking-[0.1em] text-[color:var(--color-ink)]">

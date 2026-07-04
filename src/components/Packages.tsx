@@ -57,9 +57,35 @@ interface PackagesProps {
   onBookClick: () => void;
 }
 
+const getCardVariants = (index: number) => {
+  let initialX = 0;
+  let initialY = 50;
+
+  if (index === 0) {
+    initialX = -80; // Classic slides in from left
+  } else if (index === 2) {
+    initialX = 80; // Legacy slides in from right
+  } else {
+    initialY = 80; // Royal slides straight up
+  }
+
+  return {
+    hidden: { opacity: 0, x: initialX, y: initialY },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: {
+        duration: 0.9,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+};
+
 export function Packages({ onBookClick }: PackagesProps) {
   return (
-    <section id="packages" className="bg-[color:var(--color-ink)] py-28 md:py-36">
+    <section id="packages" className="bg-[color:var(--color-ink)] py-28 md:py-36 overflow-hidden">
       <div className="mx-auto max-w-[1300px] px-6 md:px-12">
         {/* Header */}
         <div className="text-center">
@@ -94,11 +120,11 @@ export function Packages({ onBookClick }: PackagesProps) {
           viewport={{ once: true, amount: 0.1 }}
           className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 items-start"
         >
-          {PACKAGES.map((pkg) => (
+          {PACKAGES.map((pkg, i) => (
             <motion.div
               key={pkg.tier}
-              variants={staggerItem}
-              className={`relative flex flex-col border transition-all duration-500 hover:shadow-[0_30px_80px_rgba(200,155,60,0.12)] ${
+              variants={getCardVariants(i)}
+              className={`relative flex flex-col border rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-[0_30px_80px_rgba(200,155,60,0.12)] ${
                 pkg.featured
                   ? "border-[color:var(--color-gold)] md:-translate-y-5 shadow-[0_20px_60px_rgba(200,155,60,0.15)]"
                   : "border-white/10 hover:border-[color:var(--color-gold)]/50"
@@ -151,7 +177,7 @@ export function Packages({ onBookClick }: PackagesProps) {
                 <button
                   onClick={onBookClick}
                   data-cursor="book"
-                  className={`book-cta w-full py-3.5 text-[11px] tracking-[0.3em] font-medium transition-all duration-300 ${
+                  className={`book-cta w-full py-3.5 text-[11px] tracking-[0.3em] font-medium rounded-xl transition-all duration-300 ${
                     pkg.featured
                       ? "bg-[color:var(--color-gold)] text-[color:var(--color-ink)] hover:bg-[color:var(--color-gold-soft)] hover:shadow-[0_0_24px_rgba(200,155,60,0.35)]"
                       : "border border-[color:var(--color-gold)]/60 text-[color:var(--color-gold)] hover:bg-[color:var(--color-gold)] hover:text-[color:var(--color-ink)]"
