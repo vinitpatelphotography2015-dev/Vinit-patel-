@@ -23,7 +23,7 @@ const FEATURES = [
 
 export function About() {
   return (
-    <section id="about" className="bg-[color:var(--color-cream)] py-28 md:py-36">
+    <section id="about" className="bg-moving-light py-28 md:py-36">
       <div className="mx-auto max-w-[1300px] px-6 md:px-12">
         {/* Section label */}
         <motion.p
@@ -50,7 +50,7 @@ export function About() {
             </motion.h2>
             <motion.p
               variants={staggerItem}
-              className="mt-3 text-[10px] tracking-[0.4em] text-[color:var(--color-ink)]/60"
+              className="mt-3 text-[10px] tracking-[0.4em] text-white/60"
             >
               FOUNDER & LEAD PHOTOGRAPHER
             </motion.p>
@@ -60,7 +60,7 @@ export function About() {
             />
             <motion.p
               variants={staggerItem}
-              className="mt-8 text-[13px] leading-[2] text-[color:var(--color-ink)]/65 max-w-xs"
+              className="mt-8 text-[13px] leading-[2] text-white/70 max-w-xs"
             >
               Photography for me is not just clicking pictures — it's about
               capturing emotions, connections, and beautiful moments you will
@@ -91,7 +91,7 @@ export function About() {
                 />
               </svg>
               <p
-                className="mt-2 text-[30px] text-[color:var(--color-ink)]"
+                className="mt-2 text-[30px] text-white"
                 style={{ fontFamily: "Great Vibes, cursive" }}
               >
                 Vinit Patel
@@ -129,10 +129,10 @@ export function About() {
                   <f.icon size={20} strokeWidth={1.5} />
                 </div>
                 <div>
-                  <h3 className="text-[12px] tracking-[0.3em] text-[color:var(--color-ink)] font-medium">
+                  <h3 className="text-[12px] tracking-[0.3em] text-white font-medium">
                     {f.title}
                   </h3>
-                  <p className="mt-2 text-[13px] leading-[1.8] text-[color:var(--color-ink)]/60 max-w-[240px]">
+                  <p className="mt-2 text-[13px] leading-[1.8] text-white/60 max-w-[240px]">
                     {f.desc}
                   </p>
                 </div>

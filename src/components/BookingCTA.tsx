@@ -9,7 +9,7 @@ export function BookingCTA({ onBookClick }: BookingCTAProps) {
   return (
     <section
       id="booking-cta"
-      className="relative bg-[color:var(--color-ink)] overflow-hidden py-32 md:py-44"
+      className="relative bg-moving-dark overflow-hidden py-32 md:py-44"
     >
       {/* Subtle radial glow */}
       <div
@@ -44,13 +44,13 @@ export function BookingCTA({ onBookClick }: BookingCTAProps) {
           className="mt-6"
         >
           {["Let's Tell", "Your Story."].map((line, i) => (
-            <div key={i} className="overflow-hidden">
+            <div key={i} className="overflow-hidden py-1">
               <motion.h2
                 variants={staggerItem}
                 className={`font-serif font-light leading-[1.0] text-white ${
                   i === 0
                     ? "text-[52px] md:text-[80px] lg:text-[96px]"
-                    : "text-[52px] md:text-[80px] lg:text-[96px] text-[color:var(--color-gold)]"
+                    : "text-[42px] md:text-[64px] lg:text-[76px] text-[color:var(--color-gold)] mt-2"
                 }`}
                 style={i === 1 ? { fontFamily: "Great Vibes, cursive", fontStyle: "normal" } : {}}
               >

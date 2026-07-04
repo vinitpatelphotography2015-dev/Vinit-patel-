@@ -1,7 +1,7 @@
-import { useEffect, useState, useCallback, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
-import { fadeUp, LUXURY_EASE } from "@/animations/hero";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Quote } from "lucide-react";
+import { fadeUp } from "@/animations/hero";
 import p2 from "@/assets/p2.jpg";
 import p3 from "@/assets/p3.jpg";
 import p4 from "@/assets/p4.jpg";
@@ -38,51 +38,33 @@ const TESTIMONIALS = [
   },
 ];
 
-const AUTOPLAY_INTERVAL = 5000;
-
 export function Testimonials() {
-  const [current, setCurrent] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const [paused, setPaused] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const targetRef = useRef<HTMLDivElement>(null);
+  
+  // Track scroll progress of the testimonials container
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  });
 
-  const navigate = useCallback(
-    (dir: number) => {
-      setDirection(dir);
-      setCurrent((prev) => (prev + dir + TESTIMONIALS.length) % TESTIMONIALS.length);
-    },
-    [],
-  );
-
-  // Autoplay
-  useEffect(() => {
-    if (paused) return;
-    timerRef.current = setInterval(() => navigate(1), AUTOPLAY_INTERVAL);
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  }, [paused, navigate]);
-
-  const variants = {
-    enter: (dir: number) => ({ opacity: 0, x: dir * 40 }),
-    center: { opacity: 1, x: 0, transition: { duration: 0.6, ease: LUXURY_EASE } },
-    exit: (dir: number) => ({ opacity: 0, x: dir * -40, transition: { duration: 0.4, ease: LUXURY_EASE } }),
-  };
+  // Translate vertical scroll into horizontal movement.
+  // Adjust output percentage based on the number of items and their spacing.
+  const x = useTransform(scrollYProgress, [0.05, 0.95], ["0%", "-62%"]);
 
   return (
     <section
+      ref={targetRef}
       id="testimonials"
-      className="bg-[color:var(--color-cream)] py-28 md:py-36"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      className="relative bg-moving-light h-[250vh]"
     >
-      <div className="mx-auto max-w-[1200px] px-6 md:px-12">
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
         {/* Header */}
-        <div className="text-center">
+        <div className="text-center shrink-0 mb-12">
           <motion.p {...fadeUp} className="text-[10px] tracking-[0.45em] text-[color:var(--color-gold)]">
             TESTIMONIALS
           </motion.p>
           <motion.h2
             {...fadeUp}
-            className="mt-4 font-serif text-[36px] md:text-[48px] font-light text-[color:var(--color-ink)]"
+            className="mt-4 font-serif text-[36px] md:text-[48px] font-light text-white"
           >
             What Our Clients Say
           </motion.h2>
@@ -93,83 +75,49 @@ export function Testimonials() {
           </div>
         </div>
 
-        {/* Carousel */}
-        <div className="relative mt-16 flex items-center">
-          {/* Prev arrow */}
-          <button
-            onClick={() => navigate(-1)}
-            className="relative z-10 mr-4 md:mr-8 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[color:var(--color-gold)]/50 text-[color:var(--color-gold)] hover:bg-[color:var(--color-gold)] hover:text-white transition-colors"
-            aria-label="Previous testimonial"
+        {/* Horizontal Scroll Track */}
+        <div className="relative w-full overflow-hidden">
+          <motion.div
+            style={{ x }}
+            className="flex gap-6 md:gap-8 px-6 md:px-24"
           >
-            <ChevronLeft size={18} />
-          </button>
-
-          {/* Testimonial card */}
-          <div className="flex-1 overflow-hidden">
-            <AnimatePresence custom={direction} mode="wait">
-              <motion.div
-                key={current}
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                className="mx-auto max-w-3xl bg-white/70 backdrop-blur-md border border-[color:var(--color-gold)]/15 rounded-2xl p-8 md:p-12 shadow-[0_15px_40px_-20px_rgba(60,40,10,0.12)]"
+            {TESTIMONIALS.map((t, idx) => (
+              <div
+                key={idx}
+                className="w-[85vw] sm:w-[450px] md:w-[500px] shrink-0 bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-8 md:p-12 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.3)] flex flex-col justify-between hover:border-[color:var(--color-gold)]/40 transition-colors duration-500"
               >
-                <Quote
-                  className="text-[color:var(--color-gold)]"
-                  size={36}
-                  strokeWidth={1.2}
-                />
-                <p className="mt-6 font-serif text-[18px] md:text-[22px] font-light leading-[1.75] text-[color:var(--color-ink)]/80 max-w-2xl italic">
-                  "{TESTIMONIALS[current].text}"
-                </p>
+                <div>
+                  <Quote
+                    className="text-[color:var(--color-gold)] opacity-70"
+                    size={32}
+                    strokeWidth={1.2}
+                  />
+                  <p className="mt-6 font-serif text-[16px] md:text-[19px] font-light leading-[1.8] text-white/80 italic">
+                    "{t.text}"
+                  </p>
+                </div>
+                
                 <div className="mt-8 flex items-center gap-4">
                   {/* Client avatar image */}
-                  <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full border border-[color:var(--color-gold)]/40 bg-[color:var(--color-gold)]/5">
+                  <div className="h-11 w-11 shrink-0 overflow-hidden rounded-full border border-[color:var(--color-gold)]/30 bg-[color:var(--color-gold)]/5">
                     <img
-                      src={TESTIMONIALS[current].avatar}
-                      alt={TESTIMONIALS[current].names}
+                      src={t.avatar}
+                      alt={t.names}
                       className="h-full w-full object-cover"
                     />
                   </div>
                   <div>
-                    <p className="text-[13px] font-medium tracking-[0.1em] text-[color:var(--color-ink)]">
-                      {TESTIMONIALS[current].names}
+                    <p className="text-[12px] font-semibold tracking-[0.1em] text-white">
+                      {t.names}
                     </p>
-                    <p className="mt-0.5 text-[11px] tracking-[0.2em] text-[color:var(--color-ink)]/50">
-                      {TESTIMONIALS[current].event}
+                    <p className="mt-0.5 text-[10px] tracking-[0.2em] text-white/50">
+                      {t.event}
                     </p>
                   </div>
                 </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Next arrow */}
-          <button
-            onClick={() => navigate(1)}
-            className="relative z-10 ml-4 md:ml-8 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[color:var(--color-gold)]/50 text-[color:var(--color-gold)] hover:bg-[color:var(--color-gold)] hover:text-white transition-colors"
-            aria-label="Next testimonial"
-          >
-            <ChevronRight size={18} />
-          </button>
-        </div>
-
-        {/* Dot indicators */}
-        <div className="mt-10 flex justify-center gap-2.5">
-          {TESTIMONIALS.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
-              aria-label={`Go to testimonial ${i + 1}`}
-              className={`rounded-full transition-all duration-300 ${
-                i === current
-                  ? "w-6 h-1.5 bg-[color:var(--color-gold)]"
-                  : "w-1.5 h-1.5 bg-[color:var(--color-ink)]/20 hover:bg-[color:var(--color-gold)]/50"
-              }`}
-            />
-          ))}
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform, useSpring, type MotionValue } from "framer-motion";
 import { fadeUp } from "@/animations/hero";
 import { portfolioContainer, portfolioItem } from "@/animations/portfolio";
 import {
@@ -29,23 +29,28 @@ const IMAGES: PortfolioImage[] = [
   { id: 7, src: p7, alt: "Haldi ceremony", categories: ["Haldi"] },
   { id: 8, src: p8, alt: "Sangeet dance", categories: ["Sangeet"] },
   { id: 9, src: p9, alt: "Couple shoot", categories: ["Couple Shoot"] },
+  { id: 10, src: p1, alt: "Bridal portrait", categories: ["Wedding"] },
+  { id: 11, src: p3, alt: "Pre-wedding joy", categories: ["Couple Shoot"] },
+  { id: 12, src: p5, alt: "Ring exchange", categories: ["Engagement"] },
+  { id: 13, src: p6, alt: "Reception dance", categories: ["Wedding", "Sangeet"] },
+  { id: 14, src: p8, alt: "Mehendi details", categories: ["Haldi"] },
 ];
 
 const POLAROID_SLOTS = [
-  { left: "6%",  top: "4%",  rot: -8,  w: 200, z: 3 },
-  { left: "22%", top: "10%", rot: 6,   w: 190, z: 5 },
-  { left: "40%", top: "2%",  rot: -4,  w: 210, z: 4 },
-  { left: "60%", top: "8%",  rot: 9,   w: 195, z: 3 },
-  { left: "78%", top: "14%", rot: -6,  w: 185, z: 2 },
-  { left: "4%",  top: "34%", rot: 5,   w: 210, z: 4 },
-  { left: "20%", top: "40%", rot: -10, w: 195, z: 6 },
-  { left: "37%", top: "36%", rot: 3,   w: 230, z: 7 },
-  { left: "58%", top: "40%", rot: -5,  w: 205, z: 5 },
-  { left: "76%", top: "38%", rot: 8,   w: 200, z: 4 },
-  { left: "8%",  top: "66%", rot: 4,   w: 200, z: 3 },
-  { left: "26%", top: "70%", rot: -7,  w: 195, z: 5 },
-  { left: "44%", top: "68%", rot: 6,   w: 210, z: 4 },
-  { left: "63%", top: "72%", rot: -3,  w: 200, z: 3 },
+  { left: "2%",  top: "4%",  rot: -8,  w: 170, z: 3 },
+  { left: "23%", top: "10%", rot: 6,   w: 165, z: 5 },
+  { left: "44%", top: "2%",  rot: -4,  w: 180, z: 4 },
+  { left: "65%", top: "8%",  rot: 9,   w: 170, z: 3 },
+  { left: "86%", top: "14%", rot: -6,  w: 160, z: 2 },
+  { left: "0%",  top: "34%", rot: 5,   w: 180, z: 4 },
+  { left: "21%", top: "40%", rot: -10, w: 165, z: 6 },
+  { left: "42%", top: "36%", rot: 3,   w: 190, z: 7 },
+  { left: "63%", top: "40%", rot: -5,  w: 175, z: 5 },
+  { left: "84%", top: "38%", rot: 8,   w: 170, z: 4 },
+  { left: "4%",  top: "66%", rot: 4,   w: 170, z: 3 },
+  { left: "25%", top: "70%", rot: -7,  w: 165, z: 5 },
+  { left: "46%", top: "68%", rot: 6,   w: 180, z: 4 },
+  { left: "67%", top: "72%", rot: -3,  w: 170, z: 3 },
 ];
 
 const CONFETTI = [
@@ -73,17 +78,22 @@ interface DesktopPolaroidCardProps {
   i: number;
   p: typeof POLAROID_SLOTS[0];
   onOpen: () => void;
+  globalX: MotionValue<number>;
+  globalY: MotionValue<number>;
 }
 
-function DesktopPolaroidCard({ img, i, p, onOpen }: DesktopPolaroidCardProps) {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+function DesktopPolaroidCard({ img, i, p, onOpen, globalX, globalY }: DesktopPolaroidCardProps) {
+  const localX = useMotionValue(0);
+  const localY = useMotionValue(0);
 
-  // Smooth springs for 3D tilt and 2D floating drift
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [10, -10]), { damping: 25, stiffness: 200 });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-10, 10]), { damping: 25, stiffness: 200 });
-  const translateX = useSpring(useTransform(x, [-0.5, 0.5], [-12, 12]), { damping: 25, stiffness: 150 });
-  const translateY = useSpring(useTransform(y, [-0.5, 0.5], [-12, 12]), { damping: 25, stiffness: 150 });
+  // Smooth springs for 3D tilt based on local hover
+  const rotateX = useSpring(useTransform(localY, [-0.5, 0.5], [10, -10]), { damping: 25, stiffness: 200 });
+  const rotateY = useSpring(useTransform(localX, [-0.5, 0.5], [-10, 10]), { damping: 25, stiffness: 200 });
+  
+  // Parallax based on global mouse movement for the "jiggle" effect (reduced range to prevent overlap)
+  const depth = 1 + (i % 4) * 0.4; // Varying depth for parallax
+  const translateX = useSpring(useTransform(globalX, [0, 1], [-12 * depth, 12 * depth]), { damping: 30, stiffness: 120 });
+  const translateY = useSpring(useTransform(globalY, [0, 1], [-12 * depth, 12 * depth]), { damping: 30, stiffness: 120 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -91,13 +101,13 @@ function DesktopPolaroidCard({ img, i, p, onOpen }: DesktopPolaroidCardProps) {
     const height = rect.height;
     const mouseX = e.clientX - rect.left - width / 2;
     const mouseY = e.clientY - rect.top - height / 2;
-    x.set(mouseX / width);
-    y.set(mouseY / height);
+    localX.set(mouseX / width);
+    localY.set(mouseY / height);
   };
 
   const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
+    localX.set(0);
+    localY.set(0);
   };
 
   return (
@@ -169,13 +179,20 @@ export function Portfolio() {
   const lightboxImages = filtered.map((img) => ({ src: img.src, alt: img.alt }));
   const lightbox = useLightbox(lightboxImages);
 
+  const globalX = useMotionValue(0.5);
+  const globalY = useMotionValue(0.5);
+
+  const handleGlobalMouseMove = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    globalX.set((e.clientX - rect.left) / rect.width);
+    globalY.set((e.clientY - rect.top) / rect.height);
+  };
+
   return (
     <section
       id="portfolio"
-      className="relative py-24 md:py-32 overflow-hidden"
-      style={{
-        background: "radial-gradient(ellipse at center, var(--color-cream) 0%, #f2f1eb 60%, #e6e4d9 100%)",
-      }}
+      onMouseMove={handleGlobalMouseMove}
+      className="relative py-24 md:py-32 overflow-hidden bg-moving-light"
     >
       {/* Subtle linen texture */}
       <div
@@ -194,7 +211,7 @@ export function Portfolio() {
           </motion.p>
           <motion.h2
             {...fadeUp}
-            className="mt-4 font-serif text-[36px] md:text-[48px] font-light text-[color:var(--color-ink)]"
+            className="mt-4 font-serif text-[36px] md:text-[48px] font-light text-white"
           >
             A Glimpse of Our Work
           </motion.h2>
@@ -217,7 +234,7 @@ export function Portfolio() {
               className={`relative pb-2 text-[11px] tracking-[0.3em] transition-colors duration-300 ${
                 activeCategory === cat
                   ? "text-[color:var(--color-gold)]"
-                  : "text-[color:var(--color-ink)]/60 hover:text-[color:var(--color-gold)]"
+                  : "text-white/60 hover:text-[color:var(--color-gold)]"
               }`}
             >
               {cat.toUpperCase()}
@@ -297,7 +314,7 @@ export function Portfolio() {
 
         {/* Desktop Layout (Scattered absolute canvas) */}
         <div 
-          className="hidden md:block mt-14 relative h-[780px] w-full max-w-[1300px]"
+          className="hidden md:block mt-14 relative h-[840px] w-full max-w-[1300px]"
           style={{ perspective: 1200 }}
         >
           {/* Confetti flowers in background */}
@@ -331,6 +348,8 @@ export function Portfolio() {
                   i={i}
                   p={p}
                   onOpen={() => lightbox.open(i)}
+                  globalX={globalX}
+                  globalY={globalY}
                 />
               );
             })}
@@ -341,7 +360,7 @@ export function Portfolio() {
         <motion.div {...fadeUp} className="mt-16 text-center">
           <a
             href="#contact"
-            className="inline-flex items-center border border-[color:var(--color-gold)] bg-white/40 px-10 py-4 text-[11px] tracking-[0.3em] text-[color:var(--color-ink)] hover:bg-[color:var(--color-gold)] hover:text-white transition-all duration-400"
+            className="inline-flex items-center border border-[color:var(--color-gold)] bg-white/10 px-10 py-4 text-[11px] tracking-[0.3em] text-white hover:bg-[color:var(--color-gold)] hover:text-white transition-all duration-400"
           >
             ENQUIRE FOR FULL PORTFOLIO
           </a>

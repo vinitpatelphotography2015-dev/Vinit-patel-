@@ -16,13 +16,13 @@ function Logo({ light = true }: { light?: boolean }) {
   return (
     <div className="flex flex-col leading-none">
       <span
-        className="text-[28px] md:text-[32px] text-[color:var(--color-gold)]"
+        className="text-[22px] md:text-[26px] text-[color:var(--color-gold)]"
         style={{ fontFamily: "Great Vibes, cursive" }}
       >
         Vinit Patel
       </span>
       <span
-        className={`mt-0.5 text-[9px] md:text-[10px] tracking-[0.35em] ${light ? "text-white/80" : "text-[color:var(--color-ink)]"}`}
+        className={`mt-0.5 text-[7px] md:text-[8px] tracking-[0.35em] ${light ? "text-white/80" : "text-[color:var(--color-ink)]"}`}
       >
         PHOTOGRAPHY STUDIO
       </span>
@@ -75,10 +75,10 @@ export function Navbar({ onBookClick }: NavbarProps) {
   }, []);
 
   const navBg = [
-    "bg-transparent py-6",
-    "bg-[color:var(--color-ink)]/60 backdrop-blur-sm py-4",
-    "bg-[color:var(--color-ink)]/80 backdrop-blur-md py-3",
-    "bg-[color:var(--color-ink)]/95 backdrop-blur-lg py-2",
+    "bg-transparent py-6 border-b border-transparent",
+    "bg-[rgba(7,7,7,0.12)] backdrop-blur-[32px] border-b border-[rgba(255,255,255,0.05)] py-4",
+    "bg-[rgba(7,7,7,0.12)] backdrop-blur-[32px] border-b border-[rgba(255,255,255,0.05)] py-3",
+    "bg-[rgba(7,7,7,0.12)] backdrop-blur-[32px] border-b border-[rgba(255,255,255,0.05)] py-2",
   ][scrollState];
 
   return (
@@ -86,35 +86,24 @@ export function Navbar({ onBookClick }: NavbarProps) {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${navBg}`}
       >
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 md:px-12">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 md:px-12 relative">
           <a href="#home" aria-label="Vinit Patel Photography Studio home">
             <Logo />
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-8" aria-label="Main navigation">
+          <nav className="hidden lg:flex items-center gap-12 absolute left-1/2 -translate-x-1/2" aria-label="Main navigation">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.href.slice(1);
               return (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="relative group text-[11px] tracking-[0.25em] text-white/85 hover:text-[color:var(--color-gold)] transition-colors duration-300"
+                  className="relative group text-[13px] font-medium tracking-[0.25em] text-white/85 hover:text-[color:var(--color-gold)] transition-colors duration-300"
                   aria-current={isActive ? "page" : undefined}
                 >
                   {item.label.toUpperCase()}
-                  <AnimatePresence>
-                    {isActive && (
-                      <motion.span
-                        layoutId="nav-underline"
-                        className="absolute -bottom-1.5 left-0 right-0 h-px bg-[color:var(--color-gold)]"
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: 1 }}
-                        exit={{ scaleX: 0 }}
-                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                      />
-                    )}
-                  </AnimatePresence>
+                  <span className={`absolute -bottom-1.5 left-0 right-0 h-[1px] bg-[color:var(--color-gold)] origin-center transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
                 </a>
               );
             })}

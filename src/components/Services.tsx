@@ -1,151 +1,152 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Heart, Music, Baby, ArrowRight } from "lucide-react";
-import { fadeUp, LUXURY_EASE } from "@/animations/hero";
 import svcWedding from "@/assets/service-wedding.jpg";
 import svcSangeet from "@/assets/service-sangeet.jpg";
 import svcBaby from "@/assets/service-baby.jpg";
 
 const SERVICES = [
   {
-    img: svcWedding,
+    title: "WEDDING PHOTOGRAPHY",
+    desc: "From dreamy weddings to grand celebrations, we capture every emotion and detail.",
+    image: svcWedding,
     icon: Heart,
-    eyebrow: "01 — WEDDING",
-    title: "Wedding\nPhotography",
-    desc: "From intimate ceremonies to grand celebrations, we capture every emotion and fleeting detail with an editorial, luxury eye. Your wedding story, told beautifully.",
-    cta: "View Wedding Gallery",
   },
   {
-    img: svcSangeet,
+    title: "SANGEET PHOTOGRAPHY",
+    desc: "Fun, music, dance and endless memories beautifully captured.",
+    image: svcSangeet,
     icon: Music,
-    eyebrow: "02 — SANGEET",
-    title: "Sangeet\nPhotography",
-    desc: "Music, dance, colour and the joy of coming together. We document the energy and emotion of your sangeet night in frames that feel alive.",
-    cta: "View Sangeet Gallery",
-    reverse: true,
   },
   {
-    img: svcBaby,
+    title: "BABY SHOWER PHOTOSHOOT",
+    desc: "Celebrating new beginnings with love, joy and heartwarming moments.",
+    image: svcBaby,
     icon: Baby,
-    eyebrow: "03 — BABY SHOWER",
-    title: "Baby Shower\nPhotoshoot",
-    desc: "Celebrating new beginnings with softness, warmth and heartwarming moments. A photoshoot as gentle and joyful as the occasion itself.",
-    cta: "View Baby Shower Gallery",
   },
 ];
 
-function ServicePanel({
-  service,
-  index,
-}: {
-  service: (typeof SERVICES)[0];
-  index: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
-  const reverse = service.reverse;
-
-  return (
-    <motion.div
-      ref={ref}
-      className={`flex flex-col ${reverse ? "md:flex-row-reverse" : "md:flex-row"} items-center gap-0 md:gap-0`}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.6, ease: LUXURY_EASE }}
-    >
-      {/* Image block */}
-      <div className="relative w-full md:w-[58%] overflow-hidden aspect-[4/3] md:aspect-auto md:h-[580px]">
-        <motion.img
-          src={service.img}
-          alt={service.title.replace("\n", " ")}
-          loading="lazy"
-          className="h-full w-full object-cover"
-          style={{ y: imageY }}
-          whileHover={{ scale: 1.04 }}
-          transition={{ duration: 0.8, ease: LUXURY_EASE }}
-          data-cursor="view"
-        />
-        {/* Subtle overlay on hover */}
-        <div className="absolute inset-0 bg-[color:var(--color-ink)]/10 opacity-0 hover:opacity-100 transition-opacity duration-500" />
-      </div>
-
-      {/* Text block */}
-      <div
-        className={`w-full md:w-[42%] bg-[color:var(--color-cream)] flex flex-col justify-center px-8 md:px-14 py-16 md:py-0 md:h-[580px] ${
-          reverse ? "md:items-end md:text-right" : ""
-        }`}
-      >
-        <motion.p
-          {...fadeUp}
-          className="text-[10px] tracking-[0.45em] text-[color:var(--color-gold)]"
-        >
-          {service.eyebrow}
-        </motion.p>
-
-        <motion.h2
-          {...fadeUp}
-          className="mt-4 font-serif text-[36px] md:text-[44px] font-light leading-[1.1] text-[color:var(--color-ink)] whitespace-pre-line"
-        >
-          {service.title}
-        </motion.h2>
-
-        <motion.div
-          {...fadeUp}
-          className={`mt-4 h-px w-10 bg-[color:var(--color-gold)]/50 ${reverse ? "ml-auto" : ""}`}
-        />
-
-        <motion.p
-          {...fadeUp}
-          className="mt-7 text-[13px] leading-[2] text-[color:var(--color-ink)]/60 max-w-[300px]"
-        >
-          {service.desc}
-        </motion.p>
-
-        <motion.a
-          {...fadeUp}
-          href="#portfolio"
-          className={`mt-8 inline-flex items-center gap-2 text-[11px] tracking-[0.3em] text-[color:var(--color-gold)] hover:gap-4 transition-all duration-300 ${reverse ? "ml-auto" : ""}`}
-        >
-          {service.cta.toUpperCase()} <ArrowRight size={14} />
-        </motion.a>
-      </div>
-    </motion.div>
-  );
-}
-
 export function Services() {
-  return (
-    <section id="services" className="bg-[color:var(--color-cream)]">
-      {/* Section header */}
-      <div className="py-20 md:py-28 text-center px-6">
-        <motion.p {...fadeUp} className="text-[10px] tracking-[0.45em] text-[color:var(--color-gold)]">
-          OUR SERVICES
-        </motion.p>
-        <motion.h2
-          {...fadeUp}
-          className="mt-4 font-serif text-[36px] md:text-[48px] font-light text-[color:var(--color-ink)]"
-        >
-          We Capture Every Special Moment
-        </motion.h2>
-        <div className="mx-auto mt-5 flex items-center justify-center gap-2">
-          <span className="h-px w-8 bg-[color:var(--color-gold)]/60" />
-          <span className="text-[color:var(--color-gold)] text-xs">◆</span>
-          <span className="h-px w-8 bg-[color:var(--color-gold)]/60" />
-        </div>
-      </div>
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
 
-      {/* Alternating editorial panels */}
-      <div className="border-t border-[color:var(--color-ink)]/8">
-        {SERVICES.map((s, i) => (
-          <div key={s.eyebrow} className={i < SERVICES.length - 1 ? "border-b border-[color:var(--color-ink)]/8" : ""}>
-            <ServicePanel service={s} index={i} />
-          </div>
-        ))}
+  const swayInVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50, 
+      rotate: 3 
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      rotate: 0,
+      transition: { 
+        duration: 1.2, 
+        ease: [0.22, 1, 0.36, 1] 
+      }
+    },
+  };
+
+  return (
+    <section id="services" className="bg-[color:var(--color-cream)] py-24 md:py-32 overflow-hidden">
+      <div className="mx-auto max-w-[1200px] px-6 md:px-12">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="text-[10px] tracking-[0.45em] text-[color:var(--color-gold)] uppercase font-medium mb-3"
+          >
+            OUR SERVICES
+          </motion.p>
+          
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, delay: 0.1 }}
+            className="font-serif text-[36px] md:text-[48px] text-[color:var(--color-ink)] font-light leading-tight"
+          >
+            We Capture Every Special Moment
+          </motion.h2>
+
+          {/* Elegant Divider with center diamond */}
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.4, delay: 0.2 }}
+            className="flex items-center justify-center gap-4 mt-6"
+          >
+            <div className="h-[1px] w-16 bg-[color:var(--color-gold)]/40" />
+            <div className="w-1.5 h-1.5 rotate-45 bg-[color:var(--color-gold)]" />
+            <div className="h-[1px] w-16 bg-[color:var(--color-gold)]/40" />
+          </motion.div>
+        </div>
+        
+        {/* Services Grid */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10"
+        >
+          {SERVICES.map((svc, index) => {
+            const IconComponent = svc.icon;
+            return (
+              <motion.div 
+                key={index} 
+                variants={swayInVariants}
+                whileHover={{ 
+                  y: -10,
+                  transition: { duration: 0.4, ease: "easeOut" } 
+                }}
+                className="group bg-white rounded-lg overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(200,155,60,0.08)] transition-shadow duration-500 flex flex-col cursor-none"
+              >
+                {/* Image Wrap */}
+                <div className="relative w-full aspect-[4/3] overflow-hidden">
+                  <img 
+                    src={svc.image} 
+                    alt={svc.title}
+                    className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105"
+                    data-cursor="view"
+                    loading="lazy"
+                  />
+                  {/* Overlay badge */}
+                  <div className="absolute bottom-3 left-3 w-9 h-9 rounded-full bg-[color:var(--color-gold)] flex items-center justify-center text-white shadow-md z-10">
+                    <IconComponent size={16} strokeWidth={2} />
+                  </div>
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-700 pointer-events-none" />
+                </div>
+
+                {/* Card Body */}
+                <div className="p-6 md:p-8 flex flex-col items-center text-center flex-grow bg-white">
+                  <h3 className="font-sans text-[13px] font-semibold tracking-[0.2em] text-[color:var(--color-ink)] mb-3">
+                    {svc.title}
+                  </h3>
+                  <p className="text-[12px] leading-[1.8] text-neutral-500 mb-6 font-light max-w-[260px]">
+                    {svc.desc}
+                  </p>
+                  <a
+                    href="#portfolio"
+                    className="inline-flex items-center gap-2 text-[10px] tracking-[0.25em] font-semibold text-[color:var(--color-gold)] group/link relative py-1 uppercase"
+                    data-cursor="explore"
+                  >
+                    VIEW GALLERY <ArrowRight size={12} className="transition-transform duration-300 group-hover/link:translate-x-1" />
+                  </a>
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );

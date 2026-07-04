@@ -33,7 +33,7 @@ export function HomePage() {
       {/* Main Site — locked from interaction until intro completes */}
       <div id="site" className={!introComplete ? "locked-out" : ""}>
         <Navbar onBookClick={() => setBookingOpen(true)} />
-        <Hero onBookClick={() => setBookingOpen(true)} />
+        <Hero onBookClick={() => setBookingOpen(true)} startTrigger={introComplete} />
         <About />
         <Services />
         <Portfolio />

@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Youtube, MessageCircle, Phone, Mail, MapPin } from "lucide-react";
+import contactBg from "@/assets/contact-bg.png";
 
 const NAV_ITEMS = [
   "Home", "About", "Services", "Portfolio", "Packages", "Testimonials", "Contact",
@@ -24,11 +25,21 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="relative bg-[color:var(--color-ink)] pt-20 pb-6 overflow-hidden">
-      {/* Top gold rule */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-gold)]/40 to-transparent" />
+    <footer id="contact" className="relative bg-moving-dark pt-20 pb-6 overflow-hidden">
+      {/* Background Image with opacity */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.08]">
+        <img
+          src={contactBg}
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--color-ink)] via-transparent to-[color:var(--color-ink)]" />
+      </div>
 
-      <div className="mx-auto grid max-w-[1300px] grid-cols-1 md:grid-cols-4 gap-10 px-6 md:px-12">
+      {/* Top gold rule */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-gold)]/40 to-transparent z-10" />
+
+      <div className="relative z-10 mx-auto grid max-w-[1300px] grid-cols-1 md:grid-cols-4 gap-10 px-6 md:px-12">
         {/* Brand column */}
         <div>
           <Logo />
@@ -142,7 +153,7 @@ export function Footer() {
       </div>
 
       {/* Copyright */}
-      <div className="mx-auto mt-16 max-w-[1300px] border-t border-white/8 px-6 md:px-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-2 text-[11px] text-white/30">
+      <div className="relative z-10 mx-auto mt-16 max-w-[1300px] border-t border-white/8 px-6 md:px-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-2 text-[11px] text-white/30">
         <span>© {year} Vinit Patel Photography Studio. All Rights Reserved.</span>
         <span className="tracking-[0.2em]">VADODARA · GUJARAT · INDIA</span>
       </div>

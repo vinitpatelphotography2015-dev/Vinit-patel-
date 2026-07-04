@@ -140,8 +140,9 @@
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: #050505;
+    color: #ffffff;
+    min-height: 100vh;
   }
 
   body.locked {
@@ -327,4 +328,86 @@
   font-family: "Inter", sans-serif;
   white-space: nowrap;
   user-select: none;
+}
+
+/* ================================================
+   LENIS SMOOTH SCROLLING
+   ================================================ */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Removed silkFlow animation */
+
+.bg-moving-light {
+  background-color: rgba(5, 5, 5, 0.3); /* Semi-transparent dark overlay for light sections */
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.bg-moving-dark {
+  background-color: rgba(5, 5, 5, 0.55); /* Deeper semi-transparent dark overlay for dark sections */
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* ================================================
+   HERO LUXURY REDESIGN UTILITIES
+   ================================================ */
+.bg-hero-gradient {
+  background: 
+    linear-gradient(90deg, rgba(5,5,5,.82) 0%, rgba(5,5,5,.48) 35%, rgba(5,5,5,.18) 60%, rgba(5,5,5,.62) 100%),
+    linear-gradient(180deg, transparent 55%, rgba(5,5,5,.72) 100%),
+    radial-gradient(circle at 70% 30%, transparent 0%, rgba(0,0,0,.28) 100%);
+}
+
+.hero-vignette {
+  box-shadow: inset 0 0 120px rgba(15, 10, 5, 0.45);
+  pointer-events: none;
+}
+
+.hero-noise {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANWa9sAAAACHRSTlMA/////////9/e5pQAAAAJcEhZcwAACxMAAAsTAQCanBgAAABSSURBVDjLpZGxDQAwCAMA/P+0L+AAyA6yB44yM5J1E8295u3s27O+9k4+P8n7P837P8/7P8/7P8/7P8/7P8/7P8/7P8/7P8/7P8/7P8/7P8/7P2/o0YfJcziWAAAAAElFTkSuQmCC");
+  background-repeat: repeat;
+  background-size: 80px 80px;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* ================================================
+   ABOUT LUXURY REDESIGN UTILITIES
+   ================================================ */
+.bg-about-texture {
+  background-color: #090909;
+}
+
+.about-radial-glow {
+  background: radial-gradient(circle at center, rgba(200, 155, 60, 0.06) 0%, transparent 65%);
+}
+
+.oversized-bg-text {
+  font-size: clamp(100px, 25vw, 380px);
+  font-weight: 700;
+  color: #ffffff;
+  opacity: 0.025;
+  line-height: 0.8;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.02em;
 }

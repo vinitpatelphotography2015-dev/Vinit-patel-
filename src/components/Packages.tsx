@@ -122,25 +122,25 @@ function PackageCard({ pkg, index, onBookClick }: PackageCardProps) {
         rotateY,
         transformStyle: "preserve-3d",
       }}
-      className={`relative flex flex-col border rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-[0_30px_80px_rgba(200,155,60,0.12)] ${
+      className={`relative flex flex-col rounded-2xl overflow-hidden bg-white transition-all duration-500 hover:shadow-[0_30px_80px_rgba(200,155,60,0.15)] ${
         pkg.featured
-          ? "border-[color:var(--color-gold)] md:-translate-y-5 shadow-[0_20px_60px_rgba(200,155,60,0.15)]"
-          : "border-white/10 hover:border-[color:var(--color-gold)]/50"
+          ? "border-2 border-[color:var(--color-gold)] md:-translate-y-5 shadow-[0_20px_60px_rgba(200,155,60,0.12)] z-10"
+          : "border border-neutral-200/80 hover:border-[color:var(--color-gold)]/40 shadow-[0_10px_35px_rgba(0,0,0,0.02)]"
       }`}
     >
       {/* Card header */}
       <div
         className={`px-8 pt-10 pb-8 border-b ${
           pkg.featured
-            ? "border-[color:var(--color-gold)]/30 bg-[color:var(--color-gold)]/5"
-            : "border-white/8"
+            ? "border-[color:var(--color-gold)]/20 bg-[color:var(--color-gold)]/5"
+            : "border-neutral-100 bg-neutral-50/30"
         }`}
         style={{ transform: "translateZ(20px)" }}
       >
-        <p className="text-[10px] tracking-[0.4em] text-[color:var(--color-gold)]">
+        <p className="text-[10px] tracking-[0.4em] text-[color:var(--color-gold)] font-medium">
           {pkg.tagline.toUpperCase()}
         </p>
-        <h3 className="mt-2 font-serif text-[32px] font-light text-white">
+        <h3 className="mt-2 font-serif text-[32px] font-light text-[color:var(--color-ink)]">
           {pkg.tier}
         </h3>
         <div className="mt-6 flex items-end gap-1">
@@ -148,7 +148,7 @@ function PackageCard({ pkg, index, onBookClick }: PackageCardProps) {
             {pkg.price}
           </span>
         </div>
-        <p className="mt-2 text-[11px] tracking-[0.2em] text-white/40">
+        <p className="mt-2 text-[11px] tracking-[0.2em] text-neutral-400">
           {pkg.duration}
         </p>
       </div>
@@ -163,7 +163,7 @@ function PackageCard({ pkg, index, onBookClick }: PackageCardProps) {
                 className="shrink-0 text-[color:var(--color-gold)]"
                 strokeWidth={2}
               />
-              <span className="text-[13px] text-white/65">{f}</span>
+              <span className="text-[13px] text-neutral-600 font-light">{f}</span>
             </li>
           ))}
         </ul>
@@ -174,10 +174,10 @@ function PackageCard({ pkg, index, onBookClick }: PackageCardProps) {
         <button
           onClick={onBookClick}
           data-cursor="book"
-          className={`book-cta w-full py-3.5 text-[11px] tracking-[0.3em] font-medium rounded-xl transition-all duration-300 ${
+          className={`book-cta w-full py-3.5 text-[11px] tracking-[0.3em] font-semibold rounded-xl transition-all duration-300 ${
             pkg.featured
-              ? "bg-[color:var(--color-gold)] text-[color:var(--color-ink)] hover:bg-[color:var(--color-gold-soft)] hover:shadow-[0_0_24px_rgba(200,155,60,0.35)]"
-              : "border border-[color:var(--color-gold)]/60 text-[color:var(--color-gold)] hover:bg-[color:var(--color-gold)] hover:text-[color:var(--color-ink)]"
+              ? "bg-[color:var(--color-gold)] text-white hover:bg-[color:var(--color-gold-soft)] hover:shadow-[0_0_24px_rgba(200,155,60,0.35)]"
+              : "border border-[color:var(--color-gold)] text-[color:var(--color-gold)] hover:bg-[color:var(--color-gold)] hover:text-white"
           }`}
         >
           {pkg.cta.toUpperCase()}
@@ -189,16 +189,16 @@ function PackageCard({ pkg, index, onBookClick }: PackageCardProps) {
 
 export function Packages({ onBookClick }: PackagesProps) {
   return (
-    <section id="packages" className="bg-[color:var(--color-ink)] py-28 md:py-36 overflow-hidden">
+    <section id="packages" className="bg-gradient-to-b from-white via-[#FAF9F6] to-[color:var(--color-cream)] py-28 md:py-36 overflow-hidden">
       <div className="mx-auto max-w-[1300px] px-6 md:px-12">
         {/* Header */}
         <div className="text-center">
-          <motion.p {...fadeUp} className="text-[10px] tracking-[0.45em] text-[color:var(--color-gold)]">
+          <motion.p {...fadeUp} className="text-[10px] tracking-[0.45em] text-[color:var(--color-gold)] uppercase font-medium">
             INVESTMENT
           </motion.p>
           <motion.h2
             {...fadeUp}
-            className="mt-4 font-serif text-[36px] md:text-[48px] font-light text-white"
+            className="mt-4 font-serif text-[36px] md:text-[48px] font-light text-[color:var(--color-ink)]"
           >
             Choose Your Experience
           </motion.h2>
@@ -209,7 +209,7 @@ export function Packages({ onBookClick }: PackagesProps) {
           </div>
           <motion.p
             {...fadeUp}
-            className="mt-6 text-[13px] leading-[1.9] text-white/50 max-w-md mx-auto"
+            className="mt-6 text-[13px] leading-[1.9] text-neutral-500 max-w-md mx-auto font-light"
           >
             Every package is a starting point. We're happy to tailor a bespoke
             experience for your wedding.
@@ -222,7 +222,7 @@ export function Packages({ onBookClick }: PackagesProps) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 items-start"
+          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 items-start"
           style={{ perspective: 1200 }}
         >
           {PACKAGES.map((pkg, i) => (
@@ -230,7 +230,7 @@ export function Packages({ onBookClick }: PackagesProps) {
           ))}
         </motion.div>
 
-        <motion.p {...fadeUp} className="mt-10 text-center text-[11px] tracking-[0.2em] text-white/30">
+        <motion.p {...fadeUp} className="mt-10 text-center text-[11px] tracking-[0.2em] text-neutral-400 font-light">
           All prices are starting rates. Custom packages available on request.
         </motion.p>
       </div>
