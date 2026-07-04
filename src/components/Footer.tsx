@@ -111,7 +111,7 @@ export function Footer() {
 
         {/* Map column */}
         <div className="relative flex flex-col items-stretch md:items-end justify-start w-full">
-          <div className="w-full max-w-[280px]">
+          <div className="w-full max-w-[300px]">
             <h3 className="text-[11px] tracking-[0.3em] text-[color:var(--color-gold)]">OUR STUDIO</h3>
             <div className="mt-4 h-px w-10 bg-[color:var(--color-gold)]/50 mb-6" />
             <div className="relative overflow-hidden rounded-xl border border-[color:var(--color-gold)]/20 shadow-lg bg-black/40 p-1">
@@ -119,13 +119,23 @@ export function Footer() {
                 title="Vinit Patel Photography Studio Location Map"
                 src="https://maps.google.com/maps?q=28%2C%20Muktanand%20Soc%2C%20Karelibaug%2C%20Vadodara%2C%20Gujarat%20390018&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 width="100%"
-                height="160"
+                height="190"
                 style={{ border: 0 }}
                 allowFullScreen={false}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="rounded-lg grayscale invert opacity-60 hover:opacity-90 hover:grayscale-0 transition-all duration-700"
+                className="rounded-lg grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-500"
               />
+            </div>
+            <div className="mt-3 flex justify-start md:justify-end">
+              <a
+                href="https://maps.google.com/?q=28,+Muktanand+Soc,+Karelibaug,+Vadodara,+Gujarat+390018"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.25em] text-[color:var(--color-gold)] hover:text-white transition-colors"
+              >
+                OPEN IN GOOGLE MAPS →
+              </a>
             </div>
           </div>
         </div>
