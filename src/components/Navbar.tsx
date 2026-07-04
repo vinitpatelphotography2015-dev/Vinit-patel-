@@ -56,9 +56,10 @@ export function Navbar({ onBookClick }: NavbarProps) {
 
   // Active section detection via IntersectionObserver
   useEffect(() => {
-    const sections = NAV_ITEMS.map((n) =>
-      document.querySelector(n.href) as HTMLElement | null,
-    ).filter(Boolean) as HTMLElement[];
+    const sections = NAV_ITEMS
+      .filter((n) => n.href.startsWith("#"))
+      .map((n) => document.querySelector(n.href) as HTMLElement | null)
+      .filter(Boolean) as HTMLElement[];
 
     observerRef.current = new IntersectionObserver(
       (entries) => {
