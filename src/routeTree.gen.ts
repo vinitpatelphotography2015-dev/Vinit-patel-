@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as HomeRouteImport } from './routes/home'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesCategoryRouteImport } from './routes/services.$category'
 import { Route as EventEventIdRouteImport } from './routes/event.$eventId'
 
+const HomeRoute = HomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/gallery': typeof GalleryRoute
+  '/home': typeof HomeRoute
   '/event/$eventId': typeof EventEventIdRoute
   '/services/$category': typeof ServicesCategoryRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/gallery': typeof GalleryRoute
+  '/home': typeof HomeRoute
   '/event/$eventId': typeof EventEventIdRoute
   '/services/$category': typeof ServicesCategoryRoute
 }
@@ -60,6 +68,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/gallery': typeof GalleryRoute
+  '/home': typeof HomeRoute
   '/event/$eventId': typeof EventEventIdRoute
   '/services/$category': typeof ServicesCategoryRoute
 }
@@ -69,15 +78,23 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/gallery'
+    | '/home'
     | '/event/$eventId'
     | '/services/$category'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/gallery' | '/event/$eventId' | '/services/$category'
+  to:
+    | '/'
+    | '/admin'
+    | '/gallery'
+    | '/home'
+    | '/event/$eventId'
+    | '/services/$category'
   id:
     | '__root__'
     | '/'
     | '/admin'
     | '/gallery'
+    | '/home'
     | '/event/$eventId'
     | '/services/$category'
   fileRoutesById: FileRoutesById
@@ -86,12 +103,20 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
   GalleryRoute: typeof GalleryRoute
+  HomeRoute: typeof HomeRoute
   EventEventIdRoute: typeof EventEventIdRoute
   ServicesCategoryRoute: typeof ServicesCategoryRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/home': {
+      id: '/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/gallery': {
       id: '/gallery'
       path: '/gallery'
@@ -134,6 +159,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   GalleryRoute: GalleryRoute,
+  HomeRoute: HomeRoute,
   EventEventIdRoute: EventEventIdRoute,
   ServicesCategoryRoute: ServicesCategoryRoute,
 }

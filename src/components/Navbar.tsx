@@ -4,7 +4,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
-  { label: "Home", href: "#home" },
+  { label: "Home", href: "/home", isRoute: true },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Gallery", href: "/gallery", isRoute: true },
@@ -89,9 +89,9 @@ export function Navbar({ onBookClick }: NavbarProps) {
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${navBg}`}
       >
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 md:px-12 relative">
-          <a href="#home" aria-label="Vinit Patel Photography Studio home">
+          <Link to="/home" aria-label="Vinit Patel Photography Studio home">
             <Logo />
-          </a>
+          </Link>
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-12 absolute left-1/2 -translate-x-1/2" aria-label="Main navigation">

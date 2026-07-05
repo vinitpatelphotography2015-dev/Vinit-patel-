@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Instagram } from "lucide-react";
-import { IntroAnimation } from "@/components/IntroAnimation";
 import { CustomCursor } from "@/components/CustomCursor";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
@@ -14,7 +13,6 @@ import { Footer } from "@/components/Footer";
 import { BookingModal } from "@/components/BookingModal";
 
 export function HomePage() {
-  const [introComplete, setIntroComplete] = useState(false);
   const [bookingOpen, setBookingOpen] = useState(false);
 
   return (
@@ -25,15 +23,10 @@ export function HomePage() {
       {/* Custom premium cursor — hidden on touch devices via CSS */}
       <CustomCursor />
 
-      {/* GSAP Camera Intro */}
-      {!introComplete && (
-        <IntroAnimation onComplete={() => setIntroComplete(true)} />
-      )}
-
-      {/* Main Site — locked from interaction until intro completes */}
-      <div id="site" className={!introComplete ? "locked-out" : ""}>
+      {/* Main Site */}
+      <div id="site">
         <Navbar onBookClick={() => setBookingOpen(true)} />
-        <Hero onBookClick={() => setBookingOpen(true)} startTrigger={introComplete} />
+        <Hero onBookClick={() => setBookingOpen(true)} startTrigger={true} />
         <About />
         <Services />
         <Portfolio />

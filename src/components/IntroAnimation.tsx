@@ -237,7 +237,7 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
 
         <div className="intro-caption" ref={captionRef}>
           <h1>Vinit Patel Photography Studio</h1>
-          <p>Click the camera to enter</p>
+          <p>Click to enter</p>
         </div>
       </div>
     </div>
