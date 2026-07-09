@@ -196,8 +196,7 @@ function AdminPortal() {
   // Filters and calculations
   const filteredEvents = events.filter((e) => {
     const matchesSearch =
-      e.clientNames.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      e.location.toLowerCase().includes(searchQuery.toLowerCase());
+      e.clientNames.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesType = filterType === "All" || e.eventType === filterType;
     return matchesSearch && matchesType;
   });
@@ -422,8 +421,6 @@ function AdminPortal() {
                   <th className="px-6 py-4 font-semibold">Cover</th>
                   <th className="px-6 py-4 font-semibold">Client Names</th>
                   <th className="px-6 py-4 font-semibold">Type</th>
-                  <th className="px-6 py-4 font-semibold">Location</th>
-                  <th className="px-6 py-4 font-semibold">Date</th>
                   <th className="px-6 py-4 font-semibold text-center">Photos</th>
                   <th className="px-6 py-4 font-semibold text-right">Actions</th>
                 </tr>
@@ -448,18 +445,7 @@ function AdminPortal() {
                         {event.eventType}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-neutral-500">
-                      <span className="inline-flex items-center gap-1.5">
-                        <MapPin size={12} className="text-neutral-300" />
-                        {event.location}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-neutral-500">
-                      <span className="inline-flex items-center gap-1.5">
-                        <Calendar size={12} className="text-neutral-300" />
-                        {event.date}
-                      </span>
-                    </td>
+
                     <td className="px-6 py-4 text-center font-medium text-neutral-600">
                       {event.images.length}
                     </td>
@@ -580,31 +566,7 @@ function AdminPortal() {
                     </select>
                   </div>
 
-                  <div>
-                    <label className="block text-[10px] tracking-[0.15em] font-semibold text-neutral-400 uppercase mb-2">
-                      Location (Optional)
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="e.g. Vadodara"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                      className="w-full rounded-lg border border-neutral-200 px-4 py-2.5 text-xs text-[color:var(--color-ink)] placeholder-neutral-400 focus:border-[color:var(--color-gold)]/60 focus:outline-none"
-                    />
-                  </div>
 
-                  <div className="col-span-1 sm:col-span-2">
-                    <label className="block text-[10px] tracking-[0.15em] font-semibold text-neutral-400 uppercase mb-2">
-                      Event Date (Optional)
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="e.g. December 2024"
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                      className="w-full rounded-lg border border-neutral-200 px-4 py-2.5 text-xs text-[color:var(--color-ink)] placeholder-neutral-400 focus:border-[color:var(--color-gold)]/60 focus:outline-none"
-                    />
-                  </div>
                 </div>
 
                 {/* Cover Image Upload Row */}

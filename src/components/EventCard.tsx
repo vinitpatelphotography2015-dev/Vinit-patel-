@@ -51,20 +51,6 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
           <h3 className="font-serif text-[20px] md:text-[22px] font-light text-[color:var(--color-ink)]">
             {event.clientNames || `${event.eventType} Collection`}
           </h3>
-          <div className="mt-2 flex flex-wrap items-center gap-4">
-            {event.location && (
-              <span className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.15em] text-[color:var(--color-ink)]/40">
-                <MapPin size={11} />
-                {event.location}
-              </span>
-            )}
-            {event.date && (
-              <span className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.15em] text-[color:var(--color-ink)]/40">
-                <Calendar size={11} />
-                {event.date}
-              </span>
-            )}
-          </div>
           
           {/* View link */}
           <p className="mt-4 text-[10px] tracking-[0.25em] font-semibold text-[color:var(--color-gold)] group-hover:tracking-[0.35em] transition-all duration-300">

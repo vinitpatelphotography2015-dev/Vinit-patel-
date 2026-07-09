@@ -113,7 +113,7 @@ function EventDetailPage() {
 
       <PageHeader
         title={event.clientNames || `${event.eventType} Collection`}
-        subtitle={`${event.eventType}${event.location ? ` · ${event.location}` : ""}`}
+        subtitle={event.eventType}
         backTo="/gallery"
         backLabel="Back to Gallery"
         coverImage={event.coverImage}
@@ -127,18 +127,7 @@ function EventDetailPage() {
               {event.eventType}
             </span>
           </span>
-          {event.location && (
-            <span className="inline-flex items-center gap-1.5 text-[11px] tracking-[0.15em] text-[color:var(--color-ink)]/40">
-              <MapPin size={12} />
-              {event.location}
-            </span>
-          )}
-          {event.date && (
-            <span className="inline-flex items-center gap-1.5 text-[11px] tracking-[0.15em] text-[color:var(--color-ink)]/40">
-              <Calendar size={12} />
-              {event.date}
-            </span>
-          )}
+
           <span className="text-[11px] tracking-[0.15em] text-[color:var(--color-ink)]/30">
             {eventImages.length} photographs
           </span>
