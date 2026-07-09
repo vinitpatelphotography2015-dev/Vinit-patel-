@@ -54,6 +54,10 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
 
     const cleanup = initCameraIntro(refs, () => {
       document.body.classList.remove("locked");
+      // Hide the overlay completely so it can't intercept touch events on mobile
+      if (introOverlayRef.current) {
+        introOverlayRef.current.style.display = "none";
+      }
       onComplete();
     });
 
