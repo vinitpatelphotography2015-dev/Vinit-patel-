@@ -77,112 +77,411 @@ export interface ClientEvent {
    ───────────────────────────────────────────── */
 export const CLIENT_EVENTS: ClientEvent[] = [
   {
-    id: "pratik-hetal-wedding",
-    clientNames: "Pratik & Hetal",
-    eventType: "Wedding",
-    location: "Vadodara",
-    date: "December 2024",
-    coverImage: p1,
-    images: [
-      { src: p1, alt: "Wedding ceremony" },
-      { src: p3, alt: "Couple portrait" },
-      { src: p6, alt: "Wedding reception" },
-      { src: svcWedding, alt: "Mandap details" },
-    ],
+    "id": "couple-photos",
+    "clientNames": "Couple Portraits",
+    "eventType": "Couple Shoot",
+    "location": "Vadodara",
+    "date": "October 2024",
+    "coverImage": "/events/couple-photos/image_1.jpg",
+    "images": [
+      {
+        "src": "/events/couple-photos/image_1.jpg",
+        "alt": "Couple Portraits - Photo 1"
+      },
+      {
+        "src": "/events/couple-photos/image_2.jpg",
+        "alt": "Couple Portraits - Photo 2"
+      },
+      {
+        "src": "/events/couple-photos/image_3.jpg",
+        "alt": "Couple Portraits - Photo 3"
+      },
+      {
+        "src": "/events/couple-photos/image_4.jpg",
+        "alt": "Couple Portraits - Photo 4"
+      },
+      {
+        "src": "/events/couple-photos/image_5.jpg",
+        "alt": "Couple Portraits - Photo 5"
+      },
+      {
+        "src": "/events/couple-photos/image_6.jpg",
+        "alt": "Couple Portraits - Photo 6"
+      },
+      {
+        "src": "/events/couple-photos/image_7.jpg",
+        "alt": "Couple Portraits - Photo 7"
+      },
+      {
+        "src": "/events/couple-photos/image_8.jpg",
+        "alt": "Couple Portraits - Photo 8"
+      },
+      {
+        "src": "/events/couple-photos/image_9.jpg",
+        "alt": "Couple Portraits - Photo 9"
+      },
+      {
+        "src": "/events/couple-photos/image_10.jpg",
+        "alt": "Couple Portraits - Photo 10"
+      },
+      {
+        "src": "/events/couple-photos/image_11.jpg",
+        "alt": "Couple Portraits - Photo 11"
+      },
+      {
+        "src": "/events/couple-photos/image_12.jpg",
+        "alt": "Couple Portraits - Photo 12"
+      }
+    ]
   },
   {
-    id: "riddhi-tejas-sangeet",
-    clientNames: "Riddhi & Tejas",
-    eventType: "Sangeet",
-    location: "Surat",
-    date: "November 2024",
-    coverImage: p2,
-    images: [
-      { src: p2, alt: "Sangeet night" },
-      { src: p8, alt: "Sangeet dance" },
-      { src: svcSangeet, alt: "Stage performance" },
-    ],
+    "id": "groom-collection",
+    "clientNames": "Groom Diaries",
+    "eventType": "Wedding",
+    "location": "Gujarat",
+    "date": "November 2024",
+    "coverImage": "/events/groom-collection/image_1.jpg",
+    "images": [
+      {
+        "src": "/events/groom-collection/image_1.jpg",
+        "alt": "Groom Diaries - Photo 1"
+      },
+      {
+        "src": "/events/groom-collection/image_2.jpg",
+        "alt": "Groom Diaries - Photo 2"
+      },
+      {
+        "src": "/events/groom-collection/image_3.jpg",
+        "alt": "Groom Diaries - Photo 3"
+      },
+      {
+        "src": "/events/groom-collection/image_4.jpg",
+        "alt": "Groom Diaries - Photo 4"
+      },
+      {
+        "src": "/events/groom-collection/image_5.jpg",
+        "alt": "Groom Diaries - Photo 5"
+      },
+      {
+        "src": "/events/groom-collection/image_6.jpg",
+        "alt": "Groom Diaries - Photo 6"
+      },
+      {
+        "src": "/events/groom-collection/image_7.jpg",
+        "alt": "Groom Diaries - Photo 7"
+      },
+      {
+        "src": "/events/groom-collection/image_8.jpg",
+        "alt": "Groom Diaries - Photo 8"
+      },
+      {
+        "src": "/events/groom-collection/image_9.jpg",
+        "alt": "Groom Diaries - Photo 9"
+      },
+      {
+        "src": "/events/groom-collection/image_10.jpg",
+        "alt": "Groom Diaries - Photo 10"
+      },
+      {
+        "src": "/events/groom-collection/image_11.jpg",
+        "alt": "Groom Diaries - Photo 11"
+      },
+      {
+        "src": "/events/groom-collection/image_12.jpg",
+        "alt": "Groom Diaries - Photo 12"
+      }
+    ]
   },
   {
-    id: "jinal-hardik-babyshower",
-    clientNames: "Jinal & Hardik",
-    eventType: "Baby Shower",
-    location: "Anand",
-    date: "October 2024",
-    coverImage: p4,
-    images: [
-      { src: p4, alt: "Baby shower celebration" },
-      { src: svcBaby, alt: "Baby shower decorations" },
-      { src: p7, alt: "Family celebrations" },
-    ],
+    "id": "haldi-celebration",
+    "clientNames": "Haldi Splash",
+    "eventType": "Haldi",
+    "location": "Baroda",
+    "date": "December 2024",
+    "coverImage": "/events/haldi-celebration/image_1.jpg",
+    "images": [
+      {
+        "src": "/events/haldi-celebration/image_1.jpg",
+        "alt": "Haldi Splash - Photo 1"
+      },
+      {
+        "src": "/events/haldi-celebration/image_2.jpg",
+        "alt": "Haldi Splash - Photo 2"
+      },
+      {
+        "src": "/events/haldi-celebration/image_3.jpg",
+        "alt": "Haldi Splash - Photo 3"
+      },
+      {
+        "src": "/events/haldi-celebration/image_4.jpg",
+        "alt": "Haldi Splash - Photo 4"
+      },
+      {
+        "src": "/events/haldi-celebration/image_5.jpg",
+        "alt": "Haldi Splash - Photo 5"
+      },
+      {
+        "src": "/events/haldi-celebration/image_6.jpg",
+        "alt": "Haldi Splash - Photo 6"
+      },
+      {
+        "src": "/events/haldi-celebration/image_7.jpg",
+        "alt": "Haldi Splash - Photo 7"
+      },
+      {
+        "src": "/events/haldi-celebration/image_8.jpg",
+        "alt": "Haldi Splash - Photo 8"
+      },
+      {
+        "src": "/events/haldi-celebration/image_9.jpg",
+        "alt": "Haldi Splash - Photo 9"
+      },
+      {
+        "src": "/events/haldi-celebration/image_10.jpg",
+        "alt": "Haldi Splash - Photo 10"
+      },
+      {
+        "src": "/events/haldi-celebration/image_11.jpg",
+        "alt": "Haldi Splash - Photo 11"
+      },
+      {
+        "src": "/events/haldi-celebration/image_12.jpg",
+        "alt": "Haldi Splash - Photo 12"
+      }
+    ]
   },
   {
-    id: "priya-nikhil-engagement",
-    clientNames: "Priya & Nikhil",
-    eventType: "Engagement",
-    location: "Ahmedabad",
-    date: "September 2024",
-    coverImage: p5,
-    images: [
-      { src: p5, alt: "Engagement shoot" },
-      { src: p9, alt: "Ring ceremony" },
-      { src: p3, alt: "Couple moment" },
-    ],
+    "id": "pre-wedding-stories",
+    "clientNames": "Pre Wedding Tales",
+    "eventType": "Couple Shoot",
+    "location": "Vadodara",
+    "date": "September 2024",
+    "coverImage": "/events/pre-wedding-stories/image_1.jpg",
+    "images": [
+      {
+        "src": "/events/pre-wedding-stories/image_1.jpg",
+        "alt": "Pre Wedding Tales - Photo 1"
+      },
+      {
+        "src": "/events/pre-wedding-stories/image_2.jpg",
+        "alt": "Pre Wedding Tales - Photo 2"
+      },
+      {
+        "src": "/events/pre-wedding-stories/image_3.jpg",
+        "alt": "Pre Wedding Tales - Photo 3"
+      },
+      {
+        "src": "/events/pre-wedding-stories/image_4.jpg",
+        "alt": "Pre Wedding Tales - Photo 4"
+      },
+      {
+        "src": "/events/pre-wedding-stories/image_5.jpg",
+        "alt": "Pre Wedding Tales - Photo 5"
+      },
+      {
+        "src": "/events/pre-wedding-stories/image_6.jpg",
+        "alt": "Pre Wedding Tales - Photo 6"
+      },
+      {
+        "src": "/events/pre-wedding-stories/image_7.jpg",
+        "alt": "Pre Wedding Tales - Photo 7"
+      },
+      {
+        "src": "/events/pre-wedding-stories/image_8.jpg",
+        "alt": "Pre Wedding Tales - Photo 8"
+      },
+      {
+        "src": "/events/pre-wedding-stories/image_9.jpg",
+        "alt": "Pre Wedding Tales - Photo 9"
+      },
+      {
+        "src": "/events/pre-wedding-stories/image_10.jpg",
+        "alt": "Pre Wedding Tales - Photo 10"
+      },
+      {
+        "src": "/events/pre-wedding-stories/image_11.jpg",
+        "alt": "Pre Wedding Tales - Photo 11"
+      },
+      {
+        "src": "/events/pre-wedding-stories/image_12.jpg",
+        "alt": "Pre Wedding Tales - Photo 12"
+      }
+    ]
   },
   {
-    id: "meera-raj-haldi",
-    clientNames: "Meera & Raj",
-    eventType: "Haldi",
-    location: "Vadodara",
-    date: "August 2024",
-    coverImage: p7,
-    images: [
-      { src: p7, alt: "Haldi ceremony" },
-      { src: p8, alt: "Haldi celebration" },
-      { src: p1, alt: "Pre-wedding rituals" },
-    ],
+    "id": "ring-ceremony",
+    "clientNames": "Engagement & Rings",
+    "eventType": "Engagement",
+    "location": "Ahmedabad",
+    "date": "August 2024",
+    "coverImage": "/events/ring-ceremony/image_1.jpg",
+    "images": [
+      {
+        "src": "/events/ring-ceremony/image_1.jpg",
+        "alt": "Engagement & Rings - Photo 1"
+      },
+      {
+        "src": "/events/ring-ceremony/image_2.jpg",
+        "alt": "Engagement & Rings - Photo 2"
+      },
+      {
+        "src": "/events/ring-ceremony/image_3.jpg",
+        "alt": "Engagement & Rings - Photo 3"
+      },
+      {
+        "src": "/events/ring-ceremony/image_4.jpg",
+        "alt": "Engagement & Rings - Photo 4"
+      },
+      {
+        "src": "/events/ring-ceremony/image_5.jpg",
+        "alt": "Engagement & Rings - Photo 5"
+      },
+      {
+        "src": "/events/ring-ceremony/image_6.jpg",
+        "alt": "Engagement & Rings - Photo 6"
+      },
+      {
+        "src": "/events/ring-ceremony/image_7.jpg",
+        "alt": "Engagement & Rings - Photo 7"
+      },
+      {
+        "src": "/events/ring-ceremony/image_8.jpg",
+        "alt": "Engagement & Rings - Photo 8"
+      },
+      {
+        "src": "/events/ring-ceremony/image_9.jpg",
+        "alt": "Engagement & Rings - Photo 9"
+      },
+      {
+        "src": "/events/ring-ceremony/image_10.jpg",
+        "alt": "Engagement & Rings - Photo 10"
+      },
+      {
+        "src": "/events/ring-ceremony/image_11.jpg",
+        "alt": "Engagement & Rings - Photo 11"
+      },
+      {
+        "src": "/events/ring-ceremony/image_12.jpg",
+        "alt": "Engagement & Rings - Photo 12"
+      }
+    ]
   },
   {
-    id: "ananya-vikram-coupleShoot",
-    clientNames: "Ananya & Vikram",
-    eventType: "Couple Shoot",
-    location: "Udaipur",
-    date: "July 2024",
-    coverImage: p9,
-    images: [
-      { src: p9, alt: "Couple shoot" },
-      { src: p3, alt: "Romantic portrait" },
-      { src: p5, alt: "Sunset shoot" },
-      { src: p6, alt: "Palace backdrop" },
-    ],
+    "id": "baby-shower-joy",
+    "clientNames": "Baby Shower Joy",
+    "eventType": "Baby Shower",
+    "location": "Anand",
+    "date": "July 2024",
+    "coverImage": "/events/baby-shower-joy/image_1.jpg",
+    "images": [
+      {
+        "src": "/events/baby-shower-joy/image_1.jpg",
+        "alt": "Baby Shower Joy - Photo 1"
+      },
+      {
+        "src": "/events/baby-shower-joy/image_2.jpg",
+        "alt": "Baby Shower Joy - Photo 2"
+      },
+      {
+        "src": "/events/baby-shower-joy/image_3.jpg",
+        "alt": "Baby Shower Joy - Photo 3"
+      },
+      {
+        "src": "/events/baby-shower-joy/image_4.jpg",
+        "alt": "Baby Shower Joy - Photo 4"
+      },
+      {
+        "src": "/events/baby-shower-joy/image_5.jpg",
+        "alt": "Baby Shower Joy - Photo 5"
+      },
+      {
+        "src": "/events/baby-shower-joy/image_6.jpg",
+        "alt": "Baby Shower Joy - Photo 6"
+      },
+      {
+        "src": "/events/baby-shower-joy/image_7.jpg",
+        "alt": "Baby Shower Joy - Photo 7"
+      },
+      {
+        "src": "/events/baby-shower-joy/image_8.jpg",
+        "alt": "Baby Shower Joy - Photo 8"
+      },
+      {
+        "src": "/events/baby-shower-joy/image_9.jpg",
+        "alt": "Baby Shower Joy - Photo 9"
+      },
+      {
+        "src": "/events/baby-shower-joy/image_10.jpg",
+        "alt": "Baby Shower Joy - Photo 10"
+      },
+      {
+        "src": "/events/baby-shower-joy/image_11.jpg",
+        "alt": "Baby Shower Joy - Photo 11"
+      },
+      {
+        "src": "/events/baby-shower-joy/image_12.jpg",
+        "alt": "Baby Shower Joy - Photo 12"
+      }
+    ]
   },
   {
-    id: "kavya-arjun-wedding",
-    clientNames: "Kavya & Arjun",
-    eventType: "Wedding",
-    location: "Rajkot",
-    date: "June 2024",
-    coverImage: p6,
-    images: [
-      { src: p6, alt: "Grand reception" },
-      { src: p1, alt: "Wedding vows" },
-      { src: p2, alt: "Mehendi night" },
-      { src: p4, alt: "Baraat arrival" },
-    ],
-  },
-  {
-    id: "nisha-dev-sangeet",
-    clientNames: "Nisha & Dev",
-    eventType: "Sangeet",
-    location: "Mumbai",
-    date: "May 2024",
-    coverImage: p8,
-    images: [
-      { src: p8, alt: "Sangeet dance-off" },
-      { src: p2, alt: "Stage performance" },
-      { src: p5, alt: "Fun moments" },
-    ],
-  },
+    "id": "bridal-portraits",
+    "clientNames": "Bridal Portraits",
+    "eventType": "Wedding",
+    "location": "Vadodara",
+    "date": "June 2024",
+    "coverImage": "/events/bridal-portraits/image_1.jpg",
+    "images": [
+      {
+        "src": "/events/bridal-portraits/image_1.jpg",
+        "alt": "Bridal Portraits - Photo 1"
+      },
+      {
+        "src": "/events/bridal-portraits/image_2.jpg",
+        "alt": "Bridal Portraits - Photo 2"
+      },
+      {
+        "src": "/events/bridal-portraits/image_3.jpg",
+        "alt": "Bridal Portraits - Photo 3"
+      },
+      {
+        "src": "/events/bridal-portraits/image_4.jpg",
+        "alt": "Bridal Portraits - Photo 4"
+      },
+      {
+        "src": "/events/bridal-portraits/image_5.jpg",
+        "alt": "Bridal Portraits - Photo 5"
+      },
+      {
+        "src": "/events/bridal-portraits/image_6.jpg",
+        "alt": "Bridal Portraits - Photo 6"
+      },
+      {
+        "src": "/events/bridal-portraits/image_7.jpg",
+        "alt": "Bridal Portraits - Photo 7"
+      },
+      {
+        "src": "/events/bridal-portraits/image_8.jpg",
+        "alt": "Bridal Portraits - Photo 8"
+      },
+      {
+        "src": "/events/bridal-portraits/image_9.jpg",
+        "alt": "Bridal Portraits - Photo 9"
+      },
+      {
+        "src": "/events/bridal-portraits/image_10.jpg",
+        "alt": "Bridal Portraits - Photo 10"
+      },
+      {
+        "src": "/events/bridal-portraits/image_11.jpg",
+        "alt": "Bridal Portraits - Photo 11"
+      },
+      {
+        "src": "/events/bridal-portraits/image_12.jpg",
+        "alt": "Bridal Portraits - Photo 12"
+      }
+    ]
+  }
 ];
 
 /* ─────────────────────────────────────────────
