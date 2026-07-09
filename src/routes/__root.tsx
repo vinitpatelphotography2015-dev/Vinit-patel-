@@ -224,8 +224,17 @@ function RootComponent() {
 
   useEffect(() => {
     // Disable Lenis on touch devices — it hijacks native scroll and breaks mobile
-    const isTouch = window.matchMedia("(pointer: coarse)").matches;
-    if (isTouch) return;
+    const isTouch = 
+      window.matchMedia("(pointer: coarse)").matches ||
+      /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+      ('ontouchstart' in window) ||
+      navigator.maxTouchPoints > 0;
+
+    if (isTouch) {
+      // Explicitly remove Lenis classes from HTML to prevent any scroll-lock styling
+      document.documentElement.classList.remove("lenis", "lenis-smooth", "lenis-stopped");
+      return;
+    }
 
     const lenis = new Lenis({
       duration: 1.2,

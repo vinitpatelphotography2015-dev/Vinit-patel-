@@ -25,7 +25,7 @@ export function HomePage() {
       <CustomCursor />
 
       {/* Intro Animation Overlay — sits on top of site, masks reveal content behind */}
-      <IntroAnimation onComplete={() => setIntroComplete(true)} />
+      {!introComplete && <IntroAnimation onComplete={() => setIntroComplete(true)} />}
 
       {/* Main Site */}
       <div id="site">

@@ -262,6 +262,19 @@ export function initCameraIntro(
     if (entered) return;
     entered = true;
 
+    // Failsafe mechanism: ensure scroll is unlocked and overlay is hidden
+    // no matter what after 1.5 seconds (in case of GSAP/SVG errors on mobile)
+    let failsafeTriggered = false;
+    const triggerComplete = () => {
+      if (failsafeTriggered) return;
+      failsafeTriggered = true;
+      document.body.classList.remove("locked");
+      if (introOverlay) {
+        introOverlay.style.display = "none";
+      }
+      onComplete();
+    };
+
     idleTl.kill();
     assemblyTween.kill();
     bracketsTween.kill();
@@ -276,13 +289,22 @@ export function initCameraIntro(
     gsap.set(cameraRig, { y: 0, rotateX: 0, rotateY: 0, rotateZ: 0, scale: 1 });
     gsap.set(cameraAssembly, { scale: 1, svgOrigin: SVG_ORIGIN });
 
-    const lensScreen = getLensScreenCenter();
-    maskCenter.xPct = lensScreen.xPct;
-    maskCenter.yPct = lensScreen.yPct;
+    try {
+      const lensScreen = getLensScreenCenter();
+      maskCenter.xPct = lensScreen.xPct;
+      maskCenter.yPct = lensScreen.yPct;
+    } catch (e) {
+      console.warn("SVG center detection failed, using center:", e);
+      maskCenter.xPct = 50;
+      maskCenter.yPct = 50;
+    }
 
-    const tl = gsap.timeline({ onComplete });
+    const tl = gsap.timeline({ onComplete: triggerComplete });
     const maskState = { r: 0 };
     setMaskHole(0);
+
+    // Schedule the failsafe timeout
+    setTimeout(triggerComplete, 1500);
 
     // Phase 1: Shutter click — recoil + iris snaps shut
     tl.to(cameraRig, { scale: 0.97, duration: 0.08, ease: "power2.out" })
