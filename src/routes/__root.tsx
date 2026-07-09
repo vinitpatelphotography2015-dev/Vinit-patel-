@@ -129,9 +129,9 @@ const LOCAL_BUSINESS_SCHEMA = {
     "reviewCount": "98"
   },
   "review": [
-    { "@type": "Review", "author": { "@type": "Person", "name": "Pratik & Hetal" }, "datePublished": "2025-03-15", "reviewBody": "Vinit bhai and his team are simply amazing. Every photo is a masterpiece we will treasure forever.", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" } },
-    { "@type": "Review", "author": { "@type": "Person", "name": "Riddhi & Tejas" }, "datePublished": "2025-01-20", "reviewBody": "The pictures are beyond beautiful. Every emotion was captured so perfectly.", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" } },
-    { "@type": "Review", "author": { "@type": "Person", "name": "Jinal & Hardik" }, "datePublished": "2024-11-08", "reviewBody": "A truly wonderful experience. Our baby shower memories are now timeless photographs.", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" } }
+    { "@type": "Review", "author": { "@type": "Person", "name": "Jarvik Munshi" }, "datePublished": "2025-05-10", "reviewBody": "I had the pleasure of sharing beautiful memories of my house warming ceremony with Vinit Patel Photography, and I would rate them a solid 5 stars! His professional photography skills are outstanding, and he has a calm, composed demeanor...", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" } },
+    { "@type": "Review", "author": { "@type": "Person", "name": "Nishi Trivedi" }, "datePublished": "2023-08-15", "reviewBody": "Overall an amazing experience! I had got my wedding photography done. Images turned out amazing, excellent quality. The experience was seamless.", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" } },
+    { "@type": "Review", "author": { "@type": "Person", "name": "Aditi Trivedi" }, "datePublished": "2022-10-12", "reviewBody": "One of the best photographer i have come across in the vadodara city. His work is fabulous. Very kind and polite with his work.", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" } }
   ]
 };
 

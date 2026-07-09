@@ -542,7 +542,7 @@ function AdminPortal() {
                     </label>
                     <input
                       type="text"
-                      placeholder="e.g. Pratik & Hetal"
+                      placeholder="e.g. Nishi Trivedi"
                       value={clientNames}
                       onChange={(e) => setClientNames(e.target.value)}
                       className="w-full rounded-lg border border-neutral-200 px-4 py-2.5 text-xs text-[color:var(--color-ink)] placeholder-neutral-400 focus:border-[color:var(--color-gold)]/60 focus:outline-none"
