@@ -1,5 +1,5 @@
-# Vinit Patel Photography Studio
-# https://vinitpatelphotography.com
+# Vinit Patel Photography
+# https://www.vinitpatelphotography.in
 
 User-agent: *
 Allow: /
@@ -11,4 +11,4 @@ Disallow: /$
 Disallow: /admin
 
 # Sitemap
-Sitemap: https://vinitpatelphotography.com/sitemap.xml
+Sitemap: https://www.vinitpatelphotography.in/sitemap.xml
