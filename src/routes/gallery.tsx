@@ -17,7 +17,7 @@ export const Route = createFileRoute("/gallery")({
       { property: "og:description", content: "Explore stunning wedding, sangeet & event photography from Vadodara's top photographer." },
     ],
     links: [
-      { rel: "canonical", href: "https://vinitpatelphotography.com/gallery" },
+      { rel: "canonical", href: "https://www.vinitpatelphotography.in/gallery" },
     ],
   }),
 });

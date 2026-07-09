@@ -4,9 +4,6 @@
 User-agent: *
 Allow: /
 
-# Prevent indexing of intro splash page (canonical → /home)
-Disallow: /$
-
 # Admin panel
 Disallow: /admin
 

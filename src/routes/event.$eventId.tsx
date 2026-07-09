@@ -29,7 +29,7 @@ export const Route = createFileRoute("/event/$eventId")({
       { name: "description", content: `View this stunning event gallery by Vinit Patel Photography — the best professional photographer in Vadodara, Gujarat. Wedding, sangeet & celebration photography at its finest.` },
     ],
     links: [
-      { rel: "canonical", href: `https://vinitpatelphotography.com/event/${params.eventId}` },
+      { rel: "canonical", href: `https://www.vinitpatelphotography.in/event/${params.eventId}` },
     ],
   }),
 });

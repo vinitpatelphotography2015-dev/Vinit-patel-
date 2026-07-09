@@ -81,8 +81,8 @@ const LOCAL_BUSINESS_SCHEMA = {
   "description": "Best professional photography in Vadodara, Gujarat, India. Specialising in luxury wedding, pre-wedding, and baby shower photography. 500+ couples served since 2014.",
   "telephone": "+91-99986-65614",
   "email": "vinitpatelphotography2015@gmail.com",
-  "url": "https://vinitpatelphotography.com",
-  "image": "https://vinitpatelphotography.com/og-preview.jpg",
+  "url": "https://www.vinitpatelphotography.in",
+  "image": "https://www.vinitpatelphotography.in/og-preview.jpg",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Gf- 21 Orchid Plaza, behind McDonald’s, Sama-Savli Road",

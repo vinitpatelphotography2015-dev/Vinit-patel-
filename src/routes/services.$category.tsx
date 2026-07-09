@@ -35,7 +35,7 @@ export const Route = createFileRoute("/services/$category")({
         { property: "og:description", content: seo.desc },
       ],
       links: [
-        { rel: "canonical", href: `https://vinitpatelphotography.com/services/${params.category}` },
+        { rel: "canonical", href: `https://www.vinitpatelphotography.in/services/${params.category}` },
       ],
     };
   },
