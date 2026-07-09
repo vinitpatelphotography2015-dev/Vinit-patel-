@@ -108,7 +108,7 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
       <div className="absolute inset-0 hero-noise" />
 
       {/* Hero content */}
-      <div className="relative z-10 flex h-full flex-col justify-end pt-[130px] pb-[80px] md:pt-[170px] md:pb-[140px]">
+      <div className="relative z-10 flex h-full flex-col justify-end pt-[100px] pb-[120px] sm:pt-[130px] sm:pb-[80px] md:pt-[170px] md:pb-[140px]">
         <div className="mx-auto w-full max-w-[1400px] px-6 md:px-12 flex justify-between items-end">
           
           {/* Main Text Area (Left) */}
@@ -165,7 +165,7 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
               initial={{ opacity: 0, y: 16 }}
               animate={startTrigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
               transition={{ duration: 1, delay: baseDelay + stagger * 4, ease: EASE }}
-              className="mt-6 md:mt-10 text-[14px] md:text-[18px] leading-[1.7] text-[#e0e0e0] font-light font-sans"
+              className="mt-4 md:mt-10 text-[13px] md:text-[18px] leading-[1.7] text-[#e0e0e0] font-light font-sans"
             >
               We're a small team of visual storytellers based in Vadodara. We believe the most beautiful photos aren't stiff or forced—they're the quiet, honest moments of connection and the wild, messy laughter in between.
             </motion.p>
@@ -176,7 +176,7 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
               initial={{ opacity: 0, y: 16 }}
               animate={startTrigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
               transition={{ duration: 1, delay: baseDelay + stagger * 5, ease: EASE }}
-              className="mt-8 md:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5 w-full sm:w-auto"
+              className="mt-6 md:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-5 w-full sm:w-auto"
             >
               <button
                 onClick={onBookClick}
@@ -225,7 +225,7 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
         initial={{ opacity: 0 }}
         animate={startTrigger ? { opacity: 1 } : { opacity: 0 }}
         transition={{ delay: baseDelay + stagger * 7, duration: 1.2, ease: EASE }}
-        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-4"
+        className="absolute bottom-6 left-1/2 z-10 hidden sm:flex -translate-x-1/2 flex-col items-center gap-3"
       >
         <span className="text-[8px] font-semibold tracking-[0.4em] text-white/50">SCROLL</span>
         <div className="relative h-14 w-[1px] bg-white/10 overflow-hidden">
