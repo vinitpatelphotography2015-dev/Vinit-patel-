@@ -76,34 +76,34 @@ export function Lightbox({
         >
           {/* Close button */}
           <button
-            className="absolute top-6 right-6 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/80 hover:border-[color:var(--color-gold)] hover:text-[color:var(--color-gold)] transition-colors"
+            className="absolute top-[max(1.5rem,env(safe-area-inset-top))] right-6 z-10 flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-full border border-white/20 text-white/80 hover:border-[color:var(--color-gold)] hover:text-[color:var(--color-gold)] transition-colors bg-black/20 backdrop-blur-sm"
             onClick={onClose}
             aria-label="Close lightbox"
           >
-            <X size={18} />
+            <X size={16} />
           </button>
 
           {/* Counter */}
-          <div className="absolute top-6 left-1/2 -translate-x-1/2 text-[11px] tracking-[0.3em] text-[color:var(--color-gold)]">
+          <div className="absolute top-[max(1.5rem,env(safe-area-inset-top))] left-1/2 -translate-x-1/2 text-[11px] tracking-[0.3em] text-[color:var(--color-gold)]">
             {currentIndex + 1} / {total}
           </div>
 
           {/* Prev button */}
           <button
-            className="absolute left-4 md:left-8 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-white/80 hover:border-[color:var(--color-gold)] hover:text-[color:var(--color-gold)] transition-colors"
+            className="absolute left-2 md:left-8 z-10 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full border border-white/20 text-white/80 hover:border-[color:var(--color-gold)] hover:text-[color:var(--color-gold)] transition-colors bg-black/20 backdrop-blur-sm"
             onClick={(e) => { e.stopPropagation(); onPrev(); }}
             aria-label="Previous image"
           >
-            <ChevronLeft size={22} />
+            <ChevronLeft size={20} />
           </button>
 
           {/* Next button */}
           <button
-            className="absolute right-4 md:right-8 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-white/80 hover:border-[color:var(--color-gold)] hover:text-[color:var(--color-gold)] transition-colors"
+            className="absolute right-2 md:right-8 z-10 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full border border-white/20 text-white/80 hover:border-[color:var(--color-gold)] hover:text-[color:var(--color-gold)] transition-colors bg-black/20 backdrop-blur-sm"
             onClick={(e) => { e.stopPropagation(); onNext(); }}
             aria-label="Next image"
           >
-            <ChevronRight size={22} />
+            <ChevronRight size={20} />
           </button>
 
           {/* Image */}

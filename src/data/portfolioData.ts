@@ -56,6 +56,11 @@ export interface EventImage {
   alt: string;
 }
 
+export interface EventVideo {
+  src: string;
+  alt: string;
+}
+
 export interface ClientEvent {
   id: string;
   clientNames: string;
@@ -64,6 +69,7 @@ export interface ClientEvent {
   date: string;
   coverImage: string;
   images: EventImage[];
+  videos?: EventVideo[];
 }
 
 /* ─────────────────────────────────────────────

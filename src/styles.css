@@ -549,3 +549,25 @@ html.lenis, html.lenis body {
   .film-strip:nth-child(6) { left: 90%; }
   .film-strip:nth-child(7) { display: none; }
 }
+
+/* Mobile compatibility enhancements */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (max-width: 640px) {
+  input, textarea, select {
+    font-size: 16px !important; /* Prevents auto-zoom on focus in iOS Safari */
+  }
+}
+
+/* Hide scrollbars but keep functionality */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+

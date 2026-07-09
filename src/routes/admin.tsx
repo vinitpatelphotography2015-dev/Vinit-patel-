@@ -549,8 +549,8 @@ function AdminPortal() {
 
               {/* Sidebar Scrollable Body */}
               <form onSubmit={handleFormSubmit} className="flex-grow overflow-y-auto px-8 py-8 space-y-6">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="col-span-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="col-span-1 sm:col-span-2">
                     <label className="block text-[10px] tracking-[0.15em] font-semibold text-neutral-400 uppercase mb-2">
                       Client / Couple Names *
                     </label>
@@ -595,7 +595,7 @@ function AdminPortal() {
                     />
                   </div>
 
-                  <div className="col-span-2">
+                  <div className="col-span-1 sm:col-span-2">
                     <label className="block text-[10px] tracking-[0.15em] font-semibold text-neutral-400 uppercase mb-2">
                       Event Date *
                     </label>

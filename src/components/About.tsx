@@ -6,18 +6,18 @@ import founderStudio from "@/assets/vinit-studio.jpg";
 const FEATURES = [
   {
     icon: Sparkles,
-    title: "CREATIVE VISION",
-    desc: "Unique angles, timeless edits and a storytelling approach that captures what words cannot.",
+    title: "A SOFT SPOT FOR REAL MOMENTS",
+    desc: "We look for the authentic, unprompted hugs and messy laughter that tell your true story.",
   },
   {
     icon: Camera,
-    title: "PROFESSIONAL GEAR",
-    desc: "We use the finest equipment to ensure every frame is technically flawless.",
+    title: "OBSESSED WITH THE DETAILS",
+    desc: "We use top-tier gear and meticulous editing so every single print feels like a piece of art.",
   },
   {
     icon: UserRound,
-    title: "CLIENT FOCUSED",
-    desc: "Your comfort and happiness is our priority from the first enquiry to the final album.",
+    title: "FEELS LIKE FAMILY",
+    desc: "No stiff posing or awkward smiles. We make sure you feel entirely at ease behind the lens.",
   },
 ];
 
@@ -33,17 +33,18 @@ export function About() {
           OUR STORY
         </motion.p>
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 items-center gap-16">
+        <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 items-center gap-10 md:gap-16">
           {/* Bio */}
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
+            className="order-2 md:order-1"
           >
             <motion.h2
               variants={staggerItem}
-              className="font-serif text-[color:var(--color-gold)] text-[48px] leading-none"
+              className="font-serif text-[color:var(--color-gold)] text-[36px] md:text-[48px] leading-none"
               style={{ fontFamily: "Great Vibes, cursive" }}
             >
               Vinit Patel
@@ -60,14 +61,9 @@ export function About() {
             />
             <motion.p
               variants={staggerItem}
-              className="mt-8 text-[13px] leading-[2] text-white/70 max-w-xs"
+              className="mt-8 text-[13px] leading-[2] text-white/70 max-w-none md:max-w-xs"
             >
-              As the best photographer in Vadodara, I believe photography is
-              not just clicking pictures — it's about capturing emotions,
-              connections, and the beautiful moments you will cherish forever.
-              At our professional photography studio in Gujarat, we specialise
-              in luxury wedding photography, sangeet coverage, and baby shower
-              photoshoots — turning your special moments into timeless stories.
+              Hey, I’m Vinit. To me, photography has never been about just snapping pictures or checking off a list of poses. It’s about catching that split-second tear in a father's eye, the laughter that fills a sangeet room, and the quiet, real connections that make your family who they are. I love what I do because I get to help you hold onto the feelings of your biggest days, long after they're over.
             </motion.p>
 
             {/* Signature */}
@@ -104,10 +100,10 @@ export function About() {
           {/* Founder image */}
           <motion.div
             {...fadeUp}
-            className="relative flex justify-center"
+            className="relative flex justify-center order-1 md:order-2"
           >
             {/* Offset gold frame */}
-            <div className="absolute inset-4 border border-[color:var(--color-gold)]/70 translate-x-4 translate-y-4" />
+            <div className="absolute inset-4 border border-[color:var(--color-gold)]/70 translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4" />
             <motion.img
               src={founderStudio}
               alt="Vinit Patel — Best wedding photographer and founder of Vinit Patel Photography Studio in Vadodara, Gujarat"
@@ -123,7 +119,7 @@ export function About() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="flex flex-col gap-10"
+            className="flex flex-col gap-10 order-3 md:order-3"
           >
             {FEATURES.map((f) => (
               <motion.div key={f.title} variants={staggerItem} className="flex items-start gap-5">

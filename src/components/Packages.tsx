@@ -5,49 +5,45 @@ import { fadeUp, staggerContainer } from "@/animations/hero";
 const PACKAGES = [
   {
     tier: "Classic",
-    tagline: "A beautiful beginning",
+    tagline: "Perfect for smaller, intimate gatherings",
     price: "₹25,000",
     duration: "4 Hours Coverage",
     features: [
-      "1 Professional Photographer",
-      "4 Hours of Coverage",
-      "300+ Edited Photos",
-      "Online Gallery Access",
-      "High-Resolution Downloads",
+      "4 Hours of continuous shooting",
+      "1 Lead photographer",
+      "All edited high-res digital files",
+      "Private online viewing gallery",
+      "Print rights included",
     ],
     cta: "Book Classic",
   },
   {
     tier: "Royal",
-    tagline: "Our most beloved",
+    tagline: "Full-day coverage for your entire celebration",
     price: "₹45,000",
     duration: "8 Hours Coverage",
     features: [
-      "2 Professional Photographers",
-      "8 Hours of Coverage",
-      "600+ Edited Photos",
-      "Cinematic Short Film",
-      "Online Gallery Access",
-      "Premium Photo Album",
-      "Same-Day Sneak Peek",
+      "8 Hours of comprehensive coverage",
+      "2 Photographers capturing different angles",
+      "Cinematic highlight film (3-5 mins)",
+      "Premium layout coffee table book",
+      "Next-day sneak peek images",
     ],
     cta: "Book Royal",
     featured: true,
   },
   {
     tier: "Legacy",
-    tagline: "The full story",
+    tagline: "No limits, pre-wedding shoot, and a custom album",
     price: "₹80,000",
     duration: "Full Day Coverage",
     features: [
-      "3 Professional Photographers",
-      "Full Day Coverage",
-      "1000+ Edited Photos",
-      "Cinematic Wedding Film",
-      "Luxury Hardbound Album",
-      "Pre-Wedding Shoot",
-      "Same-Day Sneak Peek",
-      "Printed Collage Artwork",
+      "Full-day coverage (no time limits)",
+      "3 Photographers & cinematographers",
+      "Full cinematic wedding film",
+      "Handcrafted luxury album",
+      "Complimentary pre-wedding shoot",
+      "Next-day sneak peek gallery",
     ],
     cta: "Book Legacy",
   },
@@ -130,7 +126,7 @@ function PackageCard({ pkg, index, onBookClick }: PackageCardProps) {
     >
       {/* Card header */}
       <div
-        className={`px-8 pt-10 pb-8 border-b ${
+        className={`px-6 py-6 md:px-8 md:pt-10 md:pb-8 border-b ${
           pkg.featured
             ? "border-[color:var(--color-gold)]/20 bg-[color:var(--color-gold)]/5"
             : "border-neutral-100 bg-neutral-50/30"
@@ -154,7 +150,7 @@ function PackageCard({ pkg, index, onBookClick }: PackageCardProps) {
       </div>
 
       {/* Features list */}
-      <div className="flex-1 px-8 py-8" style={{ transform: "translateZ(15px)" }}>
+      <div className="flex-1 px-6 py-6 md:px-8 md:py-8" style={{ transform: "translateZ(15px)" }}>
         <ul className="space-y-4">
           {pkg.features.map((f) => (
             <li key={f} className="flex items-center gap-3">
@@ -170,7 +166,7 @@ function PackageCard({ pkg, index, onBookClick }: PackageCardProps) {
       </div>
 
       {/* CTA */}
-      <div className="px-8 pb-10" style={{ transform: "translateZ(20px)" }}>
+      <div className="px-6 pb-6 md:px-8 md:pb-10" style={{ transform: "translateZ(20px)" }}>
         <button
           onClick={onBookClick}
           data-cursor="book"
@@ -200,7 +196,7 @@ export function Packages({ onBookClick }: PackagesProps) {
             {...fadeUp}
             className="mt-4 font-serif text-[36px] md:text-[48px] font-light text-[color:var(--color-ink)]"
           >
-            Choose Your Experience
+            Let's Find the Perfect Fit
           </motion.h2>
           <div className="mx-auto mt-5 flex items-center justify-center gap-2">
             <span className="h-px w-8 bg-[color:var(--color-gold)]/60" />
@@ -211,8 +207,7 @@ export function Packages({ onBookClick }: PackagesProps) {
             {...fadeUp}
             className="mt-6 text-[13px] leading-[1.9] text-neutral-500 max-w-md mx-auto font-light"
           >
-            Every package is a starting point. We're happy to tailor a bespoke
-            experience for your wedding.
+            These options are starting points. Since no two weddings are the same, we'd love to customize something that fits your day perfectly.
           </motion.p>
         </div>
 

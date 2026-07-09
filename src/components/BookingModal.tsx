@@ -95,13 +95,13 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
             <div className="h-0.5 bg-gradient-to-r from-transparent via-[color:var(--color-gold)] to-transparent" />
 
             {/* Header */}
-            <div className="flex items-start justify-between px-8 pt-8 pb-6 border-b border-white/8">
+            <div className="flex items-start justify-between px-5 py-5 md:px-8 md:pt-8 md:pb-6 border-b border-white/8">
               <div>
                 <p className="text-[10px] tracking-[0.4em] text-[color:var(--color-gold)]">
-                  START YOUR JOURNEY
+                  WE CAN'T WAIT TO MEET YOU
                 </p>
                 <h2 className="mt-2 font-serif text-[28px] font-light text-white">
-                  Book a Session
+                  Let's Start Talking
                 </h2>
               </div>
               <button
@@ -114,7 +114,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
             </div>
 
             {/* Body */}
-            <div className="px-8 py-8 max-h-[70vh] overflow-y-auto">
+            <div className="px-5 py-6 md:px-8 md:py-8 max-h-[75vh] overflow-y-auto">
               {submitted ? (
                 <motion.div
                   initial={{ opacity: 0, y: 12 }}
@@ -125,11 +125,11 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     <span className="text-2xl" style={{ fontFamily: "Great Vibes, cursive" }}>✓</span>
                   </div>
                   <h3 className="font-serif text-[22px] text-white font-light">
-                    Thank You!
+                    We can't wait!
                   </h3>
                   <p className="mt-3 text-[13px] text-white/55 leading-[1.8]">
-                    We've received your enquiry and will get back to you within
-                    24 hours. We can't wait to capture your story.
+                    We've received your details and will get back to you within
+                    24 hours. We are so excited to hear more about your plans.
                   </p>
                   <a
                     href={`https://wa.me/919998665014?text=${waMessage}`}
@@ -156,7 +156,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                       >
                         <option value="" disabled className="bg-[#0b0b0b]">Select event type</option>
                         {EVENT_TYPES.map((t) => (
-                          <option key={t} value={t} className="bg-[#0b0b0b]">{t}</option>
+                           <option key={t} value={t} className="bg-[#0b0b0b]">{t}</option>
                         ))}
                       </select>
                       <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" />
@@ -164,7 +164,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                   </div>
 
                   {/* Date & Location */}
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-[10px] tracking-[0.3em] text-white/50 mb-2">
                         DATE

@@ -6,7 +6,6 @@ const NAV_ITEMS = [
   { label: "About", href: "/#about" },
   { label: "Services", href: "/#services" },
   { label: "Gallery", href: "/gallery" },
-  { label: "Packages", href: "/#packages" },
   { label: "Testimonials", href: "/#testimonials" },
   { label: "Contact", href: "/#contact" },
 ];
@@ -45,15 +44,13 @@ export function Footer() {
       {/* Top gold rule */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--color-gold)]/40 to-transparent z-10" />
 
-      <div className="relative z-10 mx-auto grid max-w-[1300px] grid-cols-1 md:grid-cols-4 gap-10 px-6 md:px-12">
+      <div className="relative z-10 mx-auto grid max-w-[1300px] grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 px-6 md:px-12">
         {/* Brand column */}
         <div>
           <Logo />
           <div className="mt-6 h-px w-12 bg-[color:var(--color-gold)]/50" />
           <p className="mt-6 text-[12px] leading-[2] text-white/55 max-w-xs">
-            Vadodara's top-rated professional photography studio. We don't just
-            take pictures — we capture feelings, moments, and memories for a
-            lifetime. Best wedding photographer in Gujarat.
+            We believe photography is about catching the real, unscripted feelings that connect us. Based in Vadodara, we travel anywhere love takes us to preserve your favorite memories.
           </p>
           <div className="mt-6 flex gap-3">
             {[
@@ -128,8 +125,8 @@ export function Footer() {
         </div>
 
         {/* Map column */}
-        <div className="relative flex flex-col items-stretch md:items-end justify-start w-full">
-          <div className="w-full max-w-[300px]">
+        <div className="relative flex flex-col items-stretch sm:items-end justify-start w-full">
+          <div className="w-full sm:max-w-[300px]">
             <h3 className="text-[11px] tracking-[0.3em] text-[color:var(--color-gold)]">OUR STUDIO</h3>
             <div className="mt-4 h-px w-10 bg-[color:var(--color-gold)]/50 mb-6" />
             <div className="relative overflow-hidden rounded-xl border border-[color:var(--color-gold)]/20 shadow-lg bg-black/40 p-1">
@@ -145,7 +142,7 @@ export function Footer() {
                 className="rounded-lg grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-500"
               />
             </div>
-            <div className="mt-3 flex justify-start md:justify-end">
+            <div className="mt-3 flex justify-start sm:justify-end">
               <a
                 href="https://www.google.com/maps/place/Vinit+Patel+Photography/@22.3506765,73.1983352,17z/data=!3m1!4b1!4m6!3m5!1s0x395fcf66dcdc945d:0x2f534017f299bebb!8m2!3d22.3506765!4d73.2009101!16s%2Fg%2F11rf843d4h?hl=en-US&entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"

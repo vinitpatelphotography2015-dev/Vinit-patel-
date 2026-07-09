@@ -44,14 +44,14 @@ export function BookingCTA({ onBookClick }: BookingCTAProps) {
           viewport={{ once: true, amount: 0.2 }}
           className="mt-6"
         >
-          {["Let's Tell", "Your Story."].map((line, i) => (
+          {["Ready to save", "the date?"].map((line, i) => (
             <div key={i} className="overflow-hidden py-1">
               <motion.h2
                 variants={staggerItem}
                 className={`font-serif font-light leading-[1.0] ${
                   i === 0
-                    ? "text-[52px] md:text-[80px] lg:text-[96px] text-[color:var(--color-ink)]"
-                    : "text-[42px] md:text-[64px] lg:text-[76px] text-[color:var(--color-gold)] mt-2"
+                    ? "text-[38px] sm:text-[52px] md:text-[80px] lg:text-[96px] text-[color:var(--color-ink)]"
+                    : "text-[32px] sm:text-[42px] md:text-[64px] lg:text-[76px] text-[color:var(--color-gold)] mt-2"
                 }`}
                 style={i === 1 ? { fontFamily: "Great Vibes, cursive", fontStyle: "normal" } : {}}
               >
@@ -68,8 +68,7 @@ export function BookingCTA({ onBookClick }: BookingCTAProps) {
           transition={{ duration: 0.8, delay: 0.5, ease: LUXURY_EASE }}
           className="mt-8 text-[13px] leading-[2] text-[color:var(--color-ink)]/45 max-w-md mx-auto"
         >
-          Your wedding is a once-in-a-lifetime story. Let us be there to capture
-          every chapter — beautifully, timelessly, and with heart.
+          Every couple is different, and we'd love to hear all about what you're planning. Let’s sit down, grab some chai, and chat about how we can tell your story.
         </motion.p>
 
         {/* CTA buttons */}
@@ -85,7 +84,7 @@ export function BookingCTA({ onBookClick }: BookingCTAProps) {
             data-cursor="book"
             className="book-cta inline-flex items-center bg-[color:var(--color-gold)] px-10 py-4 text-[11px] tracking-[0.3em] text-[color:var(--color-ink)] font-semibold hover:bg-[color:var(--color-gold-soft)] hover:shadow-[0_0_30px_rgba(200,155,60,0.35)] transition-all duration-400"
           >
-            BOOK YOUR WEDDING
+            SAY HELLO
           </button>
 
           <a

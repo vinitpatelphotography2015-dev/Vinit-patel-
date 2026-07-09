@@ -8,7 +8,6 @@ const NAV_ITEMS = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Gallery", href: "/gallery", isRoute: true },
-  { label: "Packages", href: "#packages" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
 ];

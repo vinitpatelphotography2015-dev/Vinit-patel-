@@ -60,7 +60,7 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
         <motion.img
           src={heroCouple}
           alt="Luxury wedding photography by Vinit Patel Photography Studio — best professional photographer in Vadodara, Gujarat"
-          className="absolute inset-0 h-[112%] w-[112%] -left-[6%] -top-[6%] object-cover"
+          className="absolute h-[106%] w-[106%] max-w-none -left-[3%] -top-[3%] object-cover object-[82%_20%] md:h-[112%] md:w-[112%] md:max-w-none md:-left-[6%] md:-top-[6%] md:object-center"
           style={{ 
             y: imageScrollY,
             filter: "brightness(0.82) contrast(1.08) saturate(0.92)"
@@ -82,7 +82,7 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
       <div className="absolute inset-0 hero-noise" />
 
       {/* Hero content */}
-      <div className="relative z-10 flex h-full flex-col justify-end pt-[170px] pb-[140px]">
+      <div className="relative z-10 flex h-full flex-col justify-end pt-[130px] pb-[80px] md:pt-[170px] md:pb-[140px]">
         <div className="mx-auto w-full max-w-[1400px] px-6 md:px-12 flex justify-between items-end">
           
           {/* Main Text Area (Left) */}
@@ -95,31 +95,31 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
               initial={{ opacity: 0, y: 16 }}
               animate={startTrigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
               transition={{ duration: 1, delay: baseDelay, ease: EASE }}
-              className="mb-8 text-[10px] tracking-[0.5em] text-[color:var(--color-gold)]"
+              className="mb-4 md:mb-8 text-[9px] md:text-[10px] tracking-[0.5em] text-[color:var(--color-gold)]"
             >
-              VADODARA · INDIA · EST. 2014
+              CAPTURING LOVE IN GUJARAT & BEYOND
             </motion.p>
 
             {/* Headline — single h1 for SEO, styled with spans */}
-            <h1 className="font-serif font-light leading-[0.9] text-white text-[64px] md:text-[78px] lg:text-[84px]">
-              <div className="overflow-hidden mb-[-12px] md:mb-[-16px]">
+            <h1 className="font-serif font-light leading-[0.95] text-white text-[42px] sm:text-[60px] md:text-[78px] lg:text-[84px]">
+              <div className="overflow-hidden mb-[-6px] sm:mb-[-12px] md:mb-[-16px]">
                 <motion.span
                   className="block"
                   initial={{ opacity: 0, y: 80 }}
                   animate={startTrigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
                   transition={{ duration: 1.2, delay: baseDelay + stagger, ease: EASE }}
                 >
-                  Every Frame
+                  Honest,
                 </motion.span>
               </div>
-              <div className="overflow-hidden mb-[-12px] md:mb-[-16px]">
+              <div className="overflow-hidden mb-[-6px] sm:mb-[-12px] md:mb-[-16px]">
                 <motion.span
                   className="block italic text-[color:var(--color-gold)]"
                   initial={{ opacity: 0, y: 80 }}
                   animate={startTrigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
                   transition={{ duration: 1.2, delay: baseDelay + stagger * 2, ease: EASE }}
                 >
-                  Tells
+                  beautiful
                 </motion.span>
               </div>
               <div className="overflow-hidden">
@@ -129,7 +129,7 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
                   animate={startTrigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
                   transition={{ duration: 1.2, delay: baseDelay + stagger * 3, ease: EASE }}
                 >
-                  A Story.
+                  love stories.
                 </motion.span>
               </div>
             </h1>
@@ -139,11 +139,9 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
               initial={{ opacity: 0, y: 16 }}
               animate={startTrigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
               transition={{ duration: 1, delay: baseDelay + stagger * 4, ease: EASE }}
-              className="mt-10 text-[15px] md:text-[18px] leading-[1.7] text-[#e0e0e0] font-light"
+              className="mt-6 md:mt-10 text-[14px] md:text-[18px] leading-[1.7] text-[#e0e0e0] font-light font-sans"
             >
-              Luxury wedding & event photography crafted with an editorial eye by
-              the top professional photography studio in Vadodara, Gujarat.
-              We turn fleeting moments into timeless stories.
+              We're a small team of visual storytellers based in Vadodara. We believe the most beautiful photos aren't stiff or forced—they're the quiet, honest moments of connection and the wild, messy laughter in between.
             </motion.p>
 
             {/* CTAs */}
@@ -152,20 +150,20 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
               initial={{ opacity: 0, y: 16 }}
               animate={startTrigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
               transition={{ duration: 1, delay: baseDelay + stagger * 5, ease: EASE }}
-              className="mt-12 flex flex-col md:flex-row items-start md:items-center gap-5"
+              className="mt-8 md:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5 w-full sm:w-auto"
             >
               <button
                 onClick={onBookClick}
                 data-cursor="book"
-                className="flex items-center justify-center rounded-full bg-[color:var(--color-gold)] px-8 py-5 text-[11px] font-medium tracking-[0.3em] text-[#050505] transition-all duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px] hover:shadow-[0_18px_45px_rgba(200,161,90,0.25)]"
+                className="flex items-center justify-center rounded-full bg-[color:var(--color-gold)] px-6 py-4 md:px-8 md:py-5 text-[10px] md:text-[11px] font-medium tracking-[0.3em] text-[#050505] transition-all duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px] hover:shadow-[0_18px_45px_rgba(200,161,90,0.25)]"
               >
-                START YOUR STORY
+                LET'S CHAT
               </button>
               <a
                 href="#portfolio"
-                className="flex items-center justify-center rounded-full border border-[color:var(--color-gold)] px-8 py-5 text-[11px] font-medium tracking-[0.3em] text-[color:var(--color-gold)] transition-all duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-[color:var(--color-gold)] hover:text-[#050505]"
+                className="flex items-center justify-center rounded-full border border-[color:var(--color-gold)] px-6 py-4 md:px-8 md:py-5 text-[10px] md:text-[11px] font-medium tracking-[0.3em] text-[color:var(--color-gold)] transition-all duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-[color:var(--color-gold)] hover:text-[#050505]"
               >
-                VIEW PORTFOLIO
+                SEE OUR WORK
               </a>
             </motion.div>
           </motion.div>

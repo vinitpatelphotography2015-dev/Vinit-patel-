@@ -199,14 +199,14 @@ export function Portfolio() {
         </div>
 
         {/* Filter tabs */}
-        <motion.div {...fadeUp} className="mt-12 flex flex-wrap justify-center gap-6 md:gap-8">
+        <motion.div {...fadeUp} className="mt-12 flex flex-wrap justify-center gap-2 sm:gap-6 md:gap-8">
           {PORTFOLIO_CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`relative pb-2 text-[11px] tracking-[0.3em] transition-colors duration-300 ${
+              className={`relative py-2.5 px-2 md:py-2 md:px-0 text-[11px] tracking-[0.3em] transition-colors duration-300 ${
                 activeCategory === cat
-                  ? "text-[color:var(--color-gold)]"
+                  ? "text-[color:var(--color-gold)] font-medium"
                   : "text-[color:var(--color-ink)]/50 hover:text-[color:var(--color-gold)]"
               }`}
             >

@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { Instagram } from "lucide-react";
+import { Instagram, Facebook } from "lucide-react";
 import { CustomCursor } from "@/components/CustomCursor";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Services } from "@/components/Services";
 import { Portfolio } from "@/components/Portfolio";
-import { Packages } from "@/components/Packages";
 import { Testimonials } from "@/components/Testimonials";
 import { BookingCTA } from "@/components/BookingCTA";
 import { Footer } from "@/components/Footer";
@@ -35,7 +34,6 @@ export function HomePage() {
         <About />
         <Services />
         <Portfolio />
-        <Packages onBookClick={() => setBookingOpen(true)} />
         <Testimonials />
         <BookingCTA onBookClick={() => setBookingOpen(true)} />
         <Footer />
@@ -54,6 +52,17 @@ export function HomePage() {
             aria-label="Follow us on Instagram"
           >
             <Instagram size={18} />
+          </a>
+
+          {/* Facebook Button */}
+          <a
+            href="https://www.facebook.com/Vinitpatelphotography/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-9 w-9 items-center justify-center rounded-full text-white shadow-[0_4px_15px_rgba(24,119,242,0.25)] hover:scale-110 transition-all duration-300 bg-[#1877F2]"
+            aria-label="Follow us on Facebook"
+          >
+            <Facebook size={18} />
           </a>
 
           {/* WhatsApp Button */}
