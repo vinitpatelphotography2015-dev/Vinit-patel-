@@ -135,8 +135,8 @@ function AdminPortal() {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!clientNames.trim() || !location.trim() || !date.trim() || !coverImage) {
-      alert("Please fill in all required fields and set a cover image.");
+    if (!coverImage) {
+      alert("Please set a cover image.");
       return;
     }
 
@@ -552,11 +552,10 @@ function AdminPortal() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="col-span-1 sm:col-span-2">
                     <label className="block text-[10px] tracking-[0.15em] font-semibold text-neutral-400 uppercase mb-2">
-                      Client / Couple Names *
+                      Client / Couple Names (Optional)
                     </label>
                     <input
                       type="text"
-                      required
                       placeholder="e.g. Pratik & Hetal"
                       value={clientNames}
                       onChange={(e) => setClientNames(e.target.value)}
@@ -583,11 +582,10 @@ function AdminPortal() {
 
                   <div>
                     <label className="block text-[10px] tracking-[0.15em] font-semibold text-neutral-400 uppercase mb-2">
-                      Location *
+                      Location (Optional)
                     </label>
                     <input
                       type="text"
-                      required
                       placeholder="e.g. Vadodara"
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
@@ -597,11 +595,10 @@ function AdminPortal() {
 
                   <div className="col-span-1 sm:col-span-2">
                     <label className="block text-[10px] tracking-[0.15em] font-semibold text-neutral-400 uppercase mb-2">
-                      Event Date *
+                      Event Date (Optional)
                     </label>
                     <input
                       type="text"
-                      required
                       placeholder="e.g. December 2024"
                       value={date}
                       onChange={(e) => setDate(e.target.value)}

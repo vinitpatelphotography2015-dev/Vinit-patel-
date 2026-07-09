@@ -74,10 +74,12 @@ export function useClientEvents() {
 
   // CRUD Operations
   const addEvent = (event: Omit<ClientEvent, "id">) => {
-    const newId = event.clientNames
-      .toLowerCase()
-      .trim()
-      .replace(/[^a-z0-9]+/g, "-") + "-" + event.eventType.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    const cleanNames = event.clientNames
+      ? event.clientNames.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-")
+      : "event";
+    const typeSlug = event.eventType.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    const uniqueSuffix = Math.random().toString(36).substring(2, 6);
+    const newId = `${cleanNames}-${typeSlug}-${uniqueSuffix}`;
     
     const newEvent: ClientEvent = {
       ...event,
