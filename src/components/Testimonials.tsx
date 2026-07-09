@@ -2,79 +2,56 @@ import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { fadeUp } from "@/animations/hero";
-import p2 from "@/assets/p2.jpg";
-import p3 from "@/assets/p3.jpg";
-import p4 from "@/assets/p4.jpg";
-import p5 from "@/assets/p5.jpg";
+
 
 const TESTIMONIALS = [
   {
     names: "Jarvik Munshi",
-    initials: "JM",
-    avatar: p3,
     event: "House Warming Ceremony",
     text: "I had the pleasure of sharing beautiful memories of my house warming ceremony with Vinit Patel Photography, and I would rate them a solid 5 stars! His professional photography skills are outstanding, and he has a calm, composed demeanor...",
   },
   {
     names: "GuruDatt Creators",
-    initials: "GC",
-    avatar: p4,
     event: "Event Photography",
     text: "Vinit Patel Photography service is beyond the expectations and always capture the moment with heart and passion.",
   },
   {
     names: "Nishi Trivedi",
-    initials: "NT",
-    avatar: p2,
     event: "Wedding Photography",
     text: "Overall an amazing experience! I had got my wedding photography done. Images turned out amazing, excellent quality. The experience was seamless. The photoshoot was very professional and...",
   },
   {
     names: "Harsh Desai",
-    initials: "HD",
-    avatar: p5,
     event: "Wedding Celebration",
     text: "Hi Vinit, A BIG heartfelt thanks to you and your team for all the amazing captures in time. These will be cherished forever. The entire team and especially you were just...",
   },
   {
     names: "Aditi Trivedi",
-    initials: "AT",
-    avatar: p3,
     event: "Special Occasion",
     text: "One of the best photographer i have come across in the vadodara city. His work is fabulous. Very kind and polite with his work. Would recommend everyone to have the best photographer for their special occasion.",
   },
   {
     names: "Vraj Talati",
-    initials: "VT",
-    avatar: p2,
     event: "Wedding Film & Album",
     text: "Nice photography i am sharing my personal view of my friends wedding …specially the album was designed very awesome and the wedding video was also extra ordinary.. just loved it .. thank you VINIT PATEL PHOTOGRAPHY",
   },
   {
     names: "Patel Vishwa Nimeshkumar",
-    initials: "PV",
-    avatar: p4,
     event: "Wedding Shoot",
     text: "Good experience with Vinit photography it was beyond the expectations and the photography was epic I personally loved it👌",
   },
   {
     names: "Pinkal Barot",
-    initials: "PB",
-    avatar: p5,
     event: "Google Review",
     text: "Superb photography colour balance just perfect 👌👌",
   },
   {
     names: "Jagdish Rajpurohit",
-    initials: "JR",
-    avatar: p3,
     event: "Google Review",
     text: "Nice work & good experience",
   },
   {
     names: "Jayraj Patel",
-    initials: "JP",
-    avatar: p2,
     event: "Google Review",
     text: "Best in class ✌️😎",
   },
@@ -210,15 +187,6 @@ export function Testimonials() {
                 </div>
                 
                 <div className="mt-8 flex items-center gap-4">
-                  {/* Client avatar image */}
-                  <div className="h-11 w-11 shrink-0 overflow-hidden rounded-full border border-[color:var(--color-gold)]/30 bg-[color:var(--color-gold)]/5">
-                    <img
-                      src={t.avatar}
-                      alt={t.names}
-                      className="h-full w-full object-cover"
-                      draggable={false}
-                    />
-                  </div>
                   <div>
                     <p className="text-[12px] font-semibold tracking-[0.1em] text-[color:var(--color-ink)]">
                       {t.names}
