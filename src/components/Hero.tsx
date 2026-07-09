@@ -1,6 +1,12 @@
 import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
-import heroCouple from "@/assets/luxury_hero.png";
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
+import hero1 from "@/assets/hero-1.jpg";
+import hero2 from "@/assets/hero-2.jpg";
+import hero3 from "@/assets/hero-3.jpg";
+import hero4 from "@/assets/hero-4.jpg";
+import hero5 from "@/assets/hero-5.jpg";
+
+const IMAGES = [hero1, hero2, hero3, hero4, hero5];
 
 interface HeroProps {
   onBookClick: () => void;
@@ -10,9 +16,17 @@ interface HeroProps {
 export function Hero({ onBookClick, startTrigger }: HeroProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [isTouch, setIsTouch] = useState(false);
+  const [currentIdx, setCurrentIdx] = useState(0);
 
   useEffect(() => {
     setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIdx((prev) => (prev + 1) % IMAGES.length);
+    }, 6000);
+    return () => clearInterval(interval);
   }, []);
   
   const localX = useMotionValue(0);
@@ -57,24 +71,31 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
       }}
       className="relative bg-black overflow-hidden h-screen w-full"
     >
-      {/* Background Image Container with Ken Burns */}
+      {/* Background Image Container with Ken Burns and Crossfade Slideshow */}
       <motion.div
         className="absolute inset-0"
         style={isTouch ? undefined : { x: bgX, y: bgY }}
       >
-        <motion.img
-          src={heroCouple}
-          alt="Luxury wedding photography by Vinit Patel Photography — best professional photographer in Vadodara, Gujarat"
-          className="absolute h-[106%] w-[106%] max-w-none -left-[3%] -top-[3%] object-cover object-[82%_20%] md:h-[112%] md:w-[112%] md:max-w-none md:-left-[6%] md:-top-[6%] md:object-center"
-          style={{ 
-            y: imageScrollY,
-            filter: "brightness(0.82) contrast(1.08) saturate(0.92)"
-          }}
-          initial={isTouch ? undefined : { scale: 1.08 }}
-          animate={isTouch ? undefined : { scale: [1.08, 1, 1.08] }}
-          transition={isTouch ? undefined : { duration: 35, repeat: Infinity, ease: "linear" }}
-          fetchPriority="high"
-        />
+        <AnimatePresence mode="popLayout">
+          <motion.img
+            key={currentIdx}
+            src={IMAGES[currentIdx]}
+            alt="Luxury wedding photography by Vinit Patel Photography — best professional photographer in Vadodara, Gujarat"
+            className="absolute h-[106%] w-[106%] max-w-none -left-[3%] -top-[3%] object-cover object-center md:h-[112%] md:w-[112%] md:max-w-none md:-left-[6%] md:-top-[6%]"
+            style={{ 
+              y: imageScrollY,
+              filter: "brightness(0.82) contrast(1.08) saturate(0.92)"
+            }}
+            initial={{ opacity: 0, scale: 1 }}
+            animate={{ opacity: 1, scale: 1.08 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              opacity: { duration: 1.5, ease: "easeInOut" },
+              scale: { duration: 6.5, ease: "easeOut" }
+            }}
+            fetchPriority="high"
+          />
+        </AnimatePresence>
       </motion.div>
 
       {/* Layer 1: Bespoke Gradients */}
