@@ -1,5 +1,6 @@
 import { Facebook, Instagram, Youtube, MessageCircle, Phone, Mail, MapPin } from "lucide-react";
 import contactBg from "@/assets/contact-bg.png";
+import logoImg from "@/assets/Vinit Patel Photography LOGO White.png";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
@@ -12,17 +13,11 @@ const NAV_ITEMS = [
 
 function Logo() {
   return (
-    <div className="flex flex-col leading-none">
-      <span
-        className="text-[28px] md:text-[32px] text-[color:var(--color-gold)]"
-        style={{ fontFamily: "Great Vibes, cursive" }}
-      >
-        Vinit Patel
-      </span>
-      <span className="mt-0.5 text-[9px] md:text-[10px] tracking-[0.35em] text-white/60">
-        PHOTOGRAPHY STUDIO
-      </span>
-    </div>
+    <img
+      src={logoImg}
+      alt="Vinit Patel Photography Studio Logo"
+      className="h-12 md:h-14 w-auto object-contain"
+    />
   );
 }
 

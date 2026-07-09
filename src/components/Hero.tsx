@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import heroCouple from "@/assets/luxury_hero.png";
 
@@ -9,6 +9,11 @@ interface HeroProps {
 
 export function Hero({ onBookClick, startTrigger }: HeroProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
   
   const localX = useMotionValue(0);
   const localY = useMotionValue(0);
@@ -16,7 +21,7 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
   const mouseXSpring = useSpring(localX, { damping: 30, stiffness: 120 });
   const mouseYSpring = useSpring(localY, { damping: 30, stiffness: 120 });
 
-  // Mouse parallax - restrained (< 10px)
+  // Mouse parallax — only computed on desktop (springs stay at 0 on touch)
   const bgX = useTransform(mouseXSpring, [-0.5, 0.5], [-9, 9]);
   const bgY = useTransform(mouseYSpring, [-0.5, 0.5], [-9, 9]);
   
@@ -41,12 +46,12 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
     <section
       id="home"
       ref={wrapRef}
-      onMouseMove={(e) => {
+      onMouseMove={isTouch ? undefined : (e) => {
         const rect = e.currentTarget.getBoundingClientRect();
         localX.set((e.clientX - rect.left) / rect.width - 0.5);
         localY.set((e.clientY - rect.top) / rect.height - 0.5);
       }}
-      onMouseLeave={() => {
+      onMouseLeave={isTouch ? undefined : () => {
         localX.set(0);
         localY.set(0);
       }}
@@ -55,7 +60,7 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
       {/* Background Image Container with Ken Burns */}
       <motion.div
         className="absolute inset-0"
-        style={{ x: bgX, y: bgY }}
+        style={isTouch ? undefined : { x: bgX, y: bgY }}
       >
         <motion.img
           src={heroCouple}
@@ -65,9 +70,9 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
             y: imageScrollY,
             filter: "brightness(0.82) contrast(1.08) saturate(0.92)"
           }}
-          initial={{ scale: 1.08 }}
-          animate={{ scale: [1.08, 1, 1.08] }}
-          transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+          initial={isTouch ? undefined : { scale: 1.08 }}
+          animate={isTouch ? undefined : { scale: [1.08, 1, 1.08] }}
+          transition={isTouch ? undefined : { duration: 35, repeat: Infinity, ease: "linear" }}
           fetchPriority="high"
         />
       </motion.div>
@@ -88,7 +93,7 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
           {/* Main Text Area (Left) */}
           <motion.div 
             className="w-full max-w-[540px]"
-            style={{ x: textX, y: textY }}
+            style={isTouch ? undefined : { x: textX, y: textY }}
           >
             {/* Eyebrow */}
             <motion.p
@@ -114,7 +119,7 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
               </div>
               <div className="overflow-hidden mb-[-6px] sm:mb-[-12px] md:mb-[-16px]">
                 <motion.span
-                  className="block italic text-[color:var(--color-gold)]"
+                  className="block text-[color:var(--color-gold)] font-allura not-italic font-normal"
                   initial={{ opacity: 0, y: 80 }}
                   animate={startTrigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
                   transition={{ duration: 1.2, delay: baseDelay + stagger * 2, ease: EASE }}
@@ -146,7 +151,7 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
 
             {/* CTAs */}
             <motion.div
-              style={{ x: btnX, y: btnY }}
+              style={isTouch ? undefined : { x: btnX, y: btnY }}
               initial={{ opacity: 0, y: 16 }}
               animate={startTrigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
               transition={{ duration: 1, delay: baseDelay + stagger * 5, ease: EASE }}

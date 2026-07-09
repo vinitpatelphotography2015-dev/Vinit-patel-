@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
+import logoImg from "@/assets/Vinit Patel Photography LOGO White.png";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/", isRoute: true },
@@ -12,21 +13,13 @@ const NAV_ITEMS = [
   { label: "Contact", href: "#contact" },
 ];
 
-function Logo({ light = true }: { light?: boolean }) {
+function Logo() {
   return (
-    <div className="flex flex-col leading-none">
-      <span
-        className="text-[22px] md:text-[26px] text-[color:var(--color-gold)]"
-        style={{ fontFamily: "Great Vibes, cursive" }}
-      >
-        Vinit Patel
-      </span>
-      <span
-        className={`mt-0.5 text-[7px] md:text-[8px] tracking-[0.35em] ${light ? "text-white/80" : "text-[color:var(--color-ink)]"}`}
-      >
-        PHOTOGRAPHY STUDIO
-      </span>
-    </div>
+    <img
+      src={logoImg}
+      alt="Vinit Patel Photography Studio Logo"
+      className="h-10 md:h-12 w-auto object-contain"
+    />
   );
 }
 

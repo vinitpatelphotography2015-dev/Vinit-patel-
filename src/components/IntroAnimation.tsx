@@ -13,7 +13,7 @@ import heroCouple from "@/assets/luxury_hero.png";
 import svcWedding from "@/assets/service-wedding.jpg";
 import svcSangeet from "@/assets/service-sangeet.jpg";
 import svcBaby from "@/assets/service-baby.jpg";
-import founder from "@/assets/founder.jpg";
+import founder from "@/assets/WhatsApp Image 2026-07-09 at 4.48.42 PM.jpeg";
 import collage from "@/assets/collage.jpg";
 
 interface IntroAnimationProps {
@@ -78,7 +78,6 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
         ].map((strip, si) => (
           <div key={si} className="film-strip" data-dir={strip.dir}>
             <div className="film-strip-inner">
-              {/* Duplicate the set twice for seamless infinite scroll */}
               {[...strip.imgs, ...strip.imgs].map((img, fi) => (
                 <div key={fi} className="film-frame">
                   <img src={img} alt="" loading="eager" />
@@ -102,12 +101,7 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
           <svg id="cameraSvg" viewBox="-110 -110 220 220">
             <defs>
               <filter id="filmGrain">
-                <feTurbulence
-                  type="fractalNoise"
-                  baseFrequency="0.65"
-                  numOctaves="3"
-                  stitchTiles="stitch"
-                />
+                <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
                 <feColorMatrix type="saturate" values="0" />
                 <feBlend in="SourceGraphic" mode="overlay" result="blend" />
                 <feComposite in="blend" in2="SourceGraphic" operator="in" />
@@ -138,28 +132,16 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
                 <stop offset="75%" stopColor="#283848" stopOpacity="0.18" />
                 <stop offset="100%" stopColor="#101820" stopOpacity="0.25" />
               </radialGradient>
-              {/* Chromatic aberration at lens edge */}
               <radialGradient id="chromaticAberration" cx="50%" cy="50%" r="50%">
                 <stop offset="80%" stopColor="transparent" />
                 <stop offset="92%" stopColor="#1a0a2e" stopOpacity="0.08" />
                 <stop offset="100%" stopColor="#0a1a2e" stopOpacity="0.15" />
               </radialGradient>
-              <pattern
-                id="gripTexture"
-                width="7"
-                height="7"
-                patternUnits="userSpaceOnUse"
-                patternTransform="rotate(45)"
-              >
+              <pattern id="gripTexture" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
                 <rect width="7" height="7" fill="#0b0b0b" />
                 <rect width="3.4" height="3.4" fill="#1d1d1e" />
               </pattern>
-              <pattern
-                id="knurl"
-                width="3.2"
-                height="3.2"
-                patternUnits="userSpaceOnUse"
-              >
+              <pattern id="knurl" width="3.2" height="3.2" patternUnits="userSpaceOnUse">
                 <rect width="3.2" height="3.2" fill="#2e2e30" />
                 <rect x="0" y="0" width="1.1" height="3.2" fill="#141415" />
               </pattern>
@@ -171,7 +153,6 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
             </defs>
 
             <g id="cameraAssembly" ref={cameraAssemblyRef}>
-              {/* Camera body hidden — aperture-only James Bond style */}
               <g id="cameraBody" style={{ display: 'none' }}>
                 <circle cx="62" cy="150" r="12" fill="none" stroke="url(#ringMetal)" strokeWidth="4" />
                 <circle cx="418" cy="150" r="12" fill="none" stroke="url(#ringMetal)" strokeWidth="4" />
@@ -211,17 +192,11 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
                   Ø49
                 </text>
                 <circle r="54" fill="url(#glassGrad)" />
-                {/* Chromatic aberration ring */}
                 <circle r="54" fill="url(#chromaticAberration)" />
-
                 <g id="irisGroup" ref={irisGroupRef} clipPath="url(#irisClip)" />
-
                 <circle r="7" fill="#020202" />
-                {/* Main lens reflection */}
                 <ellipse cx="-16" cy="-20" rx="11" ry="6" fill="#ffffff" opacity="0.22" transform="rotate(-30)" />
-                {/* Secondary small reflection */}
                 <ellipse cx="18" cy="22" rx="4" ry="2.5" fill="#ffffff" opacity="0.08" transform="rotate(-30)" />
-                {/* Radial light bloom */}
                 <circle r="28" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="1.5" />
                 <circle cx="-34" cy="36" r="2.2" fill="#b5342f" />
                 <g id="afBrackets" ref={afBracketsRef} opacity="0.6">
@@ -237,7 +212,7 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
 
         <div className="intro-caption" ref={captionRef}>
           <h1>Vinit Patel Photography Studio</h1>
-          <p>Click to enter</p>
+          <p>Tap to enter</p>
         </div>
       </div>
     </div>

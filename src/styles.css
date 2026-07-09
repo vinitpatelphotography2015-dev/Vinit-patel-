@@ -2,12 +2,39 @@
 @source "../src";
 @import "tw-animate-css";
 
+@font-face {
+  font-family: 'Aerolinea';
+  src: url('./assets/Aerolinea.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Allura';
+  src: url('./assets/Allura-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Edwardian Script ITC';
+  src: url('./assets/EdwardianScriptITC.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme {
   --font-serif: "Cormorant Garamond", "Playfair Display", serif;
-  --font-script: "Great Vibes", cursive;
+  --font-script: "Allura", "Great Vibes", cursive;
   --font-sans: "Inter", sans-serif;
+  --font-aerolinea: "Aerolinea", sans-serif;
+  --font-allura: "Allura", cursive;
+  --font-edwardian: "Edwardian Script ITC", cursive;
   --color-gold: #c89b3c;
   --color-gold-soft: #d4b062;
   --color-ink: #0b0b0b;
@@ -162,6 +189,21 @@
     text-wrap: balance;
   }
 }
+
+/* Mobile touch optimization — ensure native scroll works and remove 300ms tap delay */
+@media (pointer: coarse) {
+  body {
+    touch-action: manipulation;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Reduce GPU-heavy effects on mobile (after intro) */
+  .hero-noise,
+  .hero-vignette {
+    display: none;
+  }
+}
+
 
 /* ================================================
    CAMERA INTRO OVERLAY

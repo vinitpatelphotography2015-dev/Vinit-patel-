@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Camera, Sparkles, UserRound } from "lucide-react";
 import { staggerContainer, staggerItem, fadeUp } from "@/animations/hero";
-import founderStudio from "@/assets/vinit-studio.jpg";
+import founderStudio from "@/assets/image.png";
 
 const FEATURES = [
   {
@@ -44,8 +44,7 @@ export function About() {
           >
             <motion.h2
               variants={staggerItem}
-              className="font-serif text-[color:var(--color-gold)] text-[36px] md:text-[48px] leading-none"
-              style={{ fontFamily: "Great Vibes, cursive" }}
+              className="font-edwardian text-[color:var(--color-gold)] text-[40px] md:text-[50px] leading-none"
             >
               Vinit Patel
             </motion.h2>
@@ -89,8 +88,7 @@ export function About() {
                 />
               </svg>
               <p
-                className="mt-2 text-[30px] text-white"
-                style={{ fontFamily: "Great Vibes, cursive" }}
+                className="mt-2 text-[30px] text-white font-edwardian"
               >
                 Vinit Patel
               </p>

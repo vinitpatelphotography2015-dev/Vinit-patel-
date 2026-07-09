@@ -130,8 +130,8 @@ function DesktopPolaroidCard({ event, i, p, onOpen, globalX, globalY }: DesktopP
           />
         </div>
         <p
-          className="mt-3 text-center text-lg text-[color:var(--color-ink)]/85 select-none truncate px-1"
-          style={{ fontFamily: "'Great Vibes', cursive", transform: "translateZ(20px)" }}
+          className="mt-3 text-center text-lg text-[color:var(--color-ink)]/85 select-none truncate px-1 font-allura"
+          style={{ transform: "translateZ(20px)" }}
         >
           {event.clientNames}
         </p>
@@ -252,7 +252,7 @@ export function Portfolio() {
                     <div className="aspect-square w-full overflow-hidden bg-[#e9e4d5]">
                       <img src={event.coverImage} alt={`${event.clientNames} – ${event.eventType}`} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" />
                     </div>
-                    <p className="mt-2.5 text-center text-[13px] text-[color:var(--color-ink)]/80 select-none truncate px-1" style={{ fontFamily: "'Great Vibes', cursive" }}>
+                    <p className="mt-2.5 text-center text-[13px] text-[color:var(--color-ink)]/80 select-none truncate px-1 font-allura">
                       {event.clientNames}
                     </p>
                     <p className="text-center text-[8px] tracking-[0.2em] text-[color:var(--color-ink)]/30 uppercase mt-0.5">

@@ -48,12 +48,10 @@ export function BookingCTA({ onBookClick }: BookingCTAProps) {
             <div key={i} className="overflow-hidden py-1">
               <motion.h2
                 variants={staggerItem}
-                className={`font-serif font-light leading-[1.0] ${
-                  i === 0
-                    ? "text-[38px] sm:text-[52px] md:text-[80px] lg:text-[96px] text-[color:var(--color-ink)]"
-                    : "text-[32px] sm:text-[42px] md:text-[64px] lg:text-[76px] text-[color:var(--color-gold)] mt-2"
-                }`}
-                style={i === 1 ? { fontFamily: "Great Vibes, cursive", fontStyle: "normal" } : {}}
+                className={`font-light leading-[1.0] ${i === 0
+                  ? "font-serif text-[38px] sm:text-[52px] md:text-[80px] lg:text-[96px] text-[color:var(--color-ink)]"
+                  : "font-edwardian text-[40px] sm:text-[52px] md:text-[74px] lg:text-[88px] text-[color:var(--color-gold)] mt-2"
+                  }`}
               >
                 {line}
               </motion.h2>
@@ -107,8 +105,7 @@ export function BookingCTA({ onBookClick }: BookingCTAProps) {
         >
           <span className="h-px w-16 bg-[color:var(--color-gold)]/30" />
           <span
-            className="text-[color:var(--color-gold)]/60 text-[28px]"
-            style={{ fontFamily: "Great Vibes, cursive" }}
+            className="text-[color:var(--color-gold)]/60 text-[28px] font-edwardian"
           >
             Vinit Patel
           </span>
