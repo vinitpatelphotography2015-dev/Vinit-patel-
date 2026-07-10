@@ -84,12 +84,18 @@ export function saveStoredEvents(events: ClientEvent[]): void {
   }
 }
 
+// In-memory cache for Firebase events to bypass localStorage quota limits
+let firebaseEventsCache: ClientEvent[] | null = null;
+
 /**
  * Custom React hook to subscribe to live portfolio data
  */
 export function useClientEvents() {
   const [events, setEvents] = useState<ClientEvent[]>(() => {
     if (!isBrowser) return DEFAULT_EVENTS;
+    if (isFirebaseEnabled() && firebaseEventsCache) {
+      return firebaseEventsCache;
+    }
     return getStoredEvents();
   });
   const [isLoading, setIsLoading] = useState(isFirebaseEnabled());
@@ -137,7 +143,9 @@ export function useClientEvents() {
         images: imagesByEvent[e.id] || [],
       }));
 
-      saveStoredEvents(mappedEvents);
+      // Update cache directly and notify all hook instances
+      firebaseEventsCache = mappedEvents;
+      notifyListeners();
     } catch (err) {
       console.error("Failed to fetch events from Firebase:", err);
     } finally {
@@ -149,7 +157,11 @@ export function useClientEvents() {
     if (!isBrowser) return;
 
     const handleUpdate = () => {
-      setEvents(getStoredEvents());
+      if (isFirebaseEnabled() && firebaseEventsCache) {
+        setEvents(firebaseEventsCache);
+      } else {
+        setEvents(getStoredEvents());
+      }
     };
 
     listeners.add(handleUpdate);
