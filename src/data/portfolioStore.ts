@@ -1,5 +1,15 @@
 import { useState, useEffect } from "react";
-import { createClient } from "@supabase/supabase-js";
+import { initializeApp, getApps, getApp } from "firebase/app";
+import { 
+  getFirestore, 
+  collection, 
+  getDocs, 
+  doc, 
+  query, 
+  orderBy, 
+  where, 
+  writeBatch 
+} from "firebase/firestore";
 import { CLIENT_EVENTS as DEFAULT_EVENTS, type ClientEvent, type EventType, type ServiceCategory, SERVICE_META } from "./portfolioData";
 
 const STORAGE_KEY = "vinit_photography_events_v3";
@@ -14,17 +24,28 @@ function notifyListeners() {
 // Helper to check if window is defined (SSR safety)
 const isBrowser = typeof window !== "undefined";
 
-// Check for environment variables
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "";
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || "";
+// Firebase Config from env variables
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || ""
+};
 
-export const supabase = supabaseUrl && supabaseAnonKey
-  ? createClient(supabaseUrl, supabaseAnonKey)
+// Check if we have at least apiKey and projectId to initialize
+const isFirebaseConfigured = !!(firebaseConfig.apiKey && firebaseConfig.projectId);
+
+export const app = isFirebaseConfigured
+  ? (getApps().length === 0 ? initializeApp(firebaseConfig) : getApp())
   : null;
 
-// Helper to determine if we should use Supabase
-export const isSupabaseEnabled = (): boolean => {
-  return !!supabase;
+export const db = app ? getFirestore(app) : null;
+
+// Helper to determine if we should use Firebase
+export const isFirebaseEnabled = (): boolean => {
+  return !!db;
 };
 
 /**
@@ -71,39 +92,54 @@ export function useClientEvents() {
     if (!isBrowser) return DEFAULT_EVENTS;
     return getStoredEvents();
   });
-  const [isLoading, setIsLoading] = useState(isSupabaseEnabled());
+  const [isLoading, setIsLoading] = useState(isFirebaseEnabled());
 
-  const fetchEventsFromSupabase = async () => {
-    if (!supabase) return;
+  const fetchEventsFromFirebase = async () => {
+    if (!db) return;
     setIsLoading(true);
     try {
-      const { data: dbEvents, error } = await supabase
-        .from("events")
-        .select(`
-          *,
-          event_images (*)
-        `)
-        .order("created_at", { ascending: false });
+      // 1. Fetch all events ordered by createdAt
+      const eventsRef = collection(db, "events");
+      const eventsQuery = query(eventsRef, orderBy("createdAt", "desc"));
+      const eventsSnapshot = await getDocs(eventsQuery);
+      
+      const dbEvents: any[] = [];
+      eventsSnapshot.forEach((doc) => {
+        dbEvents.push({ id: doc.id, ...doc.data() });
+      });
 
-      if (error) throw error;
+      // 2. Fetch all event images
+      const imagesRef = collection(db, "event_images");
+      const imagesSnapshot = await getDocs(imagesRef);
+      
+      // Group images by eventId
+      const imagesByEvent: Record<string, any[]> = {};
+      imagesSnapshot.forEach((doc) => {
+        const data = doc.data();
+        const eventId = data.eventId;
+        if (eventId) {
+          if (!imagesByEvent[eventId]) {
+            imagesByEvent[eventId] = [];
+          }
+          imagesByEvent[eventId].push({
+            src: data.src || "",
+            alt: data.alt || "Event Photo",
+          });
+        }
+      });
 
-      if (dbEvents) {
-        // Map db format to ClientEvent format
-        const mappedEvents: ClientEvent[] = dbEvents.map((e) => ({
-          id: e.id,
-          clientNames: e.client_names || "",
-          eventType: e.event_type as EventType,
-          coverImage: e.cover_image,
-          images: (e.event_images || []).map((img: any) => ({
-            src: img.src,
-            alt: img.alt || "Event Photo",
-          })),
-        }));
+      // 3. Combine events and images
+      const mappedEvents: ClientEvent[] = dbEvents.map((e) => ({
+        id: e.id,
+        clientNames: e.clientNames || "",
+        eventType: e.eventType as EventType,
+        coverImage: e.coverImage || "",
+        images: imagesByEvent[e.id] || [],
+      }));
 
-        saveStoredEvents(mappedEvents);
-      }
+      saveStoredEvents(mappedEvents);
     } catch (err) {
-      console.error("Failed to fetch events from Supabase:", err);
+      console.error("Failed to fetch events from Firebase:", err);
     } finally {
       setIsLoading(false);
     }
@@ -119,9 +155,9 @@ export function useClientEvents() {
     listeners.add(handleUpdate);
     window.addEventListener("storage", handleUpdate);
 
-    // If Supabase is enabled, fetch events from Supabase on mount
-    if (isSupabaseEnabled()) {
-      fetchEventsFromSupabase();
+    // If Firebase is enabled, fetch events on mount
+    if (isFirebaseEnabled()) {
+      fetchEventsFromFirebase();
     }
 
     return () => {
@@ -144,43 +180,33 @@ export function useClientEvents() {
       id: newId,
     };
 
-    if (isSupabaseEnabled() && supabase) {
-      // 1. Insert into events table
-      const { error: eventError } = await supabase
-        .from("events")
-        .insert({
-          id: newId,
-          client_names: event.clientNames,
-          event_type: event.eventType,
-          cover_image: event.coverImage,
-        });
+    if (isFirebaseEnabled() && db) {
+      const batch = writeBatch(db);
 
-      if (eventError) {
-        console.error("Failed to insert event to Supabase:", eventError);
-        throw eventError;
-      }
+      // 1. Add event document
+      const eventDocRef = doc(db, "events", newId);
+      batch.set(eventDocRef, {
+        clientNames: event.clientNames,
+        eventType: event.eventType,
+        coverImage: event.coverImage,
+        createdAt: new Date().toISOString()
+      });
 
-      // 2. Insert into event_images table
+      // 2. Add images documents
       if (event.images && event.images.length > 0) {
-        const imagesPayload = event.images.map((img) => ({
-          event_id: newId,
-          src: img.src,
-          alt: img.alt || "Event Photo",
-        }));
-
-        const { error: imagesError } = await supabase
-          .from("event_images")
-          .insert(imagesPayload);
-
-        if (imagesError) {
-          console.error("Failed to insert images to Supabase:", imagesError);
-          // Clean up created event on failure
-          await supabase.from("events").delete().eq("id", newId);
-          throw imagesError;
-        }
+        event.images.forEach((img) => {
+          const imageDocRef = doc(collection(db, "event_images"));
+          batch.set(imageDocRef, {
+            eventId: newId,
+            src: img.src,
+            alt: img.alt || "Event Photo",
+            createdAt: new Date().toISOString()
+          });
+        });
       }
 
-      await fetchEventsFromSupabase();
+      await batch.commit();
+      await fetchEventsFromFirebase();
     } else {
       const current = getStoredEvents();
       const updated = [newEvent, ...current];
@@ -190,52 +216,41 @@ export function useClientEvents() {
   };
 
   const updateEvent = async (updatedEvent: ClientEvent) => {
-    if (isSupabaseEnabled() && supabase) {
-      // 1. Update event
-      const { error: eventError } = await supabase
-        .from("events")
-        .update({
-          client_names: updatedEvent.clientNames,
-          event_type: updatedEvent.eventType,
-          cover_image: updatedEvent.coverImage,
-        })
-        .eq("id", updatedEvent.id);
+    if (isFirebaseEnabled() && db) {
+      const batch = writeBatch(db);
 
-      if (eventError) {
-        console.error("Failed to update event in Supabase:", eventError);
-        throw eventError;
-      }
+      // 1. Update event document
+      const eventDocRef = doc(db, "events", updatedEvent.id);
+      batch.update(eventDocRef, {
+        clientNames: updatedEvent.clientNames,
+        eventType: updatedEvent.eventType,
+        coverImage: updatedEvent.coverImage,
+      });
 
-      // 2. Delete old images
-      const { error: deleteError } = await supabase
-        .from("event_images")
-        .delete()
-        .eq("event_id", updatedEvent.id);
+      // 2. Delete existing images for this event
+      const imagesRef = collection(db, "event_images");
+      const q = query(imagesRef, where("eventId", "==", updatedEvent.id));
+      const querySnapshot = await getDocs(q);
+      
+      querySnapshot.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
 
-      if (deleteError) {
-        console.error("Failed to delete old images in Supabase:", deleteError);
-        throw deleteError;
-      }
-
-      // 3. Insert new images
+      // 3. Add new images
       if (updatedEvent.images && updatedEvent.images.length > 0) {
-        const imagesPayload = updatedEvent.images.map((img) => ({
-          event_id: updatedEvent.id,
-          src: img.src,
-          alt: img.alt || "Event Photo",
-        }));
-
-        const { error: imagesError } = await supabase
-          .from("event_images")
-          .insert(imagesPayload);
-
-        if (imagesError) {
-          console.error("Failed to insert new images in Supabase:", imagesError);
-          throw imagesError;
-        }
+        updatedEvent.images.forEach((img) => {
+          const imageDocRef = doc(collection(db, "event_images"));
+          batch.set(imageDocRef, {
+            eventId: updatedEvent.id,
+            src: img.src,
+            alt: img.alt || "Event Photo",
+            createdAt: new Date().toISOString()
+          });
+        });
       }
 
-      await fetchEventsFromSupabase();
+      await batch.commit();
+      await fetchEventsFromFirebase();
     } else {
       const current = getStoredEvents();
       const updated = current.map((e) => (e.id === updatedEvent.id ? updatedEvent : e));
@@ -244,18 +259,24 @@ export function useClientEvents() {
   };
 
   const deleteEvent = async (id: string) => {
-    if (isSupabaseEnabled() && supabase) {
-      const { error } = await supabase
-        .from("events")
-        .delete()
-        .eq("id", id);
+    if (isFirebaseEnabled() && db) {
+      const batch = writeBatch(db);
 
-      if (error) {
-        console.error("Failed to delete event from Supabase:", error);
-        throw error;
-      }
+      // 1. Delete event document
+      const eventDocRef = doc(db, "events", id);
+      batch.delete(eventDocRef);
 
-      await fetchEventsFromSupabase();
+      // 2. Delete related images
+      const imagesRef = collection(db, "event_images");
+      const q = query(imagesRef, where("eventId", "==", id));
+      const querySnapshot = await getDocs(q);
+      
+      querySnapshot.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
+
+      await batch.commit();
+      await fetchEventsFromFirebase();
     } else {
       const current = getStoredEvents();
       const updated = current.filter((e) => e.id !== id);
@@ -266,40 +287,49 @@ export function useClientEvents() {
   const resetToDefault = async () => {
     if (!isBrowser) return;
 
-    if (isSupabaseEnabled() && supabase) {
-      const { error: deleteError } = await supabase
-        .from("events")
-        .delete()
-        .neq("id", "");
+    if (isFirebaseEnabled() && db) {
+      // 1. Clear events
+      const eventsSnapshot = await getDocs(collection(db, "events"));
+      const eventsBatch = writeBatch(db);
+      eventsSnapshot.forEach((doc) => {
+        eventsBatch.delete(doc.ref);
+      });
+      await eventsBatch.commit();
 
-      if (deleteError) {
-        console.error("Failed to clear Supabase events during reset:", deleteError);
-        throw deleteError;
-      }
+      // 2. Clear images
+      const imagesSnapshot = await getDocs(collection(db, "event_images"));
+      const imagesBatch = writeBatch(db);
+      imagesSnapshot.forEach((doc) => {
+        imagesBatch.delete(doc.ref);
+      });
+      await imagesBatch.commit();
 
+      // 3. Populate default events
       for (const event of DEFAULT_EVENTS) {
-        const { error: eventError } = await supabase
-          .from("events")
-          .insert({
-            id: event.id,
-            client_names: event.clientNames,
-            event_type: event.eventType,
-            cover_image: event.coverImage,
-          });
-
-        if (eventError) continue;
+        const batch = writeBatch(db);
+        const eventDocRef = doc(db, "events", event.id);
+        batch.set(eventDocRef, {
+          clientNames: event.clientNames,
+          eventType: event.eventType,
+          coverImage: event.coverImage,
+          createdAt: new Date().toISOString()
+        });
 
         if (event.images && event.images.length > 0) {
-          const imagesPayload = event.images.map((img) => ({
-            event_id: event.id,
-            src: img.src,
-            alt: img.alt || "Event Photo",
-          }));
-          await supabase.from("event_images").insert(imagesPayload);
+          event.images.forEach((img) => {
+            const imageDocRef = doc(collection(db, "event_images"));
+            batch.set(imageDocRef, {
+              eventId: event.id,
+              src: img.src,
+              alt: img.alt || "Event Photo",
+              createdAt: new Date().toISOString()
+            });
+          });
         }
+        await batch.commit();
       }
 
-      await fetchEventsFromSupabase();
+      await fetchEventsFromFirebase();
     } else {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_EVENTS));
       notifyListeners();
@@ -307,37 +337,55 @@ export function useClientEvents() {
   };
 
   const importBackup = async (data: ClientEvent[]) => {
-    if (!Array.isArray(data)) return false;
+    if (!data || !Array.isArray(data)) return false;
 
-    if (isSupabaseEnabled() && supabase) {
+    if (isFirebaseEnabled() && db) {
       try {
-        await supabase.from("events").delete().neq("id", "");
+        // 1. Clear events
+        const eventsSnapshot = await getDocs(collection(db, "events"));
+        const eventsBatch = writeBatch(db);
+        eventsSnapshot.forEach((doc) => {
+          eventsBatch.delete(doc.ref);
+        });
+        await eventsBatch.commit();
 
+        // 2. Clear images
+        const imagesSnapshot = await getDocs(collection(db, "event_images"));
+        const imagesBatch = writeBatch(db);
+        imagesSnapshot.forEach((doc) => {
+          imagesBatch.delete(doc.ref);
+        });
+        await imagesBatch.commit();
+
+        // 3. Import new data
         for (const event of data) {
-          const { error: eventError } = await supabase
-            .from("events")
-            .insert({
-              id: event.id,
-              client_names: event.clientNames,
-              event_type: event.eventType,
-              cover_image: event.coverImage,
-            });
-
-          if (eventError) continue;
+          const batch = writeBatch(db);
+          const eventDocRef = doc(db, "events", event.id);
+          batch.set(eventDocRef, {
+            clientNames: event.clientNames,
+            eventType: event.eventType,
+            coverImage: event.coverImage,
+            createdAt: new Date().toISOString()
+          });
 
           if (event.images && event.images.length > 0) {
-            const imagesPayload = event.images.map((img) => ({
-              event_id: event.id,
-              src: img.src,
-              alt: img.alt || "Event Photo",
-            }));
-            await supabase.from("event_images").insert(imagesPayload);
+            event.images.forEach((img) => {
+              const imageDocRef = doc(collection(db, "event_images"));
+              batch.set(imageDocRef, {
+                eventId: event.id,
+                src: img.src,
+                alt: img.alt || "Event Photo",
+                createdAt: new Date().toISOString()
+              });
+            });
           }
+          await batch.commit();
         }
-        await fetchEventsFromSupabase();
+
+        await fetchEventsFromFirebase();
         return true;
       } catch (err) {
-        console.error("Failed to import backup to Supabase:", err);
+        console.error("Failed to import backup to Firebase:", err);
         return false;
       }
     } else {

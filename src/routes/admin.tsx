@@ -227,7 +227,7 @@ function AdminPortal() {
       setIsFormOpen(false);
     } catch (error) {
       console.error("Failed to save event:", error);
-      alert("Failed to save event. If you are using Local Storage, your browser's space might be full (max 5MB). If you are using Supabase, please verify database credentials.");
+      alert("Failed to save event. If you are using Local Storage, your browser's space might be full (max 5MB). If you are using Firebase, please verify database credentials.");
     } finally {
       setIsProcessing(false);
     }
