@@ -37,12 +37,15 @@ export function Services() {
   
   const servicesData = useMemo(() => {
     return SERVICES.map((svc) => {
-      const serviceEvents = getEventsByService(events, svc.category);
-      const coverImage = serviceEvents[0]?.coverImage || svc.image;
-      return {
-        ...svc,
-        image: coverImage,
-      };
+      if (svc.category === "baby-shoot") {
+        const serviceEvents = getEventsByService(events, svc.category);
+        const coverImage = serviceEvents[0]?.coverImage || svc.image;
+        return {
+          ...svc,
+          image: coverImage,
+        };
+      }
+      return svc;
     });
   }, [events]);
 
