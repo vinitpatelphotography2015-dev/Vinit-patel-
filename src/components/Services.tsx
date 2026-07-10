@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Heart, Music, Baby, ArrowRight, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import { Link } from "@tanstack/react-router";
@@ -6,6 +6,7 @@ import svcWedding from "@/assets/service-wedding.jpg";
 import svcSangeet from "@/assets/service-sangeet.jpg";
 import svcBaby from "@/assets/service-baby.jpg";
 import type { ServiceCategory } from "@/data/portfolioData";
+import { useClientEvents, getEventsByService } from "@/data/portfolioStore";
 
 const SERVICES: { title: string; desc: string; image: string; icon: any; category: ServiceCategory }[] = [
   {
@@ -32,6 +33,19 @@ const SERVICES: { title: string; desc: string; image: string; icon: any; categor
 ];
 
 export function Services() {
+  const { events } = useClientEvents();
+  
+  const servicesData = useMemo(() => {
+    return SERVICES.map((svc) => {
+      const serviceEvents = getEventsByService(events, svc.category);
+      const coverImage = serviceEvents[0]?.coverImage || svc.image;
+      return {
+        ...svc,
+        image: coverImage,
+      };
+    });
+  }, [events]);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -197,7 +211,7 @@ export function Services() {
             viewport={{ once: true, amount: 0.1 }}
             className="flex gap-6 md:gap-8 px-6 md:px-12 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-none pb-6 cursor-grab active:cursor-grabbing"
           >
-            {SERVICES.map((svc, index) => {
+            {servicesData.map((svc, index) => {
               const IconComponent = svc.icon;
               return (
                 <motion.div 
