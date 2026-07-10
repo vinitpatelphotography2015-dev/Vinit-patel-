@@ -59,6 +59,7 @@ export interface ClientEvent {
   id: string;
   clientNames: string;
   eventType: EventType;
+  serviceCategory?: ServiceCategory;
   location: string;
   date: string;
   coverImage: string;

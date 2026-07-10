@@ -23,7 +23,7 @@ import {
 import { useClientEvents } from "@/data/portfolioStore";
 import { CustomCursor } from "@/components/CustomCursor";
 import { PageHeader } from "@/components/PageHeader";
-import type { ClientEvent, EventType, EventImage } from "@/data/portfolioData";
+import type { ClientEvent, EventType, EventImage, ServiceCategory } from "@/data/portfolioData";
 
 const compressImage = (file: File, maxWidth = 1200, maxHeight = 1200, quality = 0.75): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -102,6 +102,7 @@ function AdminPortal() {
   // Form states
   const [clientNames, setClientNames] = useState("");
   const [eventType, setEventType] = useState<EventType>("Wedding");
+  const [serviceCategory, setServiceCategory] = useState<ServiceCategory>("wedding");
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
   const [coverImage, setCoverImage] = useState("");
@@ -174,6 +175,7 @@ function AdminPortal() {
     setEditingEvent(null);
     setClientNames("");
     setEventType("Wedding");
+    setServiceCategory("wedding");
     setLocation("");
     setDate("");
     setCoverImage("");
@@ -186,6 +188,7 @@ function AdminPortal() {
     setEditingEvent(event);
     setClientNames(event.clientNames);
     setEventType(event.eventType);
+    setServiceCategory(event.serviceCategory || "wedding");
     setLocation(event.location);
     setDate(event.date);
     setCoverImage(event.coverImage);
@@ -204,7 +207,8 @@ function AdminPortal() {
 
     const eventPayload = {
       clientNames: clientNames.trim(),
-      eventType,
+      eventType: eventType.trim(),
+      serviceCategory,
       location: location.trim(),
       date: date.trim(),
       coverImage,
@@ -646,11 +650,26 @@ function AdminPortal() {
 
                   <div>
                     <label className="block text-[10px] tracking-[0.15em] font-semibold text-neutral-400 uppercase mb-2">
-                      Event Category *
+                      Main Section *
+                    </label>
+                    <select
+                      value={serviceCategory}
+                      onChange={(e) => setServiceCategory(e.target.value as ServiceCategory)}
+                      className="w-full rounded-lg border border-neutral-200 px-4 py-2.5 text-xs text-[color:var(--color-ink)] bg-white focus:border-[color:var(--color-gold)]/60 focus:outline-none"
+                    >
+                      <option value="pre-wedding">Pre Wedding</option>
+                      <option value="wedding">Wedding Photography</option>
+                      <option value="baby-shoot">Baby Shower</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] tracking-[0.15em] font-semibold text-neutral-400 uppercase mb-2">
+                      Event Category Tag *
                     </label>
                     <input
                       type="text"
-                      placeholder="e.g. Wedding, Pre Wedding, Baby Shower"
+                      placeholder="e.g. Sangeet, Haldi, Pre-Wedding, Baby Shower"
                       value={eventType}
                       onChange={(e) => setEventType(e.target.value)}
                       required

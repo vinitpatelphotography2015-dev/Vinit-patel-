@@ -3,7 +3,7 @@ import { initializeApp, getApps, getApp } from "firebase/app";
 import { 
   getFirestore, 
   collection, 
-  getDocs, 
+  getDocsFromServer, 
   doc, 
   query, 
   orderBy, 
@@ -107,7 +107,7 @@ export function useClientEvents() {
       // 1. Fetch all events ordered by createdAt
       const eventsRef = collection(db, "events");
       const eventsQuery = query(eventsRef, orderBy("createdAt", "desc"));
-      const eventsSnapshot = await getDocs(eventsQuery);
+      const eventsSnapshot = await getDocsFromServer(eventsQuery);
       
       const dbEvents: any[] = [];
       eventsSnapshot.forEach((doc) => {
@@ -116,7 +116,7 @@ export function useClientEvents() {
 
       // 2. Fetch all event images
       const imagesRef = collection(db, "event_images");
-      const imagesSnapshot = await getDocs(imagesRef);
+      const imagesSnapshot = await getDocsFromServer(imagesRef);
       
       // Group images by eventId
       const imagesByEvent: Record<string, any[]> = {};
@@ -139,6 +139,7 @@ export function useClientEvents() {
         id: e.id,
         clientNames: e.clientNames || "",
         eventType: e.eventType as EventType,
+        serviceCategory: e.serviceCategory as ServiceCategory | undefined,
         coverImage: e.coverImage || "",
         images: imagesByEvent[e.id] || [],
       }));
@@ -200,6 +201,7 @@ export function useClientEvents() {
       batch.set(eventDocRef, {
         clientNames: event.clientNames,
         eventType: event.eventType,
+        serviceCategory: event.serviceCategory || "",
         location: event.location || "",
         date: event.date || "",
         coverImage: event.coverImage,
@@ -238,6 +240,7 @@ export function useClientEvents() {
       batch.set(eventDocRef, {
         clientNames: updatedEvent.clientNames,
         eventType: updatedEvent.eventType,
+        serviceCategory: updatedEvent.serviceCategory || "",
         location: updatedEvent.location || "",
         date: updatedEvent.date || "",
         coverImage: updatedEvent.coverImage,
@@ -246,7 +249,7 @@ export function useClientEvents() {
       // 2. Delete existing images for this event
       const imagesRef = collection(db, "event_images");
       const q = query(imagesRef, where("eventId", "==", updatedEvent.id));
-      const querySnapshot = await getDocs(q);
+      const querySnapshot = await getDocsFromServer(q);
       
       querySnapshot.forEach((doc) => {
         batch.delete(doc.ref);
@@ -285,7 +288,7 @@ export function useClientEvents() {
       // 2. Delete related images
       const imagesRef = collection(db, "event_images");
       const q = query(imagesRef, where("eventId", "==", id));
-      const querySnapshot = await getDocs(q);
+      const querySnapshot = await getDocsFromServer(q);
       
       querySnapshot.forEach((doc) => {
         batch.delete(doc.ref);
@@ -305,7 +308,7 @@ export function useClientEvents() {
 
     if (isFirebaseEnabled() && db) {
       // 1. Clear events
-      const eventsSnapshot = await getDocs(collection(db, "events"));
+      const eventsSnapshot = await getDocsFromServer(collection(db, "events"));
       const eventsBatch = writeBatch(db);
       eventsSnapshot.forEach((doc) => {
         eventsBatch.delete(doc.ref);
@@ -313,7 +316,7 @@ export function useClientEvents() {
       await eventsBatch.commit();
 
       // 2. Clear images
-      const imagesSnapshot = await getDocs(collection(db, "event_images"));
+      const imagesSnapshot = await getDocsFromServer(collection(db, "event_images"));
       const imagesBatch = writeBatch(db);
       imagesSnapshot.forEach((doc) => {
         imagesBatch.delete(doc.ref);
@@ -327,6 +330,7 @@ export function useClientEvents() {
         batch.set(eventDocRef, {
           clientNames: event.clientNames,
           eventType: event.eventType,
+          serviceCategory: event.serviceCategory || getFallbackServiceCategory(event),
           location: event.location || "",
           date: event.date || "",
           coverImage: event.coverImage,
@@ -360,7 +364,7 @@ export function useClientEvents() {
     if (isFirebaseEnabled() && db) {
       try {
         // 1. Clear events
-        const eventsSnapshot = await getDocs(collection(db, "events"));
+        const eventsSnapshot = await getDocsFromServer(collection(db, "events"));
         const eventsBatch = writeBatch(db);
         eventsSnapshot.forEach((doc) => {
           eventsBatch.delete(doc.ref);
@@ -368,7 +372,7 @@ export function useClientEvents() {
         await eventsBatch.commit();
 
         // 2. Clear images
-        const imagesSnapshot = await getDocs(collection(db, "event_images"));
+        const imagesSnapshot = await getDocsFromServer(collection(db, "event_images"));
         const imagesBatch = writeBatch(db);
         imagesSnapshot.forEach((doc) => {
           imagesBatch.delete(doc.ref);
@@ -382,6 +386,7 @@ export function useClientEvents() {
           batch.set(eventDocRef, {
             clientNames: event.clientNames,
             eventType: event.eventType,
+            serviceCategory: event.serviceCategory || getFallbackServiceCategory(event),
             location: event.location || "",
             date: event.date || "",
             coverImage: event.coverImage,
@@ -426,12 +431,29 @@ export function useClientEvents() {
 }
 
 /**
+ * SSR safe helper: Get the service category (pre-wedding/wedding/baby-shoot) for an event, with fallback based on eventType name.
+ */
+export function getFallbackServiceCategory(event: ClientEvent): ServiceCategory {
+  if (event.serviceCategory) return event.serviceCategory;
+  
+  const type = (event.eventType || "").toLowerCase();
+  if (type.includes("baby") || type.includes("shower") || type.includes("maternity") || type.includes("kids")) {
+    return "baby-shoot";
+  }
+  if (type.includes("pre") || type.includes("couple") || type.includes("sangeet") || type.includes("engagement")) {
+    return "pre-wedding";
+  }
+  return "wedding";
+}
+
+/**
  * SSR safe helper: Get events filtered by service category
  */
 export function getEventsByService(events: ClientEvent[], category: ServiceCategory): ClientEvent[] {
-  const meta = SERVICE_META[category];
-  if (!meta) return [];
-  return events.filter((e) => meta.eventTypes.includes(e.eventType));
+  return events.filter((e) => {
+    const sc = e.serviceCategory || getFallbackServiceCategory(e);
+    return sc === category;
+  });
 }
 
 /**
