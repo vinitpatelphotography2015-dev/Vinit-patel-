@@ -45,6 +45,7 @@ export function saveStoredEvents(events: ClientEvent[]): void {
     notifyListeners();
   } catch (error) {
     console.error("Failed to save to localStorage", error);
+    throw error;
   }
 }
 

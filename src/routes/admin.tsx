@@ -25,6 +25,52 @@ import { CustomCursor } from "@/components/CustomCursor";
 import { PageHeader } from "@/components/PageHeader";
 import type { ClientEvent, EventType, EventImage } from "@/data/portfolioData";
 
+const compressImage = (file: File, maxWidth = 1200, maxHeight = 1200, quality = 0.75): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      const img = new Image();
+      img.src = event.target?.result as string;
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > maxWidth) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width = Math.round((width * maxHeight) / height);
+            height = maxHeight;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) {
+          resolve(event.target?.result as string);
+          return;
+        }
+
+        ctx.drawImage(img, 0, 0, width, height);
+        const compressedBase64 = canvas.toDataURL("image/jpeg", quality);
+        resolve(compressedBase64);
+      };
+      img.onerror = (err) => {
+        reject(err);
+      };
+    };
+    reader.onerror = (err) => {
+      reject(err);
+    };
+  });
+};
+
 export const Route = createFileRoute("/admin")({
   component: AdminPortal,
 });
@@ -88,23 +134,42 @@ function AdminPortal() {
     localStorage.removeItem("vp_admin_logged_in");
   };
 
-  // Convert files to base64
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, isCover: boolean) => {
-    const files = e.target.files;
-    if (!files) return;
+  const [isProcessing, setIsProcessing] = useState(false);
 
-    Array.from(files).forEach((file) => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        if (isCover) {
-          setCoverImage(base64String);
-        } else {
-          setGalleryImages((prev) => [...prev, { src: base64String, alt: file.name.split(".")[0] }]);
+  // Convert and compress files to base64
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>, isCover: boolean) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    setIsProcessing(true);
+    try {
+      const promises = Array.from(files).map((file) => {
+        const maxWidth = isCover ? 1200 : 1000;
+        const maxHeight = isCover ? 1200 : 1000;
+        const quality = isCover ? 0.75 : 0.65;
+        return compressImage(file, maxWidth, maxHeight, quality);
+      });
+
+      const base64Strings = await Promise.all(promises);
+
+      if (isCover) {
+        if (base64Strings[0]) {
+          setCoverImage(base64Strings[0]);
         }
-      };
-      reader.readAsDataURL(file);
-    });
+      } else {
+        const newImages = base64Strings.map((str, idx) => ({
+          src: str,
+          alt: files[idx]?.name.split(".")[0] || "Event Photo",
+        }));
+        setGalleryImages((prev) => [...prev, ...newImages]);
+      }
+    } catch (err) {
+      console.error("Failed to process image:", err);
+      alert("Failed to process image file. Please try a different photo.");
+    } finally {
+      setIsProcessing(false);
+      e.target.value = "";
+    }
   };
 
   // Opening the form for a new event
@@ -149,16 +214,20 @@ function AdminPortal() {
       images: galleryImages,
     };
 
-    if (editingEvent) {
-      updateEvent({
-        ...eventPayload,
-        id: editingEvent.id,
-      });
-    } else {
-      addEvent(eventPayload);
+    try {
+      if (editingEvent) {
+        updateEvent({
+          ...eventPayload,
+          id: editingEvent.id,
+        });
+      } else {
+        addEvent(eventPayload);
+      }
+      setIsFormOpen(false);
+    } catch (error) {
+      console.error("Failed to save event:", error);
+      alert("Failed to save event. Your browser's storage space is full (maximum 5MB). Please try using smaller/compressed images or fewer photos.");
     }
-
-    setIsFormOpen(false);
   };
 
   // Backup Export
@@ -533,8 +602,15 @@ function AdminPortal() {
                 </button>
               </div>
 
-              {/* Sidebar Scrollable Body */}
               <form onSubmit={handleFormSubmit} className="flex-grow overflow-y-auto px-8 py-8 space-y-6">
+                {isProcessing && (
+                  <div className="bg-[color:var(--color-gold)]/10 border border-[color:var(--color-gold)]/20 p-4 rounded-xl flex items-center justify-center gap-3">
+                    <RefreshCw className="animate-spin text-[color:var(--color-gold)]" size={16} />
+                    <span className="text-xs text-[color:var(--color-ink)] font-medium tracking-wide">
+                      Processing and compressing images...
+                    </span>
+                  </div>
+                )}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="col-span-1 sm:col-span-2">
                     <label className="block text-[10px] tracking-[0.15em] font-semibold text-neutral-400 uppercase mb-2">
@@ -683,18 +759,29 @@ function AdminPortal() {
               <div className="px-8 py-5 border-t border-neutral-100 flex items-center justify-end gap-3 bg-neutral-50/50">
                 <button
                   type="button"
+                  disabled={isProcessing}
                   onClick={() => setIsFormOpen(false)}
-                  className="px-5 py-2.5 text-[10px] tracking-[0.2em] border border-neutral-200 text-neutral-500 hover:bg-neutral-100 rounded-lg transition-colors font-medium"
+                  className="px-5 py-2.5 text-[10px] tracking-[0.2em] border border-neutral-200 text-neutral-500 hover:bg-neutral-100 rounded-lg transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   CANCEL
                 </button>
                 <button
                   type="button"
+                  disabled={isProcessing}
                   onClick={handleFormSubmit}
-                  className="inline-flex items-center gap-2 bg-[color:var(--color-gold)] px-6 py-2.5 text-[10px] tracking-[0.2em] text-[color:var(--color-ink)] font-semibold rounded-lg hover:bg-[color:var(--color-gold-soft)] transition-colors"
+                  className="inline-flex items-center gap-2 bg-[color:var(--color-gold)] px-6 py-2.5 text-[10px] tracking-[0.2em] text-[color:var(--color-ink)] font-semibold rounded-lg hover:bg-[color:var(--color-gold-soft)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <Save size={14} />
-                  SAVE EVENT
+                  {isProcessing ? (
+                    <>
+                      <RefreshCw size={14} className="animate-spin" />
+                      PROCESSING...
+                    </>
+                  ) : (
+                    <>
+                      <Save size={14} />
+                      SAVE EVENT
+                    </>
+                  )}
                 </button>
               </div>
             </motion.div>
