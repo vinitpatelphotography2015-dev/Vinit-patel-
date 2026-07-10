@@ -201,7 +201,6 @@ export function useClientEvents() {
       batch.set(eventDocRef, {
         clientNames: event.clientNames,
         eventType: event.eventType,
-        serviceCategory: event.serviceCategory || "",
         location: event.location || "",
         date: event.date || "",
         coverImage: event.coverImage,
@@ -240,7 +239,6 @@ export function useClientEvents() {
       batch.set(eventDocRef, {
         clientNames: updatedEvent.clientNames,
         eventType: updatedEvent.eventType,
-        serviceCategory: updatedEvent.serviceCategory || "",
         location: updatedEvent.location || "",
         date: updatedEvent.date || "",
         coverImage: updatedEvent.coverImage,
@@ -330,7 +328,6 @@ export function useClientEvents() {
         batch.set(eventDocRef, {
           clientNames: event.clientNames,
           eventType: event.eventType,
-          serviceCategory: event.serviceCategory || getFallbackServiceCategory(event),
           location: event.location || "",
           date: event.date || "",
           coverImage: event.coverImage,
@@ -386,7 +383,6 @@ export function useClientEvents() {
           batch.set(eventDocRef, {
             clientNames: event.clientNames,
             eventType: event.eventType,
-            serviceCategory: event.serviceCategory || getFallbackServiceCategory(event),
             location: event.location || "",
             date: event.date || "",
             coverImage: event.coverImage,
@@ -434,15 +430,30 @@ export function useClientEvents() {
  * SSR safe helper: Get the service category (pre-wedding/wedding/baby-shoot) for an event, with fallback based on eventType name.
  */
 export function getFallbackServiceCategory(event: ClientEvent): ServiceCategory {
-  if (event.serviceCategory) return event.serviceCategory;
-  
   const type = (event.eventType || "").toLowerCase();
-  if (type.includes("baby") || type.includes("shower") || type.includes("maternity") || type.includes("kids")) {
+  
+  if (
+    type.includes("baby") || 
+    type.includes("shower") || 
+    type.includes("maternity") || 
+    type.includes("kids") || 
+    type.includes("child") || 
+    type.includes("newborn")
+  ) {
     return "baby-shoot";
   }
-  if (type.includes("pre") || type.includes("couple") || type.includes("sangeet") || type.includes("engagement")) {
+  
+  if (
+    type.includes("pre") || 
+    type.includes("couple") || 
+    type.includes("sangeet") || 
+    type.includes("engagement") || 
+    type.includes("portrait") || 
+    type.includes("anniversary")
+  ) {
     return "pre-wedding";
   }
+  
   return "wedding";
 }
 
@@ -451,8 +462,7 @@ export function getFallbackServiceCategory(event: ClientEvent): ServiceCategory 
  */
 export function getEventsByService(events: ClientEvent[], category: ServiceCategory): ClientEvent[] {
   return events.filter((e) => {
-    const sc = e.serviceCategory || getFallbackServiceCategory(e);
-    return sc === category;
+    return getFallbackServiceCategory(e) === category;
   });
 }
 
