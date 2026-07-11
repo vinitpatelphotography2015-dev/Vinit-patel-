@@ -179,9 +179,8 @@
 
   /* Hide native cursor on desktop when custom cursor is active */
   @media (pointer: fine) {
-    body, a, button, [role="button"] {
-      cursor: none !important;
-    }
+    body, a, button, [role="button"] { cursor: none !important; }
+    input, textarea, select { cursor: text !important; }
   }
 
   /* Editorial text balance for large headings */
