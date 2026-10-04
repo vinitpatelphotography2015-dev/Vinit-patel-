@@ -296,7 +296,7 @@ function AdminPortal() {
           </div>
 
           <h1 className="font-serif text-[28px] font-light text-[color:var(--color-ink)] leading-none">
-            Vinit Patel Photography
+            Vinet Patel Photography
           </h1>
           <p className="mt-2 text-[10px] tracking-[0.3em] text-[color:var(--color-gold)] uppercase font-semibold">
             CMS ADMIN PORTAL

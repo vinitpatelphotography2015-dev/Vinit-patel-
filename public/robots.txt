@@ -1,4 +1,4 @@
-# Vinit Patel Photography
+# Vinet Patel Photography
 # https://www.vinitpatelphotography.in
 
 User-agent: *

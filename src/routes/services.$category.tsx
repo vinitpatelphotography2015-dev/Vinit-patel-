@@ -10,23 +10,23 @@ import {
 
 const SERVICE_SEO: Record<string, { title: string; desc: string }> = {
   "pre-wedding": {
-    title: "Pre Wedding Shoot | Vinit Patel Photography — Best Pre Wedding Photographer Vadodara",
-    desc: "Vibrant and intimate pre-wedding photoshoots in Vadodara, Gujarat by Vinit Patel. Capturing your unique chemistry in beautiful locations. Book your pre-wedding shoot today.",
+    title: "Pre Wedding Shoot | Vinet Patel Photography — Best Pre Wedding Photographer Vadodara",
+    desc: "Vibrant and intimate pre-wedding photoshoots in Vadodara, Gujarat by Vinet Patel. Capturing your unique chemistry in beautiful locations. Book your pre-wedding shoot today.",
   },
   wedding: {
-    title: "Wedding Photography | Vinit Patel Photography — Best Wedding Photographer Vadodara",
-    desc: "Luxury wedding photography in Vadodara, Gujarat by Vinit Patel. From traditional ceremonies to modern celebrations, we capture every moment with an editorial eye. Book the best wedding photographer today.",
+    title: "Wedding Photography | Vinet Patel Photography — Best Wedding Photographer Vadodara",
+    desc: "Luxury wedding photography in Vadodara, Gujarat by Vinet Patel. From traditional ceremonies to modern celebrations, we capture every moment with an editorial eye. Book the best wedding photographer today.",
   },
   "baby-shoot": {
-    title: "Baby Shoot & Baby Shower | Vinit Patel Photography — Vadodara Photographer",
-    desc: "Beautiful baby shower, maternity, newborn, toddler, and kids photoshoots in Vadodara, Gujarat. Celebrate new beginnings with Vinit Patel Photography.",
+    title: "Baby Shoot & Baby Shower | Vinet Patel Photography — Vadodara Photographer",
+    desc: "Beautiful baby shower, maternity, newborn, toddler, and kids photoshoots in Vadodara, Gujarat. Celebrate new beginnings with Vinet Patel Photography.",
   },
 };
 
 export const Route = createFileRoute("/services/$category")({
   component: ServiceCategoryPage,
   head: ({ params }) => {
-    const seo = SERVICE_SEO[params.category] || { title: "Services | Vinit Patel Photography", desc: "Professional photography services in Vadodara, Gujarat." };
+    const seo = SERVICE_SEO[params.category] || { title: "Services | Vinet Patel Photography", desc: "Professional photography services in Vadodara, Gujarat." };
     return {
       meta: [
         { title: seo.title },

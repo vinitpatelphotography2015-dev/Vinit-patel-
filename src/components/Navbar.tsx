@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
-import logoImg from "@/assets/Vinit Patel Photography LOGO White.png";
+import logoImg from "@/assets/Vinet Patel Photography LOGO White.png";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/", isRoute: true },
@@ -17,7 +17,7 @@ function Logo() {
   return (
     <img
       src={logoImg}
-      alt="Vinit Patel Photography Logo"
+      alt="Vinet Patel Photography Logo"
       className="h-10 md:h-12 w-auto object-contain"
     />
   );
@@ -81,7 +81,7 @@ export function Navbar({ onBookClick }: NavbarProps) {
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${navBg}`}
       >
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 md:px-12 relative">
-          <Link to="/" aria-label="Vinit Patel Photography home">
+          <Link to="/" aria-label="Vinet Patel Photography home">
             <Logo />
           </Link>
 

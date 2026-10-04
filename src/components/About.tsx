@@ -46,7 +46,7 @@ export function About() {
               variants={staggerItem}
               className="font-edwardian text-[color:var(--color-gold)] text-[40px] md:text-[50px] leading-none"
             >
-              Vinit Patel
+              Vinet Patel
             </motion.h2>
             <motion.p
               variants={staggerItem}
@@ -62,7 +62,7 @@ export function About() {
               variants={staggerItem}
               className="mt-8 text-[13px] leading-[2] text-white/70 max-w-none md:max-w-xs"
             >
-              Hey, I’m Vinit. To me, photography has never been about just snapping pictures or checking off a list of poses. It’s about catching that split-second tear in a father's eye, the laughter that fills a sangeet room, and the quiet, real connections that make your family who they are. I love what I do because I get to help you hold onto the feelings of your biggest days, long after they're over.
+              Hey, I’m Vinet. To me, photography has never been about just snapping pictures or checking off a list of poses. It’s about catching that split-second tear in a father's eye, the laughter that fills a sangeet room, and the quiet, real connections that make your family who they are. I love what I do because I get to help you hold onto the feelings of your biggest days, long after they're over.
             </motion.p>
 
             {/* Signature */}
@@ -73,7 +73,7 @@ export function About() {
               <svg
                 viewBox="0 0 180 60"
                 className="w-40 overflow-visible"
-                aria-label="Vinit Patel signature"
+                aria-label="Vinet Patel signature"
               >
                 <motion.path
                   d="M10,40 C20,10 50,50 70,30 C90,10 110,50 130,20 C150,-5 165,35 175,25"
@@ -90,7 +90,7 @@ export function About() {
               <p
                 className="mt-2 text-[30px] text-white font-edwardian"
               >
-                Vinit Patel
+                Vinet Patel
               </p>
             </motion.div>
           </motion.div>
@@ -104,7 +104,7 @@ export function About() {
             <div className="absolute inset-4 border border-[color:var(--color-gold)]/70 translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4" />
             <motion.img
               src={founderImage}
-              alt="Vinit Patel — Best wedding photographer and founder of Vinit Patel Photography in Vadodara, Gujarat"
+              alt="Vinet Patel — Best wedding photographer and founder of Vinet Patel Photography in Vadodara, Gujarat"
               className="relative w-full max-w-[340px] object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-700"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}

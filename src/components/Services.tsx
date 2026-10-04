@@ -236,7 +236,7 @@ export function Services() {
                     <div className="relative w-full aspect-[4/3] overflow-hidden">
                       <img 
                         src={svc.image} 
-                        alt={`${svc.title} by Vinit Patel Photography in Vadodara, Gujarat`}
+                        alt={`${svc.title} by Vinet Patel Photography in Vadodara, Gujarat`}
                         className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105"
                         loading="lazy"
                         draggable={false}

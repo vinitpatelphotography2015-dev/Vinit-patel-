@@ -8,12 +8,12 @@ const TESTIMONIALS = [
   {
     names: "Jarvik Munshi",
     event: "House Warming Ceremony",
-    text: "I had the pleasure of sharing beautiful memories of my house warming ceremony with Vinit Patel Photography, and I would rate them a solid 5 stars! His professional photography skills are outstanding, and he has a calm, composed demeanor...",
+    text: "I had the pleasure of sharing beautiful memories of my house warming ceremony with Vinet Patel Photography, and I would rate them a solid 5 stars! His professional photography skills are outstanding, and he has a calm, composed demeanor...",
   },
   {
     names: "GuruDatt Creators",
     event: "Event Photography",
-    text: "Vinit Patel Photography service is beyond the expectations and always capture the moment with heart and passion.",
+    text: "Vinet Patel Photography service is beyond the expectations and always capture the moment with heart and passion.",
   },
   {
     names: "Nishi Trivedi",
@@ -23,7 +23,7 @@ const TESTIMONIALS = [
   {
     names: "Harsh Desai",
     event: "Wedding Celebration",
-    text: "Hi Vinit, A BIG heartfelt thanks to you and your team for all the amazing captures in time. These will be cherished forever. The entire team and especially you were just...",
+    text: "Hi Vinet, A BIG heartfelt thanks to you and your team for all the amazing captures in time. These will be cherished forever. The entire team and especially you were just...",
   },
   {
     names: "Aditi Trivedi",
@@ -33,12 +33,12 @@ const TESTIMONIALS = [
   {
     names: "Vraj Talati",
     event: "Wedding Film & Album",
-    text: "Nice photography i am sharing my personal view of my friends wedding …specially the album was designed very awesome and the wedding video was also extra ordinary.. just loved it .. thank you VINIT PATEL PHOTOGRAPHY",
+    text: "Nice photography i am sharing my personal view of my friends wedding …specially the album was designed very awesome and the wedding video was also extra ordinary.. just loved it .. thank you VINET PATEL PHOTOGRAPHY",
   },
   {
     names: "Patel Vishwa Nimeshkumar",
     event: "Wedding Shoot",
-    text: "Good experience with Vinit photography it was beyond the expectations and the photography was epic I personally loved it👌",
+    text: "Good experience with Vinet photography it was beyond the expectations and the photography was epic I personally loved it👌",
   },
   {
     names: "Pinkal Barot",

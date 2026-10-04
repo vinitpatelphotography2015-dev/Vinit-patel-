@@ -15,7 +15,7 @@ import svcSangeet from "@/assets/service-sangeet.jpg";
 import svcBaby from "@/assets/service-baby.jpg";
 import founder from "@/assets/WhatsApp Image 2026-07-09 at 4.48.42 PM.jpeg";
 import collage from "@/assets/collage.jpg";
-import logoWhite from "@/assets/Vinit Patel Photography LOGO White.png";
+import logoWhite from "@/assets/Vinet Patel Photography LOGO White.png";
 
 interface IntroAnimationProps {
   onComplete: () => void;
@@ -101,7 +101,7 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
           ref={cameraRigRef}
           role="button"
           tabIndex={0}
-          aria-label="Click the camera to enter Vinit Patel Photography"
+          aria-label="Click the camera to enter Vinet Patel Photography"
         >
           <svg id="cameraSvg" viewBox="-110 -110 220 220">
             <defs>
@@ -168,7 +168,7 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
                 <circle cx="150" cy="86" r="2" fill="#8b8880" />
                 <circle cx="176" cy="86" r="2.4" fill="#3a1414" />
                 <text x="98" y="132" fontFamily="Inter, sans-serif" fontWeight="600" fontSize="19" fill="#eceae4" letterSpacing="0.5">
-                  VINIT PATEL<tspan fill="#c9a227" fontSize="12" dy="-6">R</tspan>
+                  VINET PATEL<tspan fill="#c9a227" fontSize="12" dy="-6">R</tspan>
                 </text>
                 <text x="382" y="130" textAnchor="end" fontFamily="Inter, sans-serif" fontWeight="600" fontSize="17" fill="#eceae4" letterSpacing="2">
                   VP PHOTO
@@ -182,7 +182,7 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
                 <circle r="75" fill="none" stroke="#050505" strokeWidth="2" opacity="0.5" />
                 <text fontFamily="Inter, sans-serif" fontSize="9" fill="#1c1d1e" letterSpacing="2.5">
                   <textPath href="#ringArcTop" startOffset="50%" textAnchor="middle">
-                    VINIT PATEL OPTIK
+                    VINET PATEL OPTIK
                   </textPath>
                 </text>
                 <circle id="focusRing" ref={focusRingRef} r="65" fill="url(#knurl)" stroke="#0a0a0a" strokeWidth="1" />
@@ -216,7 +216,7 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
         </div>
 
         <div className="intro-caption" ref={captionRef}>
-          <img src={logoWhite} alt="Vinit Patel Photography" />
+          <img src={logoWhite} alt="Vinet Patel Photography" />
           <p>Tap to enter</p>
         </div>
       </div>

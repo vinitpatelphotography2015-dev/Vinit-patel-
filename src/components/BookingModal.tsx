@@ -51,13 +51,13 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const messageText = `Hi Vinit Patel Photography! I'd like to book a session:
+    const messageText = `Hi Vinet Patel Photography! I'd like to book a session:
 - Event: ${form.eventType || "TBD"}
 - Date: ${form.date || "TBD"}
 - Location: ${form.location || "TBD"}
 - Phone: ${form.phone || "TBD"}
 - Message: ${form.message || "TBD"}`;
-    const waUrl = `https://wa.me/919998665614?text=${encodeURIComponent(messageText)}`;
+    const waUrl = `https://wa.me/917048413339?text=${encodeURIComponent(messageText)}`;
     window.open(waUrl, "_blank");
     setSubmitted(true);
   };
@@ -69,7 +69,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
   };
 
   const waMessage = encodeURIComponent(
-    `Hi Vinit Patel Photography! I'm interested in booking for ${form.eventType || "my event"} on ${form.date || "TBD"} in ${form.location || "TBD"}.`,
+    `Hi Vinet Patel Photography! I'm interested in booking for ${form.eventType || "my event"} on ${form.date || "TBD"} in ${form.location || "TBD"}.`,
   );
 
   return (
@@ -136,7 +136,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     24 hours. We are so excited to hear more about your plans.
                   </p>
                   <a
-                    href={`https://wa.me/919998665614?text=${waMessage}`}
+                    href={`https://wa.me/917048413339?text=${waMessage}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-8 inline-flex items-center gap-2 bg-[#25D366] px-6 py-3 text-[11px] tracking-[0.2em] text-white hover:bg-[#20bd5a] transition-colors"
@@ -237,7 +237,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                   {/* Alternative CTAs */}
                   <div className="flex items-center gap-4 pt-2">
                     <a
-                      href={`https://wa.me/919998665614?text=${waMessage}`}
+                      href={`https://wa.me/917048413339?text=${waMessage}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex-1 flex items-center justify-center gap-2 border border-white/15 py-3 text-[11px] tracking-[0.2em] text-white/70 hover:border-[#25D366] hover:text-[#25D366] transition-colors"

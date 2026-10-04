@@ -80,7 +80,7 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
           <motion.img
             key={currentIdx}
             src={IMAGES[currentIdx]}
-            alt="Luxury wedding photography by Vinit Patel Photography — best professional photographer in Vadodara, Gujarat"
+            alt="Luxury wedding photography by Vinet Patel Photography — best professional photographer in Vadodara, Gujarat"
             className="absolute h-[106%] w-[106%] max-w-none -left-[3%] -top-[3%] object-cover object-center md:h-[112%] md:w-[112%] md:max-w-none md:-left-[6%] md:-top-[6%]"
             style={{ 
               y: imageScrollY,

@@ -76,10 +76,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 const LOCAL_BUSINESS_SCHEMA = {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "ProfessionalService", "PhotographyBusiness"],
-  "name": "Vinit Patel Photography",
-  "alternateName": "Vinit Patel Photography",
+  "name": "Vinet Patel Photography",
+  "alternateName": "Vinet Patel Photography",
   "description": "Best professional photography in Vadodara, Gujarat, India. Specialising in luxury wedding, pre-wedding, and baby shoot photography. 500+ couples served since 2014.",
-  "telephone": "+91-99986-65614",
+  "telephone": "+91-70484-13339",
   "email": "vinitpatelphotography2015@gmail.com",
   "url": "https://www.vinitpatelphotography.in",
   "image": "https://www.vinitpatelphotography.in/og-preview.jpg",
@@ -109,8 +109,9 @@ const LOCAL_BUSINESS_SCHEMA = {
     { "@type": "Country", "name": "India" }
   ],
   "sameAs": [
-    "https://www.instagram.com/vinit_patel_photography?r=nametag",
-    "https://m.facebook.com/Vinitpatelphotography/?ref=bookmarks"
+    "https://www.instagram.com/vinet_patel_photography?stkn=bGEzaDNkMHR3aHJ0&utm_source=qr",
+    "https://www.facebook.com/share/1S5trnU8Mp/?mibextid=wwXIfr",
+    "https://share.google/hRcqDvIoOVxJrHBn0"
   ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
@@ -129,7 +130,7 @@ const LOCAL_BUSINESS_SCHEMA = {
     "reviewCount": "98"
   },
   "review": [
-    { "@type": "Review", "author": { "@type": "Person", "name": "Jarvik Munshi" }, "datePublished": "2025-05-10", "reviewBody": "I had the pleasure of sharing beautiful memories of my house warming ceremony with Vinit Patel Photography, and I would rate them a solid 5 stars! His professional photography skills are outstanding, and he has a calm, composed demeanor...", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" } },
+    { "@type": "Review", "author": { "@type": "Person", "name": "Jarvik Munshi" }, "datePublished": "2025-05-10", "reviewBody": "I had the pleasure of sharing beautiful memories of my house warming ceremony with Vinet Patel Photography, and I would rate them a solid 5 stars! His professional photography skills are outstanding, and he has a calm, composed demeanor...", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" } },
     { "@type": "Review", "author": { "@type": "Person", "name": "Nishi Trivedi" }, "datePublished": "2023-08-15", "reviewBody": "Overall an amazing experience! I had got my wedding photography done. Images turned out amazing, excellent quality. The experience was seamless.", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" } },
     { "@type": "Review", "author": { "@type": "Person", "name": "Aditi Trivedi" }, "datePublished": "2022-10-12", "reviewBody": "One of the best photographer i have come across in the vadodara city. His work is fabulous. Very kind and polite with his work.", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" } }
   ]
@@ -138,10 +139,10 @@ const LOCAL_BUSINESS_SCHEMA = {
 const PHOTOGRAPHER_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Vinit Patel",
+  "name": "Vinet Patel",
   "jobTitle": "Professional Wedding Photographer",
-  "description": "Best professional photographer in Vadodara, Gujarat — founder of Vinit Patel Photography.",
-  "worksFor": { "@type": "Organization", "name": "Vinit Patel Photography" },
+  "description": "Best professional photographer in Vadodara, Gujarat — founder of Vinet Patel Photography.",
+  "worksFor": { "@type": "Organization", "name": "Vinet Patel Photography" },
   "address": { "@type": "PostalAddress", "addressLocality": "Vadodara", "addressRegion": "Gujarat", "addressCountry": "IN" },
   "knowsAbout": ["Wedding Photography", "Pre Wedding Photography", "Baby Shoot Photography", "Event Photography"]
 };
@@ -150,8 +151,8 @@ const FAQ_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "Who is the best photographer in Vadodara?", "acceptedAnswer": { "@type": "Answer", "text": "Vinit Patel Photography is widely regarded as one of the best photography services in Vadodara, Gujarat. With 10+ years of experience and 500+ happy couples, we specialise in luxury wedding, pre-wedding, and baby shoot photography." } },
-    { "@type": "Question", "name": "What types of events does Vinit Patel Photography cover?", "acceptedAnswer": { "@type": "Answer", "text": "We are a professional photography service in Vadodara specialising in weddings, pre-wedding shoots, sangeet nights, haldi ceremonies, engagements, couple shoots, and baby/maternity shoots." } },
+    { "@type": "Question", "name": "Who is the best photographer in Vadodara?", "acceptedAnswer": { "@type": "Answer", "text": "Vinet Patel Photography is widely regarded as one of the best photography services in Vadodara, Gujarat. With 10+ years of experience and 500+ happy couples, we specialise in luxury wedding, pre-wedding, and baby shoot photography." } },
+    { "@type": "Question", "name": "What types of events does Vinet Patel Photography cover?", "acceptedAnswer": { "@type": "Answer", "text": "We are a professional photography service in Vadodara specialising in weddings, pre-wedding shoots, sangeet nights, haldi ceremonies, engagements, couple shoots, and baby/maternity shoots." } },
     { "@type": "Question", "name": "How far in advance should I book a photographer in Vadodara?", "acceptedAnswer": { "@type": "Answer", "text": "We recommend booking at least 3–6 months in advance for weddings and major events to ensure your preferred date is available." } },
     { "@type": "Question", "name": "What is the starting price for wedding photography in Vadodara?", "acceptedAnswer": { "@type": "Answer", "text": "Our Classic wedding photography package starts at ₹25,000. We also offer Royal (₹45,000) and Legacy (₹75,000) packages, plus fully bespoke custom packages." } },
     { "@type": "Question", "name": "How long does it take to receive the final photographs?", "acceptedAnswer": { "@type": "Answer", "text": "Edited photos are typically delivered within 3–4 weeks. We also offer a same-day sneak peek with select packages." } },
@@ -164,15 +165,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Vinit Patel Photography — Luxury Wedding Photography Vadodara" },
+      { title: "Vinet Patel Photography — Luxury Wedding Photography Vadodara" },
       { name: "description", content: "Award-winning luxury wedding, pre-wedding, and baby shoot photographer in Vadodara, Gujarat. Capturing timeless moments with an editorial eye." },
-      { name: "keywords", content: "wedding photographer vadodara, pre wedding shoot, baby shoot photographer vadodara, engagement photographer vadodara, Vinit Patel Photography" },
-      { property: "og:title", content: "Vinit Patel Photography — Luxury Wedding Photography" },
+      { name: "keywords", content: "wedding photographer vadodara, pre wedding shoot, baby shoot photographer vadodara, engagement photographer vadodara, Vinet Patel Photography" },
+      { property: "og:title", content: "Vinet Patel Photography — Luxury Wedding Photography" },
       { property: "og:description", content: "Luxury wedding photography in Vadodara & Gujarat — creating timeless memories that last forever." },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "en_IN" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Vinit Patel Photography" },
+      { name: "twitter:title", content: "Vinet Patel Photography" },
       { name: "twitter:description", content: "Luxury wedding photography in Vadodara & Gujarat." },
     ],
     links: [

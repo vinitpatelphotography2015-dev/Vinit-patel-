@@ -85,7 +85,7 @@ export function BookingCTA({ onBookClick }: BookingCTAProps) {
             SAY HELLO
           </button>
           <a
-            href="https://wa.me/919998665614?text=Hi%20Vinit%20Patel%20Photography!%20I'd%20like%20to%20discuss%20capturing%20my%20wedding."
+            href="https://wa.me/917048413339?text=Hi%20Vinet%20Patel%20Photography!%20I'd%20like%20to%20discuss%20capturing%20my%20wedding."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 border border-[color:var(--color-ink)]/15 px-8 py-4 text-[11px] tracking-[0.3em] text-[color:var(--color-ink)]/50 hover:border-[#25D366] hover:text-[#25D366] transition-colors duration-300"
@@ -106,7 +106,7 @@ export function BookingCTA({ onBookClick }: BookingCTAProps) {
           <span
             className="text-[color:var(--color-gold)]/60 text-[28px] font-edwardian"
           >
-            Vinit Patel
+            Vinet Patel
           </span>
           <span className="h-px w-16 bg-[color:var(--color-gold)]/30" />
         </motion.div>

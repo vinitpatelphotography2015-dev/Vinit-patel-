@@ -1,6 +1,6 @@
 import { Facebook, Instagram, MessageCircle, Phone, Mail, MapPin, Globe } from "lucide-react";
 import contactBg from "@/assets/contact-bg.png";
-import logoImg from "@/assets/Vinit Patel Photography LOGO White.png";
+import logoImg from "@/assets/Vinet Patel Photography LOGO White.png";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
@@ -15,7 +15,7 @@ function Logo() {
   return (
     <img
       src={logoImg}
-      alt="Vinit Patel Photography Logo"
+      alt="Vinet Patel Photography Logo"
       className="h-12 md:h-14 w-auto object-contain"
     />
   );
@@ -49,10 +49,10 @@ export function Footer() {
           </p>
           <div className="mt-6 flex gap-3">
             {[
-              { Icon: Facebook, href: "https://m.facebook.com/Vinitpatelphotography/?ref=bookmarks", label: "Facebook" },
-              { Icon: Instagram, href: "https://www.instagram.com/vinit_patel_photography?r=nametag", label: "Instagram" },
-              { Icon: Globe, href: "https://g.page/r/Cbu-mfIXQFMvEAo", label: "Google Page" },
-              { Icon: MessageCircle, href: "https://wa.me/919998665614", label: "WhatsApp" },
+              { Icon: Facebook, href: "https://www.facebook.com/share/1S5trnU8Mp/?mibextid=wwXIfr", label: "Facebook" },
+              { Icon: Instagram, href: "https://www.instagram.com/vinet_patel_photography?stkn=bGEzaDNkMHR3aHJ0&utm_source=qr", label: "Instagram" },
+              { Icon: Globe, href: "https://share.google/hRcqDvIoOVxJrHBn0", label: "Google Page" },
+              { Icon: MessageCircle, href: "https://wa.me/917048413339", label: "WhatsApp" },
             ].map(({ Icon, href, label }) => (
               <a
                 key={label}
@@ -75,11 +75,11 @@ export function Footer() {
           <ul className="mt-6 space-y-4 text-[12px] text-white/65">
             <li>
               <a
-                href="tel:+919998665614"
+                href="tel:+917048413339"
                 className="flex items-center gap-3 hover:text-[color:var(--color-gold)] transition-colors"
               >
                 <Phone size={13} className="shrink-0 text-[color:var(--color-gold)]" />
-                +91 99986 65614
+                +91 70484 13339
               </a>
             </li>
             <li>
@@ -127,8 +127,8 @@ export function Footer() {
             <div className="mt-4 h-px w-10 bg-[color:var(--color-gold)]/50 mb-6" />
             <div className="relative overflow-hidden rounded-xl border border-[color:var(--color-gold)]/20 shadow-lg bg-black/40 p-1">
               <iframe
-                title="Vinit Patel Photography Location Map"
-                src="https://maps.google.com/maps?q=Vinit%20Patel%20Photography%20Vadodara&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                title="Vinet Patel Photography Location Map"
+                src="https://maps.google.com/maps?q=Vinet%20Patel%20Photography%20Vadodara&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="190"
                 style={{ border: 0 }}
@@ -140,7 +140,7 @@ export function Footer() {
             </div>
             <div className="mt-3 flex justify-start sm:justify-end">
               <a
-                href="https://g.page/r/Cbu-mfIXQFMvEAo"
+                href="https://share.google/hRcqDvIoOVxJrHBn0"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.25em] text-[color:var(--color-gold)] hover:text-white transition-colors"
@@ -154,7 +154,7 @@ export function Footer() {
 
       {/* Copyright */}
       <div className="relative z-10 mx-auto mt-16 max-w-[1300px] border-t border-white/8 px-6 md:px-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-2 text-[11px] text-white/30">
-        <span>© {year} Vinit Patel Photography. All Rights Reserved.</span>
+        <span>© {year} Vinet Patel Photography. All Rights Reserved.</span>
         <span className="tracking-[0.2em]">VADODARA · GUJARAT · INDIA</span>
       </div>
     </footer>
