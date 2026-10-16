@@ -156,7 +156,7 @@ export function Services() {
       rotate: 0,
       transition: { 
         duration: 1.2, 
-        ease: [0.22, 1, 0.36, 1] 
+        ease: [0.22, 1, 0.36, 1] as [number, number, number, number] 
       }
     },
   };
@@ -227,7 +227,7 @@ export function Services() {
                   className="w-[85vw] sm:w-[380px] md:w-[400px] shrink-0 group bg-white rounded-lg overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(200,155,60,0.08)] transition-shadow duration-500 flex flex-col snap-center"
                 >
                   <Link 
-                    to={`/services/${svc.category}`} 
+                    to={`/services/${svc.category}` as any} 
                     onClick={handleLinkClick}
                     className="flex flex-col flex-grow" 
                     data-cursor="view"

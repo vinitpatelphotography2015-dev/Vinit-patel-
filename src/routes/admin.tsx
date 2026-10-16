@@ -533,7 +533,7 @@ function AdminPortal() {
                     <td className="px-6 py-4 text-right">
                       <div className="inline-flex items-center justify-end gap-2">
                         <Link
-                          to={`/event/${event.id}`}
+                          to={`/event/${event.id}` as any}
                           title="View live page"
                           className="p-1.5 text-neutral-400 hover:text-[color:var(--color-gold)] transition-colors"
                         >

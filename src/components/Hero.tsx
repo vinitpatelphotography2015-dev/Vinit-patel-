@@ -54,7 +54,7 @@ export function Hero({ onBookClick, startTrigger }: HeroProps) {
 
   const stagger = 0.12;
   const baseDelay = 0.4;
-  const EASE = [0.22, 1, 0.36, 1];
+  const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
   return (
     <section

@@ -356,8 +356,8 @@ export function initCameraIntro(
 
   cameraRig.addEventListener("click", enterSite);
   cameraRig.addEventListener("keydown", onKeyDown);
-  introOverlay.addEventListener("click", enterSite);
-  introOverlay.addEventListener("touchstart", enterSite, { passive: true });
+  introOverlay?.addEventListener("click", enterSite);
+  introOverlay?.addEventListener("touchstart", enterSite, { passive: true });
 
   return () => {
     document.body.classList.remove("locked");
@@ -371,7 +371,7 @@ export function initCameraIntro(
     cameraRig.removeEventListener("mousemove", onMouseMove);
     cameraRig.removeEventListener("click", enterSite);
     cameraRig.removeEventListener("keydown", onKeyDown);
-    introOverlay.removeEventListener("click", enterSite);
-    introOverlay.removeEventListener("touchstart", enterSite);
+    introOverlay?.removeEventListener("click", enterSite);
+    introOverlay?.removeEventListener("touchstart", enterSite);
   };
 }

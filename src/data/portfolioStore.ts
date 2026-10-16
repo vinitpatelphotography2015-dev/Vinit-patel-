@@ -141,6 +141,8 @@ export function useClientEvents() {
         clientNames: e.clientNames || "",
         eventType: e.eventType as EventType,
         serviceCategory: e.serviceCategory as ServiceCategory | undefined,
+        location: e.location || "",
+        date: e.date || "",
         coverImage: e.coverImage || "",
         images: imagesByEvent[e.id] || [],
       }));

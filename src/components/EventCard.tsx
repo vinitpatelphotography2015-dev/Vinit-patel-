@@ -17,7 +17,7 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
       transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
       <Link
-        to={`/event/${event.id}`}
+        to={`/event/${event.id}` as any}
         className="group block overflow-hidden rounded-lg bg-white transition-shadow duration-500 hover:shadow-[0_20px_50px_rgba(200,155,60,0.12)]"
         style={{
           boxShadow: "0 4px 20px -6px rgba(60,40,10,0.08), 0 1px 3px rgba(0,0,0,0.03)",
